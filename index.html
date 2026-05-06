@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Omar & Yasmin | Royal Palace Wedding</title>
+<title>Nadir & Celeste | Interactive Storybook Invitation</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 /* ==============================
@@ -18,14 +18,16 @@
 }
 
 :root{
-  --emerald:#052d24;
-  --emerald2:#0a4c3b;
-  --gold:#d9b76f;
-  --gold2:#fff0bd;
-  --ivory:#fff8ea;
-  --ruby:#4a0712;
-  --black:#050504;
-  --glass:rgba(5,45,36,.54);
+  --paper:#fff7e8;
+  --paper2:#f1dfc2;
+  --ink:#2d2119;
+  --muted:#795f4b;
+  --terracotta:#b65b38;
+  --rose:#d88d7b;
+  --olive:#596d48;
+  --sage:#b8c7a1;
+  --cream:#fffaf0;
+  --shadow:rgba(45,33,25,.25);
 }
 
 html{
@@ -33,13 +35,14 @@ html{
 }
 
 body{
-  font-family:Montserrat, sans-serif;
+  min-height:100vh;
   overflow-x:hidden;
-  color:white;
+  font-family:Inter, sans-serif;
+  color:var(--ink);
   background:
-    radial-gradient(circle at 15% 10%, rgba(217,183,111,.25), transparent 30%),
-    radial-gradient(circle at 85% 75%, rgba(74,7,18,.26), transparent 35%),
-    linear-gradient(145deg,#020302,#052d24 45%,#020302);
+    radial-gradient(circle at 12% 18%, rgba(216,141,123,.28), transparent 28%),
+    radial-gradient(circle at 88% 70%, rgba(184,199,161,.34), transparent 34%),
+    linear-gradient(145deg,#fff7e8,#e7d3b5);
 }
 
 body::before{
@@ -48,36 +51,33 @@ body::before{
   inset:0;
   z-index:0;
   pointer-events:none;
-  opacity:.22;
+  opacity:.26;
   background-image:
-    linear-gradient(30deg, rgba(217,183,111,.12) 12%, transparent 12.5%, transparent 87%, rgba(217,183,111,.12) 87.5%, rgba(217,183,111,.12)),
-    linear-gradient(150deg, rgba(217,183,111,.12) 12%, transparent 12.5%, transparent 87%, rgba(217,183,111,.12) 87.5%, rgba(217,183,111,.12));
-  background-size:54px 94px;
-  animation:patternDrift 28s linear infinite;
+    radial-gradient(circle, rgba(45,33,25,.14) 1px, transparent 1.5px),
+    linear-gradient(90deg, rgba(45,33,25,.04) 1px, transparent 1px);
+  background-size:28px 28px, 54px 54px;
 }
 
-@keyframes patternDrift{
-  from{background-position:0 0}
-  to{background-position:108px 188px}
-}
-
-button,a{
+button,a,input,select{
   -webkit-tap-highlight-color:transparent;
+  font:inherit;
 }
 
 /* ==============================
-   CURTAIN INTRO
+   INTRO: BOOK COVER
 ============================== */
 .intro{
   position:fixed;
   inset:0;
-  min-height:100svh;
   height:100dvh;
+  min-height:100svh;
   z-index:9999;
   display:grid;
   place-items:center;
   overflow:hidden;
-  background:#030302;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255,250,240,.34), transparent 34%),
+    linear-gradient(145deg,#3f2b21,#15100d);
   transition:opacity 1s ease, transform 1s ease;
 }
 
@@ -87,134 +87,140 @@ button,a{
   pointer-events:none;
 }
 
-.curtain{
-  position:absolute;
-  top:0;
-  bottom:0;
-  width:50%;
-  z-index:4;
-  background:
-    repeating-linear-gradient(90deg, rgba(0,0,0,.18) 0 14px, rgba(255,255,255,.04) 14px 26px),
-    linear-gradient(135deg,#400611,#7a1020,#2a0208);
-  box-shadow:inset 0 0 70px rgba(0,0,0,.65);
-  transition:1.35s cubic-bezier(.77,0,.18,1);
-}
-
-.curtain.left{left:0}
-.curtain.right{right:0}
-
-.intro.opening .curtain.left{transform:translateX(-100%)}
-.intro.opening .curtain.right{transform:translateX(100%)}
-
-.stage{
-  position:absolute;
-  inset:0;
-  z-index:1;
-  background:
-    linear-gradient(to bottom, rgba(0,0,0,.12), rgba(0,0,0,.78)),
-    url("https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1800&q=80") center/cover;
-}
-
-.stage::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at 50% 28%, rgba(255,240,189,.22), transparent 38%);
-}
-
-.royal-card{
+.book-wrap{
+  width:min(88vw,390px);
+  height:min(78svh,620px);
+  perspective:1400px;
   position:relative;
-  z-index:5;
-  width:min(88vw,430px);
-  min-height:540px;
-  border-radius:42px 42px 12px 12px;
-  padding:38px 24px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  text-align:center;
+}
+
+.book-cover{
+  width:100%;
+  height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  transform-origin:left center;
+  border-radius:14px 28px 28px 14px;
   background:
-    linear-gradient(to bottom, rgba(5,45,36,.35), rgba(5,45,36,.88)),
-    radial-gradient(circle at 50% 15%, rgba(217,183,111,.22), transparent 38%);
-  border:1px solid rgba(255,240,189,.5);
+    linear-gradient(to bottom, rgba(45,33,25,.18), rgba(45,33,25,.74)),
+    url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80") center/cover;
+  border:1px solid rgba(255,247,232,.46);
   box-shadow:
-    0 0 90px rgba(217,183,111,.28),
-    inset 0 0 65px rgba(217,183,111,.09);
+    18px 22px 60px rgba(0,0,0,.46),
+    inset 12px 0 28px rgba(0,0,0,.24),
+    inset 0 0 0 12px rgba(255,247,232,.08);
   overflow:hidden;
-  animation:cardFloat 3.6s ease-in-out infinite;
+  animation:bookFloat 3.6s ease-in-out infinite;
+  transition:
+    transform 1.15s cubic-bezier(.77,0,.18,1),
+    opacity .55s ease,
+    filter .55s ease;
+  backface-visibility:hidden;
+  will-change:transform, opacity;
 }
 
-@keyframes cardFloat{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-8px)}
+.intro.opening .book-cover{
+  transform:translateX(-16px) rotateY(-74deg);
+  opacity:.96;
+  filter:brightness(.9);
 }
 
-.royal-card::before{
-  content:"♛";
-  position:absolute;
-  top:24px;
-  left:50%;
-  transform:translateX(-50%);
-  color:var(--gold2);
-  font-size:44px;
-  text-shadow:0 0 22px rgba(217,183,111,.7);
+@keyframes bookFloat{
+  0%,100%{transform:translateY(0) rotate(-.4deg)}
+  50%{transform:translateY(-9px) rotate(.4deg)}
 }
 
-.royal-card::after{
+.intro.opening .book-cover{
+  animation:none;
+}
+
+.book-cover::before{
   content:"";
   position:absolute;
-  inset:16px;
-  border-radius:34px 34px 8px 8px;
-  border:1px solid rgba(255,240,189,.32);
+  inset:18px;
+  border:1px solid rgba(255,247,232,.52);
+  border-radius:10px 22px 22px 10px;
   pointer-events:none;
 }
 
-.intro-kicker{
-  margin-top:38px;
-  color:var(--gold2);
+.book-cover::after{
+  content:"THE WEDDING STORY";
+  position:absolute;
+  top:28px;
+  left:50%;
+  transform:translateX(-50%);
+  white-space:nowrap;
+  color:#fff7e8;
   letter-spacing:4px;
-  text-transform:uppercase;
+  font-size:11px;
+  font-weight:800;
+  text-shadow:0 2px 14px rgba(0,0,0,.76);
+}
+
+.book-content{
+  position:absolute;
+  inset:0;
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  text-align:center;
+  padding:40px 24px 44px;
+  color:#fff7e8;
+}
+
+.book-label{
   font-size:12px;
-  font-weight:700;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-weight:800;
 }
 
-.intro-names{
-  margin-top:18px;
-  font-family:'Great Vibes', cursive;
-  font-size:82px;
-  line-height:.9;
-  text-shadow:0 0 30px rgba(217,183,111,.68), 0 3px 20px rgba(0,0,0,.9);
+.book-names{
+  margin-top:16px;
+  font-family:Fraunces, serif;
+  font-size:62px;
+  line-height:.92;
+  font-weight:800;
+  text-shadow:0 3px 22px rgba(0,0,0,.85);
 }
 
-.intro-date{
-  margin-top:18px;
-  font-family:'Cormorant Garamond', serif;
-  color:#fff8ea;
-  font-size:25px;
-  font-weight:700;
+.book-date{
+  margin-top:16px;
+  color:#ffe6ce;
+  font-family:Fraunces, serif;
+  font-size:20px;
 }
 
 .open-btn{
-  margin:32px auto 0;
+  margin:26px auto 0;
   border:none;
-  padding:15px 24px;
   border-radius:999px;
-  color:#07120d;
-  background:linear-gradient(135deg,#fff0bd,#d9b76f,#8b6426);
-  font-family:Montserrat, sans-serif;
-  font-weight:800;
+  padding:15px 24px;
+  background:var(--paper);
+  color:var(--ink);
+  font-weight:900;
   cursor:pointer;
-  box-shadow:0 0 28px rgba(217,183,111,.55);
-  animation:buttonPulse 1.75s ease-in-out infinite;
+  box-shadow:0 12px 28px rgba(0,0,0,.35);
+  animation:btnPulse 1.7s ease-in-out infinite;
 }
 
-@keyframes buttonPulse{
+@keyframes btnPulse{
   0%,100%{transform:scale(1)}
   50%{transform:scale(1.045)}
 }
 
+.page-behind{
+  position:absolute;
+  inset:14px -12px 14px 14px;
+  z-index:-1;
+  border-radius:12px 24px 24px 12px;
+  background:linear-gradient(145deg,#fffaf0,#e9d5b9);
+  box-shadow:12px 18px 45px rgba(0,0,0,.26);
+}
+
 /* ==============================
-   WEBSITE + CONTROLS
+   WEBSITE FRAME
 ============================== */
 .website{
   display:none;
@@ -222,286 +228,371 @@ button,a{
   z-index:2;
 }
 
-.control{
-  position:fixed;
-  z-index:9997;
-  border:none;
-  padding:10px 14px;
-  border-radius:999px;
-  color:#07120d;
-  background:linear-gradient(135deg,#fff0bd,#d9b76f);
-  font-family:Montserrat, sans-serif;
-  font-size:13px;
-  font-weight:800;
-  cursor:pointer;
-  box-shadow:0 8px 24px rgba(0,0,0,.34), 0 0 18px rgba(217,183,111,.32);
+.app-shell{
+  max-width:520px;
+  margin:auto;
+  min-height:100vh;
+  padding:18px 12px 90px;
+  position:relative;
 }
 
-.lang-toggle{
-  top:calc(14px + env(safe-area-inset-top));
-  right:14px;
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  margin:0 -12px 14px;
+  padding:12px;
+  background:linear-gradient(to bottom, rgba(255,247,232,.94), rgba(255,247,232,.72));
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(45,33,25,.12);
 }
 
-.music-toggle{
-  bottom:calc(14px + env(safe-area-inset-bottom));
-  left:14px;
+.topbar-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
 }
 
-.music-toggle.muted{
-  color:white;
-  background:rgba(5,45,36,.8);
-  border:1px solid rgba(255,240,189,.32);
+.brand{
+  line-height:1.05;
 }
 
-.float-menu{
-  position:fixed;
-  bottom:calc(14px + env(safe-area-inset-bottom));
-  right:14px;
-  z-index:9997;
+.brand strong{
+  display:block;
+  font-family:Fraunces, serif;
+  font-size:21px;
+}
+
+.brand span{
+  font-size:11px;
+  color:var(--muted);
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.icon-actions{
   display:flex;
   gap:8px;
 }
 
-.float-menu a{
-  text-decoration:none;
-  padding:11px 13px;
+.icon-btn{
+  width:40px;
+  height:40px;
+  border:none;
+  border-radius:16px;
+  background:#fffaf0;
+  color:var(--ink);
+  font-weight:900;
+  box-shadow:0 8px 20px rgba(45,33,25,.12);
+  cursor:pointer;
+}
+
+.icon-btn.muted{
+  background:var(--ink);
+  color:var(--paper);
+}
+
+.progress-track{
+  margin-top:12px;
+  height:7px;
   border-radius:999px;
-  background:rgba(5,45,36,.78);
-  color:var(--gold2);
-  border:1px solid rgba(255,240,189,.28);
-  font-size:12px;
-  font-weight:800;
-  backdrop-filter:blur(7px);
+  overflow:hidden;
+  background:rgba(45,33,25,.12);
 }
 
-.scroll-hint{
-  position:fixed;
-  left:50%;
-  bottom:calc(24px + env(safe-area-inset-bottom));
-  transform:translateX(-50%);
-  z-index:9996;
-  display:none;
-  color:#fff0bd;
-  background:rgba(5,45,36,.56);
-  padding:9px 15px;
+.progress-fill{
+  height:100%;
+  width:0%;
   border-radius:999px;
-  font-size:10px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  pointer-events:none;
-  backdrop-filter:blur(7px);
-}
-
-.scroll-hint.show{
-  display:block;
-  animation:hintFade 4s ease forwards;
-}
-
-@keyframes hintFade{
-  0%,100%{opacity:0; transform:translateX(-50%) translateY(8px)}
-  15%,80%{opacity:1; transform:translateX(-50%) translateY(0)}
+  background:linear-gradient(90deg,var(--terracotta),var(--olive));
+  transition:width .15s linear;
 }
 
 /* ==============================
-   LAYOUT
+   CARDS + PAGES
 ============================== */
-.container{
-  max-width:840px;
-  margin:auto;
-  padding:24px 14px 74px;
-}
-
-.hero{
-  min-height:96svh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.hero-card{
-  width:100%;
-  min-height:84svh;
-  position:relative;
+.story-card{
+  min-height:calc(100svh - 130px);
+  margin-bottom:18px;
+  border-radius:34px;
   overflow:hidden;
-  border-radius:42px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:36px 20px;
-  background:
-    linear-gradient(to bottom, rgba(5,45,36,.05), rgba(5,45,36,.82)),
-    radial-gradient(circle at 50% 28%, rgba(217,183,111,.2), transparent 45%),
-    url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=80") center/cover;
-  border:1px solid rgba(255,240,189,.36);
-  box-shadow:0 0 70px rgba(217,183,111,.18), inset 0 0 60px rgba(217,183,111,.08);
+  position:relative;
+  background:#fffaf0;
+  color:var(--ink);
+  box-shadow:0 22px 50px rgba(45,33,25,.17);
+  border:1px solid rgba(45,33,25,.12);
   opacity:0;
-  transform:translateY(34px) scale(.98);
-  transition:.9s ease;
+  transform:translateY(34px) scale(.985);
+  transition:.85s ease;
 }
 
-.hero-card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top, rgba(2,3,2,.78), transparent 56%);
-  pointer-events:none;
-}
-
-.hero-card.show,
-.reveal.show{
+.story-card.show{
   opacity:1;
   transform:translateY(0) scale(1);
 }
 
-.hero-content{
+.hero-card{
+  display:flex;
+  flex-direction:column;
+}
+
+.hero-image{
+  min-height:48svh;
+  background:
+    linear-gradient(to bottom, transparent, rgba(45,33,25,.38)),
+    url("https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1100&q=80") center/cover;
   position:relative;
-  z-index:3;
+}
+
+.hero-stamp{
+  position:absolute;
+  right:18px;
+  bottom:18px;
+  width:104px;
+  height:104px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:12px;
+  color:#fffaf0;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  background:rgba(182,91,56,.88);
+  border:2px dashed rgba(255,250,240,.66);
+  transform:rotate(-10deg);
+  box-shadow:0 10px 24px rgba(0,0,0,.24);
+}
+
+.hero-copy{
+  flex:1;
+  padding:28px 22px 30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
 }
 
 .kicker{
-  color:var(--gold2);
-  letter-spacing:4px;
+  color:var(--terracotta);
   font-size:12px;
-  font-weight:800;
+  letter-spacing:3px;
+  font-weight:900;
   text-transform:uppercase;
 }
 
 .names{
-  margin-top:18px;
-  font-family:'Great Vibes', cursive;
-  font-size:94px;
-  line-height:.88;
-  text-shadow:0 0 30px rgba(217,183,111,.58), 0 3px 22px rgba(0,0,0,.9);
+  margin-top:14px;
+  font-family:Fraunces, serif;
+  font-size:58px;
+  line-height:.92;
+  font-weight:800;
 }
 
 .and{
-  margin:10px 0;
-  color:var(--gold2);
-  font-family:'Cormorant Garamond', serif;
-  font-size:32px;
-  font-weight:700;
+  margin:8px 0;
+  color:var(--olive);
+  font-family:Fraunces, serif;
+  font-size:24px;
 }
 
 .date{
-  margin-top:18px;
-  color:var(--gold2);
-  font-family:'Cormorant Garamond', serif;
-  font-size:32px;
-  font-weight:700;
+  margin-top:14px;
+  font-family:Fraunces, serif;
+  font-size:26px;
+  color:var(--terracotta);
 }
 
 .info{
-  margin-top:16px;
-  line-height:1.85;
-  color:#fff8ea;
-  text-shadow:0 2px 12px rgba(0,0,0,.84);
+  margin-top:12px;
+  color:var(--muted);
+  line-height:1.75;
 }
 
+.card-page{
+  padding:24px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
+}
+
+.page-number{
+  align-self:center;
+  padding:8px 13px;
+  border-radius:999px;
+  background:#f4e2c8;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.card-page h2{
+  margin-top:18px;
+  font-family:Fraunces, serif;
+  font-size:44px;
+  line-height:1;
+  color:var(--ink);
+}
+
+.card-page p{
+  margin-top:14px;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+.full-image-card{
+  color:#fffaf0;
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:flex-end;
+  min-height:calc(100svh - 130px);
+}
+
+.full-image-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(45,33,25,.84), transparent 56%);
+}
+
+.full-image-card .card-page{
+  position:relative;
+  z-index:2;
+  width:100%;
+  min-height:42svh;
+  justify-content:flex-end;
+}
+
+.full-image-card h2,
+.full-image-card p{
+  color:#fffaf0;
+  text-shadow:0 2px 12px rgba(0,0,0,.55);
+}
+
+.full-image-card .page-number{
+  background:rgba(255,250,240,.18);
+  color:#fffaf0;
+  backdrop-filter:blur(8px);
+}
+
+.img-venue{background-image:url("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1100&q=80")}
+.img-dinner{background-image:url("https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1100&q=80")}
+.img-rsvp{background-image:url("https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1100&q=80")}
+
+/* ==============================
+   COUNTDOWN
+============================== */
 .countdown{
-  margin-top:28px;
+  margin-top:22px;
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:8px;
 }
 
 .time-box{
-  padding:12px 5px;
+  padding:12px 4px;
   border-radius:18px;
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,240,189,.3);
-  backdrop-filter:blur(6px);
+  background:#f4e2c8;
+  border:1px solid rgba(45,33,25,.08);
 }
 
 .time-box span{
   display:block;
-  color:var(--gold2);
-  font-size:23px;
-  font-weight:800;
+  font-weight:900;
+  font-size:22px;
+  color:var(--terracotta);
 }
 
 .time-box small{
   font-size:10px;
+  color:var(--muted);
 }
 
 /* ==============================
-   ROYAL SECTIONS
+   INTERACTIVE CHOICE CARDS
 ============================== */
-.royal-section{
-  min-height:88svh;
-  margin:22px 0;
-  padding:34px 0;
-  position:relative;
-  display:flex;
+.choice-grid{
+  margin-top:22px;
+  display:grid;
+  gap:10px;
+}
+
+.choice-btn{
+  border:none;
+  border-radius:22px;
+  padding:16px 14px;
+  background:#f4e2c8;
+  color:var(--ink);
+  font-weight:800;
+  cursor:pointer;
+  transition:.25s ease;
+  border:1px solid rgba(45,33,25,.08);
+}
+
+.choice-btn:hover,
+.choice-btn.active{
+  background:var(--terracotta);
+  color:#fffaf0;
+  transform:translateY(-2px);
+}
+
+.choice-result{
+  margin-top:14px;
+  padding:14px;
+  border-radius:22px;
+  line-height:1.6;
+  color:#fffaf0;
+  background:linear-gradient(135deg,var(--terracotta),#7d3d28);
+  display:none;
+}
+
+.choice-result.show{
+  display:block;
+  animation:pop .35s ease forwards;
+}
+
+@keyframes pop{
+  from{opacity:0; transform:scale(.95)}
+  to{opacity:1; transform:scale(1)}
+}
+
+/* ==============================
+   TIMELINE + DETAILS
+============================== */
+.timeline{
+  margin-top:22px;
+  display:grid;
+  gap:10px;
+}
+
+.timeline-item{
+  display:grid;
+  grid-template-columns:82px 1fr;
+  gap:10px;
   align-items:center;
-  justify-content:center;
-  text-align:center;
-  overflow:hidden;
-  isolation:isolate;
-  border-radius:42px;
-  background-size:cover;
-  background-position:center;
-  border:1px solid rgba(255,240,189,.28);
-  box-shadow:0 0 45px rgba(217,183,111,.18), inset 0 0 60px rgba(217,183,111,.06);
+  text-align:left;
+  padding:13px;
+  border-radius:22px;
+  background:#f4e2c8;
 }
 
-.royal-section::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:1;
-  background:
-    linear-gradient(to bottom, rgba(5,45,36,.15), rgba(2,3,2,.76)),
-    radial-gradient(circle at center, rgba(217,183,111,.14), transparent 58%);
+.timeline-time{
+  font-family:Fraunces, serif;
+  color:var(--terracotta);
+  font-weight:800;
 }
 
-.section-story{background-image:url("https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1600&q=80")}
-.section-palace{background-image:url("https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1600&q=80")}
-.section-timeline{background-image:url("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80")}
-.section-attire{background-image:url("https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1600&q=80")}
-.section-menu{background-image:url("https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=1600&q=80")}
-.section-rsvp{background-image:url("https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=80")}
-.section-final{background-image:url("https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=1600&q=80")}
-
-.card{
-  width:88%;
-  min-height:54svh;
-  padding:30px 20px;
-  border-radius:36px;
-  position:relative;
-  z-index:3;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  background:var(--glass);
-  backdrop-filter:blur(8px);
-  border:1px solid rgba(255,240,189,.38);
-  box-shadow:0 0 45px rgba(217,183,111,.18);
-  opacity:0;
-  transform:translateY(36px) scale(.98);
-  transition:.9s ease;
-}
-
-.card::before{
-  content:"♛";
-  color:rgba(255,240,189,.34);
-  font-size:34px;
-  margin-bottom:6px;
-}
-
-.card h2{
-  font-family:'Great Vibes', cursive;
-  font-size:66px;
-  line-height:.95;
-  color:var(--gold2);
-  text-shadow:0 0 22px rgba(217,183,111,.56), 0 2px 14px rgba(0,0,0,.88);
-}
-
-.card p{
-  margin-top:16px;
-  line-height:1.85;
-  color:#fff8ea;
-  text-shadow:0 2px 10px rgba(0,0,0,.84);
+.timeline-text{
+  color:var(--muted);
+  line-height:1.45;
+  font-size:14px;
 }
 
 .detail-grid{
@@ -511,155 +602,161 @@ button,a{
 }
 
 .detail-pill{
-  padding:12px 14px;
+  padding:13px 14px;
   border-radius:999px;
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,240,189,.28);
-  color:#fff8ea;
-}
-
-/* ==============================
-   TIMELINE + MENU
-============================== */
-.timeline,.menu-grid{
-  margin-top:24px;
-  display:grid;
-  gap:10px;
-}
-
-.timeline-item,.menu-item{
-  display:grid;
-  grid-template-columns:82px 1fr;
-  gap:10px;
-  align-items:center;
-  text-align:left;
-  padding:12px;
-  border-radius:20px;
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,240,189,.24);
-}
-
-.timeline-time,.menu-icon{
-  color:var(--gold2);
-  font-family:'Cormorant Garamond', serif;
-  font-size:16px;
+  background:#f4e2c8;
+  color:var(--muted);
   font-weight:700;
 }
 
-.timeline-text,.menu-text{
-  color:#fff8ea;
-  line-height:1.45;
-  font-size:14px;
-}
-
 /* ==============================
-   GALLERY STRIP
+   MINI POLAROID STACK
 ============================== */
-.gallery-strip{
-  margin-top:24px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
+.memory-stack{
+  margin:26px auto 0;
+  width:250px;
+  height:280px;
+  position:relative;
 }
 
-.gallery-strip img{
-  width:100%;
-  height:112px;
-  object-fit:cover;
-  border-radius:20px;
-  border:1px solid rgba(255,240,189,.25);
-  box-shadow:0 14px 28px rgba(0,0,0,.3);
-}
-
-/* ==============================
-   POLAROIDS
-============================== */
-.polaroid{
+.memory-photo{
   position:absolute;
-  z-index:4;
-  width:126px;
+  width:180px;
   padding:8px;
-  background:#fff8ea;
-  color:#052d24;
-  border-radius:12px;
-  box-shadow:0 24px 55px rgba(0,0,0,.7);
-  opacity:0;
-  transition:1s ease;
+  border-radius:14px;
+  background:#fffaf0;
+  box-shadow:0 16px 36px rgba(45,33,25,.18);
+  transition:.35s ease;
 }
 
-.polaroid img{
+.memory-photo:hover{
+  transform:translateY(-8px) rotate(0deg) scale(1.04) !important;
+  z-index:5;
+}
+
+.memory-photo img{
   width:100%;
-  height:120px;
+  height:145px;
   object-fit:cover;
-  border-radius:6px;
+  border-radius:9px;
   display:block;
 }
 
-.polaroid span{
+.memory-photo span{
   display:block;
-  margin-top:7px;
-  text-align:center;
-  font-family:'Great Vibes', cursive;
-  font-size:23px;
+  margin-top:8px;
+  font-family:Fraunces, serif;
+  color:var(--ink);
 }
 
-.polaroid.left{
-  left:-36px;
-  top:10%;
-  transform:translateX(-100px) rotate(-12deg);
+.memory-photo.one{left:0; top:18px; transform:rotate(-9deg)}
+.memory-photo.two{right:0; top:48px; transform:rotate(8deg)}
+.memory-photo.three{left:35px; bottom:0; transform:rotate(-2deg)}
+
+/* ==============================
+   RSVP FORM-LIKE CARD
+============================== */
+.guest-box{
+  margin-top:22px;
+  display:grid;
+  gap:10px;
 }
 
-.polaroid.right{
-  right:-36px;
-  bottom:10%;
-  transform:translateX(100px) rotate(12deg);
+.guest-box input,
+.guest-box select{
+  width:100%;
+  border:none;
+  border-radius:20px;
+  padding:15px 14px;
+  background:#f4e2c8;
+  color:var(--ink);
+  outline:none;
+  border:1px solid rgba(45,33,25,.08);
 }
 
-.polaroid.show{
-  opacity:1;
-  transform:translateX(0) rotate(var(--r));
+.guest-box input::placeholder{
+  color:rgba(121,95,75,.76);
 }
 
 /* ==============================
    BUTTONS
 ============================== */
 .actions,.rsvp-buttons{
-  margin-top:24px;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
+  margin-top:22px;
+  display:grid;
+  gap:10px;
 }
 
 .btn{
   width:100%;
-  display:block;
   border:none;
-  text-align:center;
+  display:block;
   text-decoration:none;
-  padding:15px 16px;
+  text-align:center;
+  padding:16px 16px;
   border-radius:999px;
-  font-family:Montserrat, sans-serif;
-  font-weight:800;
+  font-weight:900;
   cursor:pointer;
   transition:.25s ease;
 }
 
-.btn:hover{transform:scale(1.04)}
+.btn:hover{transform:translateY(-3px)}
 
-.btn.gold{
-  background:linear-gradient(135deg,#fff0bd,#d9b76f,#8b6426);
-  color:#07120d;
-  box-shadow:0 0 24px rgba(217,183,111,.36);
+.btn.primary{
+  background:var(--terracotta);
+  color:#fffaf0;
+  box-shadow:0 12px 24px rgba(182,91,56,.25);
 }
 
-.btn.ghost{
-  color:white;
-  background:rgba(255,255,255,.1);
-  border:1px solid rgba(255,240,189,.32);
+.btn.secondary{
+  background:#f4e2c8;
+  color:var(--ink);
+}
+
+.btn.dark{
+  background:var(--ink);
+  color:#fffaf0;
 }
 
 /* ==============================
-   MODALS
+   BOTTOM NAV
+============================== */
+.bottom-nav{
+  position:fixed;
+  left:50%;
+  bottom:calc(14px + env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  z-index:1200;
+  width:min(94vw,500px);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  padding:8px;
+  border-radius:26px;
+  background:rgba(255,247,232,.82);
+  backdrop-filter:blur(16px);
+  box-shadow:0 16px 40px rgba(45,33,25,.2);
+  border:1px solid rgba(45,33,25,.1);
+}
+
+.bottom-nav a{
+  text-decoration:none;
+  text-align:center;
+  padding:10px 4px;
+  border-radius:18px;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:900;
+}
+
+.bottom-nav a.active,
+.bottom-nav a:hover{
+  background:var(--ink);
+  color:#fffaf0;
+}
+
+/* ==============================
+   MODAL
 ============================== */
 .modal{
   position:fixed;
@@ -669,44 +766,37 @@ button,a{
   align-items:center;
   justify-content:center;
   padding:20px;
-  background:rgba(2,3,2,.78);
+  background:rgba(45,33,25,.66);
   backdrop-filter:blur(10px);
 }
 
 .modal-box{
-  width:min(92%,410px);
+  width:min(92%,400px);
+  padding:28px 20px 22px;
+  border-radius:32px;
   position:relative;
   text-align:center;
-  padding:32px 22px 26px;
-  border-radius:34px;
-  background:linear-gradient(145deg, rgba(5,45,36,.94), rgba(10,76,59,.82));
-  border:1px solid rgba(255,240,189,.42);
-  box-shadow:0 0 70px rgba(217,183,111,.25), inset 0 0 40px rgba(217,183,111,.08);
-  animation:modalPop .45s ease forwards;
+  background:#fffaf0;
+  color:var(--ink);
+  box-shadow:0 24px 60px rgba(0,0,0,.28);
+  animation:modalPop .35s ease forwards;
 }
 
 @keyframes modalPop{
-  from{opacity:0; transform:scale(.9) translateY(18px)}
+  from{opacity:0; transform:scale(.93) translateY(16px)}
   to{opacity:1; transform:scale(1) translateY(0)}
 }
 
 .modal-box h2{
-  font-family:'Great Vibes', cursive;
-  color:var(--gold2);
-  font-size:52px;
+  font-family:Fraunces, serif;
+  font-size:38px;
   line-height:1;
 }
 
 .modal-box p{
   margin-top:10px;
-  line-height:1.6;
-  color:#fff8ea;
-}
-
-.modal-actions{
-  display:grid;
-  gap:10px;
-  margin-top:22px;
+  line-height:1.65;
+  color:var(--muted);
 }
 
 .close-modal{
@@ -717,8 +807,8 @@ button,a{
   height:32px;
   border:none;
   border-radius:50%;
-  color:#07120d;
-  background:#fff0bd;
+  color:#fffaf0;
+  background:var(--ink);
   font-size:22px;
   cursor:pointer;
 }
@@ -726,67 +816,59 @@ button,a{
 /* ==============================
    PARTICLES
 ============================== */
-.gold-dust{
+.paper-piece{
   position:fixed;
   z-index:998;
   pointer-events:none;
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--gold2);
-  box-shadow:0 0 12px rgba(217,183,111,.9);
-  animation:dustFloat linear forwards;
+  width:14px;
+  height:18px;
+  border-radius:4px;
+  background:linear-gradient(135deg,#fffaf0,#f1dfc2);
+  box-shadow:0 8px 18px rgba(45,33,25,.12);
+  animation:paperFall linear forwards;
 }
 
-@keyframes dustFloat{
-  0%{opacity:0; transform:translateY(0) scale(.6)}
-  15%{opacity:.95}
-  100%{opacity:0; transform:translateY(-260px) scale(1.15)}
+@keyframes paperFall{
+  0%{opacity:0; transform:translateY(-40px) translateX(0) rotate(0deg)}
+  12%{opacity:.9}
+  50%{transform:translateY(300px) translateX(24px) rotate(180deg)}
+  100%{opacity:0; transform:translateY(720px) translateX(-20px) rotate(360deg)}
 }
 
-.rose-petal{
+.float-heart{
   position:fixed;
   z-index:997;
   pointer-events:none;
-  width:17px;
-  height:24px;
-  border-radius:80% 20% 80% 20%;
-  background:linear-gradient(135deg,#9e1b32,#4a0712);
-  box-shadow:0 0 12px rgba(158,27,50,.36);
-  animation:petalFall linear forwards;
+  color:var(--terracotta);
+  font-size:18px;
+  animation:heartUp linear forwards;
 }
 
-@keyframes petalFall{
-  0%{opacity:0; transform:translateY(-40px) translateX(0) rotate(0deg)}
-  12%{opacity:.86}
-  50%{transform:translateY(300px) translateX(28px) rotate(180deg)}
-  100%{opacity:0; transform:translateY(700px) translateX(-18px) rotate(360deg)}
+@keyframes heartUp{
+  0%{opacity:0; transform:translateY(0) scale(.6)}
+  15%{opacity:.86}
+  100%{opacity:0; transform:translateY(-220px) scale(1.15)}
 }
 
 /* ==============================
    FOOTER
 ============================== */
 .site-footer{
-  position:relative;
-  z-index:3;
   text-align:center;
-  padding:24px 10px 10px;
-  color:#fff8ea;
+  padding:8px 10px 18px;
+  color:var(--muted);
 }
 
 .site-footer p{
-  color:var(--gold2);
-  font-family:'Cormorant Garamond', serif;
-  font-size:22px;
-  letter-spacing:1px;
-  font-weight:700;
+  font-family:Fraunces, serif;
+  font-size:20px;
+  color:var(--ink);
 }
 
 .site-footer span{
   display:block;
-  margin-top:8px;
-  font-size:13px;
-  opacity:.84;
+  margin-top:7px;
+  font-size:12px;
 }
 
 /* ==============================
@@ -796,144 +878,93 @@ body.ar{
   direction:rtl;
 }
 
-body.ar .intro-kicker,
-body.ar .intro-names,
-body.ar .intro-date,
+body.ar .book-cover::after{
+  content:"قصة الزفاف";
+}
+
+body.ar,
+body.ar .book-label,
+body.ar .book-names,
+body.ar .book-date,
 body.ar .open-btn,
+body.ar .brand,
 body.ar .kicker,
 body.ar .names,
 body.ar .date,
 body.ar .info,
-body.ar .card h2,
-body.ar .card p,
-body.ar .detail-pill,
+body.ar .card-page h2,
+body.ar .card-page p,
+body.ar .page-number,
+body.ar .time-box,
+body.ar .choice-btn,
+body.ar .choice-result,
 body.ar .timeline-item,
-body.ar .menu-item,
+body.ar .detail-pill,
 body.ar .btn,
 body.ar .modal-box,
-body.ar .time-box,
-body.ar .site-footer{
+body.ar .site-footer,
+body.ar .bottom-nav a{
   font-family:'Amiri', serif;
 }
 
-body.ar .timeline-item,
-body.ar .menu-item{
+body.ar .timeline-item{
   text-align:right;
   grid-template-columns:1fr 82px;
 }
 
-body.ar .timeline-time,
-body.ar .menu-icon{
+body.ar .timeline-time{
   grid-column:2;
   grid-row:1;
 }
 
-body.ar .timeline-text,
-body.ar .menu-text{
+body.ar .timeline-text{
   grid-column:1;
   grid-row:1;
 }
 
 /* ==============================
-   MOBILE
+   SMALL SCREENS
 ============================== */
-@media(max-width:768px){
-  .royal-card{
-    min-height:535px;
+@media(max-width:420px){
+  .book-wrap{
+    width:90vw;
+    height:76svh;
   }
 
-  .intro-names{
-    font-size:72px;
+  .book-names{
+    font-size:54px;
   }
 
-  .container{
-    padding:18px 10px 62px;
+  .app-shell{
+    padding-left:10px;
+    padding-right:10px;
   }
 
-  .hero-card{
-    min-height:88svh;
-    border-radius:32px;
+  .topbar{
+    margin-left:-10px;
+    margin-right:-10px;
   }
 
   .names{
-    font-size:78px;
+    font-size:52px;
   }
 
-  .date{
-    font-size:27px;
+  .card-page h2{
+    font-size:39px;
   }
 
-  .info{
-    font-size:15px;
-  }
-
-  .royal-section{
-    min-height:92svh;
-    border-radius:32px;
-    margin:18px 0;
-  }
-
-  .card{
-    width:88%;
-    min-height:58svh;
-    padding:25px 17px;
-  }
-
-  .card h2{
-    font-size:56px;
-  }
-
-  .card p{
-    font-size:15px;
-    line-height:1.75;
-  }
-
-  .gallery-strip img{
-    height:86px;
-    border-radius:16px;
-  }
-
-  .polaroid{
-    width:88px;
-    padding:6px;
-  }
-
-  .polaroid img{
-    height:84px;
-  }
-
-  .polaroid span{
-    font-size:18px;
-  }
-
-  .polaroid.left{
-    left:8px;
-    top:5%;
-    transform:translateY(38px) scale(.9);
-  }
-
-  .polaroid.right{
-    right:8px;
-    bottom:5%;
-    transform:translateY(38px) scale(.9);
-  }
-
-  .polaroid.show{
-    transform:translateY(0) scale(1) rotate(var(--r));
-  }
-
-  .final-section .polaroid{
-    display:none;
-  }
-
-  .control,.float-menu a{
-    font-size:12px;
-    padding:9px 12px;
-  }
-
-  .float-menu{
-    right:10px;
+  .countdown{
     gap:6px;
+  }
+
+  .time-box span{
+    font-size:20px;
+  }
+
+  .memory-stack{
+    transform:scale(.9);
+    transform-origin:center top;
+    margin-bottom:-20px;
   }
 }
 </style>
@@ -944,201 +975,211 @@ body.ar .menu-text{
 
 <!-- INTRO -->
 <div class="intro" id="intro">
-  <div class="stage"></div>
-  <div class="curtain left"></div>
-  <div class="curtain right"></div>
-  <div class="royal-card">
-    <div class="intro-kicker" data-i18n="introKicker">A royal wedding invitation</div>
-    <div class="intro-names" data-i18n="introNames">Omar & Yasmin</div>
-    <div class="intro-date" data-i18n="introDate">12 December 2027</div>
-    <button class="open-btn" id="openBtn" type="button" data-i18n="openBtn">Open the Palace ✨</button>
+  <div class="book-wrap">
+    <div class="page-behind"></div>
+    <div class="book-cover">
+      <div class="book-content">
+        <div class="book-label" data-i18n="bookLabel">Chapter One</div>
+        <div class="book-names" data-i18n="bookNames">Nadir<br>& Celeste</div>
+        <div class="book-date" data-i18n="bookDate">19 April 2028</div>
+        <button class="open-btn" id="openBtn" type="button" data-i18n="openBtn">Open the Story 📖</button>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- WEBSITE -->
 <div class="website" id="website">
-  <button class="control lang-toggle" id="langToggle" type="button">عربي</button>
-  <button class="control music-toggle" id="musicToggle" type="button">🔊</button>
-  <div class="float-menu">
-    <a href="#rsvp" data-i18n="floatRsvp">RSVP</a>
-    <a href="#location" data-i18n="floatMap">Map</a>
-  </div>
-  <div class="scroll-hint" id="scrollHint" data-i18n="scrollHint">Enter the celebration</div>
-
-  <div class="container">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-card reveal-card">
-        <div class="hero-content">
-          <div class="kicker" data-i18n="kicker">By royal invitation</div>
-          <div class="names" data-i18n="groom">Omar</div>
-          <div class="and">&</div>
-          <div class="names" data-i18n="bride">Yasmin</div>
-          <div class="date" data-i18n="date">12 / 12 / 2027</div>
-          <div class="info" data-i18n="mainInfo">
-            The Emerald Palace Hall<br>
-            Ceremony begins at 8:00 PM<br>
-            Formal evening celebration
-          </div>
-
-          <div class="countdown">
-            <div class="time-box"><span id="days">00</span><small data-i18n="days">Days</small></div>
-            <div class="time-box"><span id="hours">00</span><small data-i18n="hours">Hours</small></div>
-            <div class="time-box"><span id="minutes">00</span><small data-i18n="minutes">Minutes</small></div>
-            <div class="time-box"><span id="seconds">00</span><small data-i18n="seconds">Seconds</small></div>
-          </div>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <strong data-i18n="brandNames">Nadir & Celeste</strong>
+          <span data-i18n="brandSub">Interactive Storybook</span>
+        </div>
+        <div class="icon-actions">
+          <button class="icon-btn" id="langToggle" type="button">عربي</button>
+          <button class="icon-btn" id="musicToggle" type="button">🔊</button>
         </div>
       </div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </header>
+
+    <!-- HOME -->
+    <section class="story-card hero-card" id="home">
+      <div class="hero-image">
+        <div class="hero-stamp" data-i18n="heroStamp">Save<br>The<br>Date</div>
+      </div>
+      <div class="hero-copy">
+        <div class="kicker" data-i18n="kicker">You are invited into the story of</div>
+        <div class="names" data-i18n="groom">Nadir</div>
+        <div class="and">&</div>
+        <div class="names" data-i18n="bride">Celeste</div>
+        <div class="date" data-i18n="date">19 / 4 / 2028</div>
+        <div class="info" data-i18n="mainInfo">
+          The Orchard House, Tuscany<br>
+          Ceremony begins at 4:30 PM<br>
+          Garden dinner to follow
+        </div>
+        <div class="countdown">
+          <div class="time-box"><span id="days">00</span><small data-i18n="days">Days</small></div>
+          <div class="time-box"><span id="hours">00</span><small data-i18n="hours">Hours</small></div>
+          <div class="time-box"><span id="minutes">00</span><small data-i18n="minutes">Minutes</small></div>
+          <div class="time-box"><span id="seconds">00</span><small data-i18n="seconds">Seconds</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHOICE / PERSONALIZED MOOD -->
+    <section class="story-card card-page" id="mood">
+      <div class="page-number" data-i18n="page1">Interactive Page</div>
+      <h2 data-i18n="moodTitle">Choose Your Wedding Mood</h2>
+      <p data-i18n="moodText">Tap one card and the invitation will answer you like a little story moment.</p>
+      <div class="choice-grid">
+        <button class="choice-btn" type="button" data-choice="romantic" data-i18n="choice1">Romantic Guest</button>
+        <button class="choice-btn" type="button" data-choice="party" data-i18n="choice2">Ready to Dance</button>
+        <button class="choice-btn" type="button" data-choice="family" data-i18n="choice3">Family Guest</button>
+      </div>
+      <div class="choice-result" id="choiceResult"></div>
     </section>
 
     <!-- STORY -->
-    <section class="royal-section section-story">
-      <div class="card reveal">
-        <h2 data-i18n="storyTitle">A Royal Love</h2>
-        <p data-i18n="storyText">
-          A story of grace, devotion, and a promise made to last beyond every season.
-        </p>
-      </div>
-      <div class="polaroid right" style="--r:7deg">
-        <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=700&q=80" alt="Couple">
-        <span>Love</span>
+    <section class="story-card full-image-card img-venue" id="story">
+      <div class="card-page">
+        <div class="page-number" data-i18n="page2">Chapter Two</div>
+        <h2 data-i18n="storyTitle">The Garden Chapter</h2>
+        <p data-i18n="storyText">Some love stories feel like sunlight through leaves — quiet, warm, and impossible to forget.</p>
       </div>
     </section>
 
-    <!-- PALACE -->
-    <section class="royal-section section-palace" id="location">
-      <div class="card reveal">
-        <h2 data-i18n="palaceTitle">The Palace</h2>
-        <p data-i18n="palaceText">
-          Join us at The Emerald Palace Hall for a night of candlelight, music, dinner, and timeless elegance.
-        </p>
-        <div class="detail-grid">
-          <div class="detail-pill" data-i18n="venuePill">The Emerald Palace Hall</div>
-          <div class="detail-pill" data-i18n="cityPill">Amman, Jordan</div>
-          <div class="detail-pill" data-i18n="timePill">8:00 PM Ceremony</div>
-        </div>
+    <!-- VENUE DETAILS -->
+    <section class="story-card card-page" id="details">
+      <div class="page-number" data-i18n="page3">Details</div>
+      <h2 data-i18n="detailsTitle">The Orchard House</h2>
+      <p data-i18n="detailsText">A soft Tuscan garden evening with vows beneath olive trees, dinner under string lights, and music after sunset.</p>
+      <div class="detail-grid">
+        <div class="detail-pill" data-i18n="detail1">The Orchard House, Tuscany</div>
+        <div class="detail-pill" data-i18n="detail2">4:30 PM Ceremony</div>
+        <div class="detail-pill" data-i18n="detail3">Garden formal attire</div>
       </div>
-      <div class="polaroid left" style="--r:-7deg">
-        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=700&q=80" alt="Palace venue">
-        <span>Palace</span>
+      <div class="actions">
+        <a class="btn secondary" href="https://www.google.com/maps/search/The+Orchard+House+Tuscany" target="_blank" data-i18n="mapBtn">Open Location 📍</a>
       </div>
     </section>
 
     <!-- TIMELINE -->
-    <section class="royal-section section-timeline">
-      <div class="card reveal">
-        <h2 data-i18n="timelineTitle">The Evening</h2>
-        <p data-i18n="timelineText">An elegant celebration planned from grand entrance to final dance.</p>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-time" data-i18n="time1">8:00 PM</div>
-            <div class="timeline-text" data-i18n="event1">Ceremony and grand entrance</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-time" data-i18n="time2">9:00 PM</div>
-            <div class="timeline-text" data-i18n="event2">Dinner reception</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-time" data-i18n="time3">10:30 PM</div>
-            <div class="timeline-text" data-i18n="event3">First dance and celebration</div>
-          </div>
+    <section class="story-card card-page" id="timeline">
+      <div class="page-number" data-i18n="page4">Schedule</div>
+      <h2 data-i18n="timelineTitle">The Day’s Pages</h2>
+      <p data-i18n="timelineText">A gentle timeline from vows to dinner, music, and memories.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-time" data-i18n="time1">4:30 PM</div>
+          <div class="timeline-text" data-i18n="event1">Garden ceremony</div>
         </div>
-      </div>
-      <div class="polaroid right" style="--r:8deg">
-        <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=700&q=80" alt="Wedding setup">
-        <span>Night</span>
+        <div class="timeline-item">
+          <div class="timeline-time" data-i18n="time2">5:30 PM</div>
+          <div class="timeline-text" data-i18n="event2">Aperitivo and photos</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time" data-i18n="time3">7:00 PM</div>
+          <div class="timeline-text" data-i18n="event3">Dinner under the lights</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time" data-i18n="time4">9:00 PM</div>
+          <div class="timeline-text" data-i18n="event4">Music and dancing</div>
+        </div>
       </div>
     </section>
 
-    <!-- ATTIRE -->
-    <section class="royal-section section-attire">
-      <div class="card reveal">
-        <h2 data-i18n="attireTitle">Royal Attire</h2>
-        <p data-i18n="attireText">
-          Formal evening wear is kindly requested. Emerald, black, champagne, and gold tones are warmly welcomed.
-        </p>
-        <div class="gallery-strip">
-          <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=500&q=80" alt="Style">
-          <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=500&q=80" alt="Details">
-          <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=500&q=80" alt="Rings">
+    <!-- MEMORIES -->
+    <section class="story-card card-page" id="gallery">
+      <div class="page-number" data-i18n="page5">Memories</div>
+      <h2 data-i18n="galleryTitle">Little Polaroids</h2>
+      <p data-i18n="galleryText">A playful stack of moments, made to feel personal and touchable.</p>
+      <div class="memory-stack">
+        <div class="memory-photo one">
+          <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=600&q=80" alt="Rings">
+          <span data-i18n="mem1">The Promise</span>
         </div>
-      </div>
-      <div class="polaroid left" style="--r:-6deg">
-        <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=700&q=80" alt="Elegant attire">
-        <span>Style</span>
+        <div class="memory-photo two">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Couple">
+          <span data-i18n="mem2">The Walk</span>
+        </div>
+        <div class="memory-photo three">
+          <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=600&q=80" alt="Details">
+          <span data-i18n="mem3">The Details</span>
+        </div>
       </div>
     </section>
 
-    <!-- MENU -->
-    <section class="royal-section section-menu">
-      <div class="card reveal">
-        <h2 data-i18n="menuTitle">The Feast</h2>
-        <p data-i18n="menuText">A refined dinner experience prepared for an unforgettable royal evening.</p>
-        <div class="menu-grid">
-          <div class="menu-item">
-            <div class="menu-icon">🥂</div>
-            <div class="menu-text" data-i18n="menu1">Welcome drinks and light bites</div>
-          </div>
-          <div class="menu-item">
-            <div class="menu-icon">🍽️</div>
-            <div class="menu-text" data-i18n="menu2">Elegant seated dinner</div>
-          </div>
-          <div class="menu-item">
-            <div class="menu-icon">🍰</div>
-            <div class="menu-text" data-i18n="menu3">Cake ceremony and dessert table</div>
-          </div>
-        </div>
+    <!-- DINNER -->
+    <section class="story-card full-image-card img-dinner" id="dinner">
+      <div class="card-page">
+        <div class="page-number" data-i18n="page6">Dinner</div>
+        <h2 data-i18n="dinnerTitle">Under String Lights</h2>
+        <p data-i18n="dinnerText">Dinner will be served in the garden after sunset, surrounded by candlelight, olive branches, and music.</p>
       </div>
     </section>
 
     <!-- RSVP -->
-    <section class="royal-section section-rsvp" id="rsvp">
-      <div class="card reveal">
-        <h2 data-i18n="rsvpTitle">Will You Attend?</h2>
-        <p data-i18n="rsvpText">Kindly confirm your attendance so we can reserve your place at the royal table.</p>
-        <div class="rsvp-buttons">
-          <button class="btn gold" id="yesBtn" type="button" data-i18n="yesBtn">Yes, I’ll Attend 👑</button>
-          <a class="btn ghost" id="noBtn" href="https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C" target="_blank" data-i18n="noBtn">Can’t Make It</a>
-        </div>
+    <section class="story-card card-page" id="rsvp">
+      <div class="page-number" data-i18n="page7">RSVP</div>
+      <h2 data-i18n="rsvpTitle">Write Yourself Into the Story</h2>
+      <p data-i18n="rsvpText">Add your name and choose your side before sending your RSVP through WhatsApp.</p>
+
+      <div class="guest-box">
+        <input id="guestName" type="text" placeholder="Your name" data-placeholder-en="Your name" data-placeholder-ar="اسمك" />
+        <select id="guestCount">
+          <option value="1">1 Guest</option>
+          <option value="2">2 Guests</option>
+          <option value="3">3 Guests</option>
+          <option value="4">4 Guests</option>
+        </select>
       </div>
-      <div class="polaroid right" style="--r:6deg">
-        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=700&q=80" alt="Wedding couple">
-        <span>RSVP</span>
+
+      <div class="rsvp-buttons">
+        <button class="btn primary" id="yesBtn" type="button" data-i18n="yesBtn">Yes, I’m Coming ✨</button>
+        <a class="btn secondary" id="noBtn" href="https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C" target="_blank" data-i18n="noBtn">Can’t Make It</a>
       </div>
     </section>
 
     <!-- FINAL -->
-    <section class="royal-section section-final final-section">
-      <div class="card reveal">
-        <h2 data-i18n="finalTitle">The Palace Awaits</h2>
-        <p data-i18n="finalText">We cannot wait to celebrate this majestic evening with you.</p>
+    <section class="story-card full-image-card img-rsvp" id="final">
+      <div class="card-page">
+        <div class="page-number" data-i18n="page8">Final Page</div>
+        <h2 data-i18n="finalTitle">Until the Garden</h2>
+        <p data-i18n="finalText">We cannot wait to celebrate this beautiful chapter with you.</p>
         <div class="actions">
-          <a class="btn gold" href="https://www.google.com/maps/search/The+Emerald+Palace+Hall+Amman+Jordan" target="_blank" data-i18n="locationBtn">Open Location 📍</a>
-          <a class="btn ghost" id="calendarBtn" href="#" target="_blank" data-i18n="calendarBtn">Save to Calendar 🗓️</a>
+          <a class="btn primary" id="calendarBtn" href="#" target="_blank" data-i18n="calendarBtn">Save to Calendar 🗓️</a>
+          <a class="btn dark" href="https://www.google.com/maps/search/The+Orchard+House+Tuscany" target="_blank" data-i18n="locationBtn">Open Location 📍</a>
         </div>
-      </div>
-      <div class="polaroid left" style="--r:-7deg">
-        <img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=700&q=80" alt="Celebration">
-        <span>Forever</span>
       </div>
     </section>
 
     <footer class="site-footer">
-      <p data-i18n="footerNames">Omar & Yasmin · 12 December 2027</p>
+      <p data-i18n="footerNames">Nadir & Celeste · 19 April 2028</p>
       <span data-i18n="footerLove">A portfolio demo by Amour De Minuit ✨</span>
     </footer>
-  </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="#home" class="active" data-nav="home" data-i18n="navHome">Home</a>
+    <a href="#details" data-nav="details" data-i18n="navDetails">Details</a>
+    <a href="#gallery" data-nav="gallery" data-i18n="navGallery">Gallery</a>
+    <a href="#rsvp" data-nav="rsvp" data-i18n="navRsvp">RSVP</a>
+  </nav>
 </div>
 
-<!-- RSVP MODAL -->
+<!-- RSVP SIDE MODAL -->
 <div class="modal" id="sideModal">
   <div class="modal-box">
     <button class="close-modal" id="sideClose" type="button">×</button>
     <h2 data-i18n="sideTitle">Which side are you from?</h2>
     <p data-i18n="sideText">Please choose before confirming your RSVP.</p>
-    <div class="modal-actions">
-      <button class="btn gold" id="brideSideBtn" type="button" data-i18n="brideSide">Bride’s Side</button>
-      <button class="btn gold" id="groomSideBtn" type="button" data-i18n="groomSide">Groom’s Side</button>
+    <div class="actions">
+      <button class="btn primary" id="brideSideBtn" type="button" data-i18n="brideSide">Bride’s Side</button>
+      <button class="btn primary" id="groomSideBtn" type="button" data-i18n="groomSide">Groom’s Side</button>
     </div>
   </div>
 </div>
@@ -1153,7 +1194,7 @@ const openBtn=document.getElementById("openBtn");
 const music=document.getElementById("weddingMusic");
 const musicToggle=document.getElementById("musicToggle");
 const langToggle=document.getElementById("langToggle");
-const scrollHint=document.getElementById("scrollHint");
+const progressFill=document.getElementById("progressFill");
 const yesBtn=document.getElementById("yesBtn");
 const noBtn=document.getElementById("noBtn");
 const sideModal=document.getElementById("sideModal");
@@ -1161,6 +1202,9 @@ const sideClose=document.getElementById("sideClose");
 const brideSideBtn=document.getElementById("brideSideBtn");
 const groomSideBtn=document.getElementById("groomSideBtn");
 const calendarBtn=document.getElementById("calendarBtn");
+const guestName=document.getElementById("guestName");
+const guestCount=document.getElementById("guestCount");
+const choiceResult=document.getElementById("choiceResult");
 
 let currentLang="en";
 
@@ -1173,7 +1217,7 @@ const weddingSongs=[
 ];
 
 music.src=weddingSongs[Math.floor(Math.random()*weddingSongs.length)];
-music.volume=0.15;
+music.volume=0.14;
 
 openBtn.addEventListener("click",()=>{
   intro.classList.add("opening");
@@ -1186,17 +1230,14 @@ openBtn.addEventListener("click",()=>{
     musicToggle.classList.add("muted");
   });
 
-  setTimeout(()=>{
-    intro.classList.add("hide");
-  },1050);
+  setTimeout(()=>intro.classList.add("hide"),900);
 
   setTimeout(()=>{
     intro.style.display="none";
     website.style.display="block";
     window.scrollTo(0,0);
-    revealHero();
-    showScrollHint();
-  },1700);
+    revealFirstCard();
+  },1500);
 });
 
 musicToggle.addEventListener("click",()=>{
@@ -1214,17 +1255,14 @@ musicToggle.addEventListener("click",()=>{
 /* ==============================
    COUNTDOWN
 ============================== */
-const weddingDate=new Date("2027-12-12T20:00:00").getTime();
+const weddingDate=new Date("2028-04-19T16:30:00").getTime();
 
 function updateCountdown(){
   const now=new Date().getTime();
   const diff=weddingDate-now;
 
   if(diff<=0){
-    document.getElementById("days").innerText="00";
-    document.getElementById("hours").innerText="00";
-    document.getElementById("minutes").innerText="00";
-    document.getElementById("seconds").innerText="00";
+    ["days","hours","minutes","seconds"].forEach(id=>document.getElementById(id).innerText="00");
     return;
   }
 
@@ -1241,72 +1279,89 @@ updateCountdown();
    CALENDAR
 ============================== */
 function setupCalendar(){
-  const title=encodeURIComponent("Omar & Yasmin Wedding");
-  const details=encodeURIComponent("Join Omar & Yasmin for their royal palace wedding celebration.");
-  const location=encodeURIComponent("The Emerald Palace Hall, Amman, Jordan");
-  const dates="20271212T200000/20271213T010000";
+  const title=encodeURIComponent("Nadir & Celeste Wedding");
+  const details=encodeURIComponent("Join Nadir & Celeste for their garden wedding at The Orchard House, Tuscany.");
+  const location=encodeURIComponent("The Orchard House, Tuscany");
+  const dates="20280419T163000/20280419T233000";
   calendarBtn.href=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
 }
 setupCalendar();
 
 /* ==============================
+   SCROLL PROGRESS + NAV
+============================== */
+window.addEventListener("scroll",()=>{
+  const scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
+  const height=document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const progress=height ? (scrollTop/height)*100 : 0;
+  progressFill.style.width=progress+"%";
+
+  const sections=["home","details","gallery","rsvp"];
+  let active="home";
+  sections.forEach(id=>{
+    const sec=document.getElementById(id);
+    if(sec && sec.getBoundingClientRect().top < window.innerHeight*.45){
+      active=id;
+    }
+  });
+
+  document.querySelectorAll(".bottom-nav a").forEach(a=>{
+    a.classList.toggle("active", a.dataset.nav===active);
+  });
+});
+
+/* ==============================
    REVEALS
 ============================== */
-const revealCards=document.querySelectorAll(".reveal-card,.reveal");
-const polaroids=document.querySelectorAll(".polaroid");
-
-const revealObs=new IntersectionObserver(entries=>{
+const cards=document.querySelectorAll(".story-card");
+const obs=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting){
       entry.target.classList.add("show");
     }
   });
-},{threshold:.12, rootMargin:"90px"});
+},{threshold:.12, rootMargin:"80px"});
 
-revealCards.forEach(card=>revealObs.observe(card));
+cards.forEach(card=>obs.observe(card));
 
-const polaroidObs=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-    }
-  });
-},{threshold:.05, rootMargin:"140px"});
-
-polaroids.forEach(p=>polaroidObs.observe(p));
-
-function revealHero(){
-  document.querySelector(".hero-card").classList.add("show");
+function revealFirstCard(){
+  document.querySelector(".story-card").classList.add("show");
 }
 
-function showScrollHint(){
-  scrollHint.classList.remove("show");
-  void scrollHint.offsetWidth;
-  scrollHint.classList.add("show");
-  setTimeout(()=>scrollHint.classList.remove("show"),4200);
+/* ==============================
+   INTERACTIVE MOOD CHOICE
+============================== */
+const moodMessages={
+  en:{
+    romantic:"Your chapter is candlelight, soft music, and a seat close to the love story.",
+    party:"Your chapter begins when the music starts. We expect you on the dance floor.",
+    family:"Your chapter is warmth, hugs, photos, and the people who make the day complete."
+  },
+  ar:{
+    romantic:"فصلك هو ضوء الشموع، موسيقى ناعمة، ومكان قريب من قصة الحب.",
+    party:"فصلك يبدأ عندما تبدأ الموسيقى. ننتظرك على ساحة الرقص.",
+    family:"فصلك هو الدفء، الأحضان، الصور، والناس الذين يكملون اليوم."
+  }
+};
+
+function setChoice(choice, btn){
+  document.querySelectorAll(".choice-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+  choiceResult.textContent=moodMessages[currentLang][choice];
+  choiceResult.classList.add("show");
 }
+
+document.querySelectorAll(".choice-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>setChoice(btn.dataset.choice,btn));
+});
 
 /* ==============================
    FLOATING EFFECTS
 ============================== */
-function goldDust(){
-  if(website.style.display!=="block") return;
-  const d=document.createElement("div");
-  d.className="gold-dust";
-  const size=4+Math.random()*7;
-  d.style.width=size+"px";
-  d.style.height=size+"px";
-  d.style.left=Math.random()*window.innerWidth+"px";
-  d.style.top=(window.innerHeight-20+Math.random()*80)+"px";
-  d.style.animationDuration=(4+Math.random()*4)+"s";
-  document.body.appendChild(d);
-  setTimeout(()=>d.remove(),9000);
-}
-
-function rosePetal(){
+function paperPiece(){
   if(website.style.display!=="block") return;
   const p=document.createElement("div");
-  p.className="rose-petal";
+  p.className="paper-piece";
   p.style.left=Math.random()*window.innerWidth+"px";
   p.style.top="-40px";
   p.style.animationDuration=(7+Math.random()*5)+"s";
@@ -1314,119 +1369,171 @@ function rosePetal(){
   setTimeout(()=>p.remove(),12000);
 }
 
-setInterval(goldDust,460);
-setInterval(rosePetal,1300);
+function heart(){
+  if(website.style.display!=="block") return;
+  const h=document.createElement("div");
+  h.className="float-heart";
+  h.textContent="♥";
+  h.style.left=Math.random()*window.innerWidth+"px";
+  h.style.top=(window.innerHeight-20+Math.random()*70)+"px";
+  h.style.animationDuration=(4+Math.random()*4)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8500);
+}
+
+setInterval(paperPiece,1500);
+setInterval(heart,700);
 
 /* ==============================
-   TRANSLATIONS
+   LANGUAGE
 ============================== */
 const translations={
   en:{
-    introKicker:"A royal wedding invitation",
-    introNames:"Omar & Yasmin",
-    introDate:"12 December 2027",
-    openBtn:"Open the Palace ✨",
-    floatRsvp:"RSVP",
-    floatMap:"Map",
-    scrollHint:"Enter the celebration",
-    kicker:"By royal invitation",
-    groom:"Omar",
-    bride:"Yasmin",
-    date:"12 / 12 / 2027",
-    mainInfo:"The Emerald Palace Hall<br>Ceremony begins at 8:00 PM<br>Formal evening celebration",
+    bookLabel:"Chapter One",
+    bookNames:"Nadir<br>& Celeste",
+    bookDate:"19 April 2028",
+    openBtn:"Open the Story 📖",
+    brandNames:"Nadir & Celeste",
+    brandSub:"Interactive Storybook",
+    heroStamp:"Save<br>The<br>Date",
+    kicker:"You are invited into the story of",
+    groom:"Nadir",
+    bride:"Celeste",
+    date:"19 / 4 / 2028",
+    mainInfo:"The Orchard House, Tuscany<br>Ceremony begins at 4:30 PM<br>Garden dinner to follow",
     days:"Days",
     hours:"Hours",
     minutes:"Minutes",
     seconds:"Seconds",
-    storyTitle:"A Royal Love",
-    storyText:"A story of grace, devotion, and a promise made to last beyond every season.",
-    palaceTitle:"The Palace",
-    palaceText:"Join us at The Emerald Palace Hall for a night of candlelight, music, dinner, and timeless elegance.",
-    venuePill:"The Emerald Palace Hall",
-    cityPill:"Amman, Jordan",
-    timePill:"8:00 PM Ceremony",
-    timelineTitle:"The Evening",
-    timelineText:"An elegant celebration planned from grand entrance to final dance.",
-    time1:"8:00 PM",
-    event1:"Ceremony and grand entrance",
-    time2:"9:00 PM",
-    event2:"Dinner reception",
-    time3:"10:30 PM",
-    event3:"First dance and celebration",
-    attireTitle:"Royal Attire",
-    attireText:"Formal evening wear is kindly requested. Emerald, black, champagne, and gold tones are warmly welcomed.",
-    menuTitle:"The Feast",
-    menuText:"A refined dinner experience prepared for an unforgettable royal evening.",
-    menu1:"Welcome drinks and light bites",
-    menu2:"Elegant seated dinner",
-    menu3:"Cake ceremony and dessert table",
-    rsvpTitle:"Will You Attend?",
-    rsvpText:"Kindly confirm your attendance so we can reserve your place at the royal table.",
-    yesBtn:"Yes, I’ll Attend 👑",
+    page1:"Interactive Page",
+    moodTitle:"Choose Your Wedding Mood",
+    moodText:"Tap one card and the invitation will answer you like a little story moment.",
+    choice1:"Romantic Guest",
+    choice2:"Ready to Dance",
+    choice3:"Family Guest",
+    page2:"Chapter Two",
+    storyTitle:"The Garden Chapter",
+    storyText:"Some love stories feel like sunlight through leaves — quiet, warm, and impossible to forget.",
+    page3:"Details",
+    detailsTitle:"The Orchard House",
+    detailsText:"A soft Tuscan garden evening with vows beneath olive trees, dinner under string lights, and music after sunset.",
+    detail1:"The Orchard House, Tuscany",
+    detail2:"4:30 PM Ceremony",
+    detail3:"Garden formal attire",
+    mapBtn:"Open Location 📍",
+    page4:"Schedule",
+    timelineTitle:"The Day’s Pages",
+    timelineText:"A gentle timeline from vows to dinner, music, and memories.",
+    time1:"4:30 PM",
+    event1:"Garden ceremony",
+    time2:"5:30 PM",
+    event2:"Aperitivo and photos",
+    time3:"7:00 PM",
+    event3:"Dinner under the lights",
+    time4:"9:00 PM",
+    event4:"Music and dancing",
+    page5:"Memories",
+    galleryTitle:"Little Polaroids",
+    galleryText:"A playful stack of moments, made to feel personal and touchable.",
+    mem1:"The Promise",
+    mem2:"The Walk",
+    mem3:"The Details",
+    page6:"Dinner",
+    dinnerTitle:"Under String Lights",
+    dinnerText:"Dinner will be served in the garden after sunset, surrounded by candlelight, olive branches, and music.",
+    page7:"RSVP",
+    rsvpTitle:"Write Yourself Into the Story",
+    rsvpText:"Add your name and choose your side before sending your RSVP through WhatsApp.",
+    yesBtn:"Yes, I’m Coming ✨",
     noBtn:"Can’t Make It",
-    finalTitle:"The Palace Awaits",
-    finalText:"We cannot wait to celebrate this majestic evening with you.",
-    locationBtn:"Open Location 📍",
+    page8:"Final Page",
+    finalTitle:"Until the Garden",
+    finalText:"We cannot wait to celebrate this beautiful chapter with you.",
     calendarBtn:"Save to Calendar 🗓️",
+    locationBtn:"Open Location 📍",
+    navHome:"Home",
+    navDetails:"Details",
+    navGallery:"Gallery",
+    navRsvp:"RSVP",
     sideTitle:"Which side are you from?",
     sideText:"Please choose before confirming your RSVP.",
     brideSide:"Bride’s Side",
     groomSide:"Groom’s Side",
-    footerNames:"Omar & Yasmin · 12 December 2027",
+    footerNames:"Nadir & Celeste · 19 April 2028",
     footerLove:"A portfolio demo by Amour De Minuit ✨"
   },
   ar:{
-    introKicker:"دعوة زفاف ملكية",
-    introNames:"عمر وياسمين",
-    introDate:"١٢ كانون الأول ٢٠٢٧",
-    openBtn:"افتحوا القصر ✨",
-    floatRsvp:"تأكيد",
-    floatMap:"الموقع",
-    scrollHint:"ادخلوا الاحتفال",
-    kicker:"بدعوة ملكية",
-    groom:"عمر",
-    bride:"ياسمين",
-    date:"١٢ / ١٢ / ٢٠٢٧",
-    mainInfo:"قاعة القصر الزمردي<br>تبدأ المراسم الساعة ٨:٠٠ مساءً<br>احتفال مسائي رسمي",
+    bookLabel:"الفصل الأول",
+    bookNames:"نادر<br>وسيليست",
+    bookDate:"١٩ نيسان ٢٠٢٨",
+    openBtn:"افتحوا القصة 📖",
+    brandNames:"نادر وسيليست",
+    brandSub:"دعوة قصة تفاعلية",
+    heroStamp:"احفظوا<br>هذا<br>التاريخ",
+    kicker:"ندعوكم للدخول إلى قصة",
+    groom:"نادر",
+    bride:"سيليست",
+    date:"١٩ / ٤ / ٢٠٢٨",
+    mainInfo:"ذا أورشارد هاوس، توسكانا<br>تبدأ المراسم الساعة ٤:٣٠ مساءً<br>عشاء في الحديقة بعدها",
     days:"أيام",
     hours:"ساعات",
     minutes:"دقايق",
     seconds:"ثواني",
-    storyTitle:"حب ملكي",
-    storyText:"قصة من الرقي، الإخلاص، ووعد يبقى بعد كل الفصول.",
-    palaceTitle:"القصر",
-    palaceText:"انضموا إلينا في قاعة القصر الزمردي لليلة من ضوء الشموع، الموسيقى، العشاء، والأناقة الخالدة.",
-    venuePill:"قاعة القصر الزمردي",
-    cityPill:"عمّان، الأردن",
-    timePill:"المراسم الساعة ٨:٠٠ مساءً",
-    timelineTitle:"برنامج المساء",
-    timelineText:"احتفال أنيق يبدأ بالدخول الكبير وينتهي بالرقصة الأخيرة.",
-    time1:"٨:٠٠ مساءً",
-    event1:"المراسم والدخول الكبير",
-    time2:"٩:٠٠ مساءً",
-    event2:"حفل العشاء",
-    time3:"١٠:٣٠ مساءً",
-    event3:"الرقصة الأولى والاحتفال",
-    attireTitle:"اللباس الملكي",
-    attireText:"نرجو اعتماد لباس رسمي مسائي. الألوان الزمردية، السوداء، الشامبانيا، والذهبية مرحّب بها.",
-    menuTitle:"المأدبة",
-    menuText:"تجربة عشاء راقية محضّرة لأمسية ملكية لا تُنسى.",
-    menu1:"مشروبات ترحيبية ومقبلات خفيفة",
-    menu2:"عشاء رسمي أنيق",
-    menu3:"تقطيع الكيك وطاولة الحلويات",
-    rsvpTitle:"هل ستحضرون؟",
-    rsvpText:"يرجى تأكيد حضوركم لنحجز لكم مكانًا على الطاولة الملكية.",
-    yesBtn:"نعم، سأحضر 👑",
+    page1:"صفحة تفاعلية",
+    moodTitle:"اختاروا أجواءكم في الزفاف",
+    moodText:"اضغطوا على بطاقة واحدة وسترد الدعوة كأنها لحظة صغيرة من القصة.",
+    choice1:"ضيف رومانسي",
+    choice2:"جاهز للرقص",
+    choice3:"ضيف من العائلة",
+    page2:"الفصل الثاني",
+    storyTitle:"فصل الحديقة",
+    storyText:"بعض قصص الحب تشبه ضوء الشمس بين الأوراق — هادئة، دافئة، ولا تُنسى.",
+    page3:"التفاصيل",
+    detailsTitle:"ذا أورشارد هاوس",
+    detailsText:"أمسية حديقة ناعمة في توسكانا، عهود تحت أشجار الزيتون، عشاء تحت الأضواء، وموسيقى بعد الغروب.",
+    detail1:"ذا أورشارد هاوس، توسكانا",
+    detail2:"المراسم الساعة ٤:٣٠ مساءً",
+    detail3:"لباس رسمي للحديقة",
+    mapBtn:"افتح الموقع 📍",
+    page4:"البرنامج",
+    timelineTitle:"صفحات اليوم",
+    timelineText:"برنامج هادئ من العهود إلى العشاء، الموسيقى، والذكريات.",
+    time1:"٤:٣٠ مساءً",
+    event1:"مراسم الحديقة",
+    time2:"٥:٣٠ مساءً",
+    event2:"أبيريتيفو وصور",
+    time3:"٧:٠٠ مساءً",
+    event3:"عشاء تحت الأضواء",
+    time4:"٩:٠٠ مساءً",
+    event4:"موسيقى ورقص",
+    page5:"ذكريات",
+    galleryTitle:"صور بولارويد صغيرة",
+    galleryText:"مجموعة لحظات مرحة تجعل الدعوة شخصية وقريبة.",
+    mem1:"الوعد",
+    mem2:"المشوار",
+    mem3:"التفاصيل",
+    page6:"العشاء",
+    dinnerTitle:"تحت الأضواء",
+    dinnerText:"سيتم تقديم العشاء في الحديقة بعد الغروب، بين الشموع وأغصان الزيتون والموسيقى.",
+    page7:"تأكيد الحضور",
+    rsvpTitle:"اكتبوا أنفسكم داخل القصة",
+    rsvpText:"أضيفوا اسمكم واختاروا الطرف قبل إرسال تأكيد الحضور عبر واتساب.",
+    yesBtn:"نعم، سأحضر ✨",
     noBtn:"ما فيني إحضر",
-    finalTitle:"القصر بانتظاركم",
-    finalText:"لا نستطيع الانتظار لنحتفل معكم بهذه الليلة المهيبة.",
-    locationBtn:"افتح الموقع 📍",
+    page8:"الصفحة الأخيرة",
+    finalTitle:"إلى اللقاء في الحديقة",
+    finalText:"لا نستطيع الانتظار لنحتفل معكم بهذا الفصل الجميل.",
     calendarBtn:"احفظ في التقويم 🗓️",
+    locationBtn:"افتح الموقع 📍",
+    navHome:"الرئيسية",
+    navDetails:"التفاصيل",
+    navGallery:"الصور",
+    navRsvp:"تأكيد",
     sideTitle:"من أي طرف؟",
     sideText:"اختاروا قبل تأكيد الحضور.",
     brideSide:"طرف العروس",
     groomSide:"طرف العريس",
-    footerNames:"عمر وياسمين · ١٢ كانون الأول ٢٠٢٧",
+    footerNames:"نادر وسيليست · ١٩ نيسان ٢٠٢٨",
     footerLove:"نموذج من Amour De Minuit ✨"
   }
 };
@@ -1442,7 +1549,15 @@ function setLanguage(lang){
     }
   });
 
-  langToggle.textContent=lang==="en" ? "عربي" : "English";
+  guestName.placeholder=lang==="ar" ? guestName.dataset.placeholderAr : guestName.dataset.placeholderEn;
+  langToggle.textContent=lang==="en" ? "عربي" : "EN";
+
+  if(choiceResult.classList.contains("show")){
+    const active=document.querySelector(".choice-btn.active");
+    if(active){
+      choiceResult.textContent=moodMessages[currentLang][active.dataset.choice];
+    }
+  }
 
   if(lang==="ar"){
     noBtn.href="https://wa.me/96100000000?text=%D8%A2%D8%B3%D9%81%D8%8C%20%D9%84%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9%20%D8%A7%D9%84%D8%AD%D8%B6%D9%88%D8%B1%20%E2%9D%8C";
@@ -1451,10 +1566,7 @@ function setLanguage(lang){
   }
 }
 
-langToggle.addEventListener("click",()=>{
-  setLanguage(currentLang==="en" ? "ar" : "en");
-  showScrollHint();
-});
+langToggle.addEventListener("click",()=>setLanguage(currentLang==="en" ? "ar" : "en"));
 
 /* ==============================
    RSVP
@@ -1474,10 +1586,14 @@ sideModal.addEventListener("click",e=>{
 });
 
 function comingMessage(){
+  const name=guestName.value.trim() || (currentLang==="ar" ? "ضيف" : "Guest");
+  const count=guestCount.value;
+
   if(currentLang==="ar"){
-    return "%D9%86%D8%B9%D9%85%D8%8C%20%D8%B3%D8%A3%D8%AD%D8%B6%D8%B1%20%D8%B2%D9%81%D8%A7%D9%81%20%D8%B9%D9%85%D8%B1%20%D9%88%D9%8A%D8%A7%D8%B3%D9%85%D9%8A%D9%86%20%E2%9C%85%0A%D8%B9%D8%AF%D8%AF%20%D8%A7%D9%84%D8%A3%D8%B4%D8%AE%D8%A7%D8%B5%3A";
+    return encodeURIComponent(`نعم، سأحضر زفاف نادر وسيليست ✅\nالاسم: ${name}\nعدد الأشخاص: ${count}`);
   }
-  return "Yes%2C%20I%20will%20attend%20Omar%20%26%20Yasmin%27s%20wedding%20%E2%9C%85%0ANumber%20of%20Guests%3A";
+
+  return encodeURIComponent(`Yes, I will attend Nadir & Celeste's wedding ✅\nName: ${name}\nNumber of Guests: ${count}`);
 }
 
 brideSideBtn.addEventListener("click",()=>{
