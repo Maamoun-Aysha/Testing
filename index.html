@@ -1,1610 +1,2724 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nadir & Celeste | Interactive Storybook Invitation</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-
-<style>
-/* ==============================
-   RESET + BASE
-============================== */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-:root{
-  --paper:#fff7e8;
-  --paper2:#f1dfc2;
-  --ink:#2d2119;
-  --muted:#795f4b;
-  --terracotta:#b65b38;
-  --rose:#d88d7b;
-  --olive:#596d48;
-  --sage:#b8c7a1;
-  --cream:#fffaf0;
-  --shadow:rgba(45,33,25,.25);
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  min-height:100vh;
-  overflow-x:hidden;
-  font-family:Inter, sans-serif;
-  color:var(--ink);
-  background:
-    radial-gradient(circle at 12% 18%, rgba(216,141,123,.28), transparent 28%),
-    radial-gradient(circle at 88% 70%, rgba(184,199,161,.34), transparent 34%),
-    linear-gradient(145deg,#fff7e8,#e7d3b5);
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  opacity:.26;
-  background-image:
-    radial-gradient(circle, rgba(45,33,25,.14) 1px, transparent 1.5px),
-    linear-gradient(90deg, rgba(45,33,25,.04) 1px, transparent 1px);
-  background-size:28px 28px, 54px 54px;
-}
-
-button,a,input,select{
-  -webkit-tap-highlight-color:transparent;
-  font:inherit;
-}
-
-/* ==============================
-   INTRO: BOOK COVER
-============================== */
-.intro{
-  position:fixed;
-  inset:0;
-  height:100dvh;
-  min-height:100svh;
-  z-index:9999;
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 50% 30%, rgba(255,250,240,.34), transparent 34%),
-    linear-gradient(145deg,#3f2b21,#15100d);
-  transition:opacity 1s ease, transform 1s ease;
-}
-
-.intro.hide{
-  opacity:0;
-  transform:scale(1.04);
-  pointer-events:none;
-}
-
-.book-wrap{
-  width:min(88vw,390px);
-  height:min(78svh,620px);
-  perspective:1400px;
-  position:relative;
-}
-
-.book-cover{
-  width:100%;
-  height:100%;
-  position:relative;
-  transform-style:preserve-3d;
-  transform-origin:left center;
-  border-radius:14px 28px 28px 14px;
-  background:
-    linear-gradient(to bottom, rgba(45,33,25,.18), rgba(45,33,25,.74)),
-    url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80") center/cover;
-  border:1px solid rgba(255,247,232,.46);
-  box-shadow:
-    18px 22px 60px rgba(0,0,0,.46),
-    inset 12px 0 28px rgba(0,0,0,.24),
-    inset 0 0 0 12px rgba(255,247,232,.08);
-  overflow:hidden;
-  animation:bookFloat 3.6s ease-in-out infinite;
-  transition:
-    transform 1.15s cubic-bezier(.77,0,.18,1),
-    opacity .55s ease,
-    filter .55s ease;
-  backface-visibility:hidden;
-  will-change:transform, opacity;
-}
-
-.intro.opening .book-cover{
-  transform:translateX(-16px) rotateY(-74deg);
-  opacity:.96;
-  filter:brightness(.9);
-}
-
-@keyframes bookFloat{
-  0%,100%{transform:translateY(0) rotate(-.4deg)}
-  50%{transform:translateY(-9px) rotate(.4deg)}
-}
-
-.intro.opening .book-cover{
-  animation:none;
-}
-
-.book-cover::before{
-  content:"";
-  position:absolute;
-  inset:18px;
-  border:1px solid rgba(255,247,232,.52);
-  border-radius:10px 22px 22px 10px;
-  pointer-events:none;
-}
-
-.book-cover::after{
-  content:"THE WEDDING STORY";
-  position:absolute;
-  top:28px;
-  left:50%;
-  transform:translateX(-50%);
-  white-space:nowrap;
-  color:#fff7e8;
-  letter-spacing:4px;
-  font-size:11px;
-  font-weight:800;
-  text-shadow:0 2px 14px rgba(0,0,0,.76);
-}
-
-.book-content{
-  position:absolute;
-  inset:0;
-  z-index:3;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  text-align:center;
-  padding:40px 24px 44px;
-  color:#fff7e8;
-}
-
-.book-label{
-  font-size:12px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  font-weight:800;
-}
-
-.book-names{
-  margin-top:16px;
-  font-family:Fraunces, serif;
-  font-size:62px;
-  line-height:.92;
-  font-weight:800;
-  text-shadow:0 3px 22px rgba(0,0,0,.85);
-}
-
-.book-date{
-  margin-top:16px;
-  color:#ffe6ce;
-  font-family:Fraunces, serif;
-  font-size:20px;
-}
-
-.open-btn{
-  margin:26px auto 0;
-  border:none;
-  border-radius:999px;
-  padding:15px 24px;
-  background:var(--paper);
-  color:var(--ink);
-  font-weight:900;
-  cursor:pointer;
-  box-shadow:0 12px 28px rgba(0,0,0,.35);
-  animation:btnPulse 1.7s ease-in-out infinite;
-}
-
-@keyframes btnPulse{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.045)}
-}
-
-.page-behind{
-  position:absolute;
-  inset:14px -12px 14px 14px;
-  z-index:-1;
-  border-radius:12px 24px 24px 12px;
-  background:linear-gradient(145deg,#fffaf0,#e9d5b9);
-  box-shadow:12px 18px 45px rgba(0,0,0,.26);
-}
-
-/* ==============================
-   WEBSITE FRAME
-============================== */
-.website{
-  display:none;
-  position:relative;
-  z-index:2;
-}
-
-.app-shell{
-  max-width:520px;
-  margin:auto;
-  min-height:100vh;
-  padding:18px 12px 90px;
-  position:relative;
-}
-
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  margin:0 -12px 14px;
-  padding:12px;
-  background:linear-gradient(to bottom, rgba(255,247,232,.94), rgba(255,247,232,.72));
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(45,33,25,.12);
-}
-
-.topbar-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-}
-
-.brand{
-  line-height:1.05;
-}
-
-.brand strong{
-  display:block;
-  font-family:Fraunces, serif;
-  font-size:21px;
-}
-
-.brand span{
-  font-size:11px;
-  color:var(--muted);
-  letter-spacing:1px;
-  text-transform:uppercase;
-}
-
-.icon-actions{
-  display:flex;
-  gap:8px;
-}
-
-.icon-btn{
-  width:40px;
-  height:40px;
-  border:none;
-  border-radius:16px;
-  background:#fffaf0;
-  color:var(--ink);
-  font-weight:900;
-  box-shadow:0 8px 20px rgba(45,33,25,.12);
-  cursor:pointer;
-}
-
-.icon-btn.muted{
-  background:var(--ink);
-  color:var(--paper);
-}
-
-.progress-track{
-  margin-top:12px;
-  height:7px;
-  border-radius:999px;
-  overflow:hidden;
-  background:rgba(45,33,25,.12);
-}
-
-.progress-fill{
-  height:100%;
-  width:0%;
-  border-radius:999px;
-  background:linear-gradient(90deg,var(--terracotta),var(--olive));
-  transition:width .15s linear;
-}
-
-/* ==============================
-   CARDS + PAGES
-============================== */
-.story-card{
-  min-height:calc(100svh - 130px);
-  margin-bottom:18px;
-  border-radius:34px;
-  overflow:hidden;
-  position:relative;
-  background:#fffaf0;
-  color:var(--ink);
-  box-shadow:0 22px 50px rgba(45,33,25,.17);
-  border:1px solid rgba(45,33,25,.12);
-  opacity:0;
-  transform:translateY(34px) scale(.985);
-  transition:.85s ease;
-}
-
-.story-card.show{
-  opacity:1;
-  transform:translateY(0) scale(1);
-}
-
-.hero-card{
-  display:flex;
-  flex-direction:column;
-}
-
-.hero-image{
-  min-height:48svh;
-  background:
-    linear-gradient(to bottom, transparent, rgba(45,33,25,.38)),
-    url("https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1100&q=80") center/cover;
-  position:relative;
-}
-
-.hero-stamp{
-  position:absolute;
-  right:18px;
-  bottom:18px;
-  width:104px;
-  height:104px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  text-align:center;
-  padding:12px;
-  color:#fffaf0;
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  background:rgba(182,91,56,.88);
-  border:2px dashed rgba(255,250,240,.66);
-  transform:rotate(-10deg);
-  box-shadow:0 10px 24px rgba(0,0,0,.24);
-}
-
-.hero-copy{
-  flex:1;
-  padding:28px 22px 30px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  text-align:center;
-}
-
-.kicker{
-  color:var(--terracotta);
-  font-size:12px;
-  letter-spacing:3px;
-  font-weight:900;
-  text-transform:uppercase;
-}
-
-.names{
-  margin-top:14px;
-  font-family:Fraunces, serif;
-  font-size:58px;
-  line-height:.92;
-  font-weight:800;
-}
-
-.and{
-  margin:8px 0;
-  color:var(--olive);
-  font-family:Fraunces, serif;
-  font-size:24px;
-}
-
-.date{
-  margin-top:14px;
-  font-family:Fraunces, serif;
-  font-size:26px;
-  color:var(--terracotta);
-}
-
-.info{
-  margin-top:12px;
-  color:var(--muted);
-  line-height:1.75;
-}
-
-.card-page{
-  padding:24px 20px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  text-align:center;
-}
-
-.page-number{
-  align-self:center;
-  padding:8px 13px;
-  border-radius:999px;
-  background:#f4e2c8;
-  color:var(--muted);
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:2px;
-  text-transform:uppercase;
-}
-
-.card-page h2{
-  margin-top:18px;
-  font-family:Fraunces, serif;
-  font-size:44px;
-  line-height:1;
-  color:var(--ink);
-}
-
-.card-page p{
-  margin-top:14px;
-  color:var(--muted);
-  line-height:1.8;
-}
-
-.full-image-card{
-  color:#fffaf0;
-  background-size:cover;
-  background-position:center;
-  display:flex;
-  align-items:flex-end;
-  min-height:calc(100svh - 130px);
-}
-
-.full-image-card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top, rgba(45,33,25,.84), transparent 56%);
-}
-
-.full-image-card .card-page{
-  position:relative;
-  z-index:2;
-  width:100%;
-  min-height:42svh;
-  justify-content:flex-end;
-}
-
-.full-image-card h2,
-.full-image-card p{
-  color:#fffaf0;
-  text-shadow:0 2px 12px rgba(0,0,0,.55);
-}
-
-.full-image-card .page-number{
-  background:rgba(255,250,240,.18);
-  color:#fffaf0;
-  backdrop-filter:blur(8px);
-}
-
-.img-venue{background-image:url("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1100&q=80")}
-.img-dinner{background-image:url("https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1100&q=80")}
-.img-rsvp{background-image:url("https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1100&q=80")}
-
-/* ==============================
-   COUNTDOWN
-============================== */
-.countdown{
-  margin-top:22px;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-}
-
-.time-box{
-  padding:12px 4px;
-  border-radius:18px;
-  background:#f4e2c8;
-  border:1px solid rgba(45,33,25,.08);
-}
-
-.time-box span{
-  display:block;
-  font-weight:900;
-  font-size:22px;
-  color:var(--terracotta);
-}
-
-.time-box small{
-  font-size:10px;
-  color:var(--muted);
-}
-
-/* ==============================
-   INTERACTIVE CHOICE CARDS
-============================== */
-.choice-grid{
-  margin-top:22px;
-  display:grid;
-  gap:10px;
-}
-
-.choice-btn{
-  border:none;
-  border-radius:22px;
-  padding:16px 14px;
-  background:#f4e2c8;
-  color:var(--ink);
-  font-weight:800;
-  cursor:pointer;
-  transition:.25s ease;
-  border:1px solid rgba(45,33,25,.08);
-}
-
-.choice-btn:hover,
-.choice-btn.active{
-  background:var(--terracotta);
-  color:#fffaf0;
-  transform:translateY(-2px);
-}
-
-.choice-result{
-  margin-top:14px;
-  padding:14px;
-  border-radius:22px;
-  line-height:1.6;
-  color:#fffaf0;
-  background:linear-gradient(135deg,var(--terracotta),#7d3d28);
-  display:none;
-}
-
-.choice-result.show{
-  display:block;
-  animation:pop .35s ease forwards;
-}
-
-@keyframes pop{
-  from{opacity:0; transform:scale(.95)}
-  to{opacity:1; transform:scale(1)}
-}
-
-/* ==============================
-   TIMELINE + DETAILS
-============================== */
-.timeline{
-  margin-top:22px;
-  display:grid;
-  gap:10px;
-}
-
-.timeline-item{
-  display:grid;
-  grid-template-columns:82px 1fr;
-  gap:10px;
-  align-items:center;
-  text-align:left;
-  padding:13px;
-  border-radius:22px;
-  background:#f4e2c8;
-}
-
-.timeline-time{
-  font-family:Fraunces, serif;
-  color:var(--terracotta);
-  font-weight:800;
-}
-
-.timeline-text{
-  color:var(--muted);
-  line-height:1.45;
-  font-size:14px;
-}
-
-.detail-grid{
-  margin-top:22px;
-  display:grid;
-  gap:10px;
-}
-
-.detail-pill{
-  padding:13px 14px;
-  border-radius:999px;
-  background:#f4e2c8;
-  color:var(--muted);
-  font-weight:700;
-}
-
-/* ==============================
-   MINI POLAROID STACK
-============================== */
-.memory-stack{
-  margin:26px auto 0;
-  width:250px;
-  height:280px;
-  position:relative;
-}
-
-.memory-photo{
-  position:absolute;
-  width:180px;
-  padding:8px;
-  border-radius:14px;
-  background:#fffaf0;
-  box-shadow:0 16px 36px rgba(45,33,25,.18);
-  transition:.35s ease;
-}
-
-.memory-photo:hover{
-  transform:translateY(-8px) rotate(0deg) scale(1.04) !important;
-  z-index:5;
-}
-
-.memory-photo img{
-  width:100%;
-  height:145px;
-  object-fit:cover;
-  border-radius:9px;
-  display:block;
-}
-
-.memory-photo span{
-  display:block;
-  margin-top:8px;
-  font-family:Fraunces, serif;
-  color:var(--ink);
-}
-
-.memory-photo.one{left:0; top:18px; transform:rotate(-9deg)}
-.memory-photo.two{right:0; top:48px; transform:rotate(8deg)}
-.memory-photo.three{left:35px; bottom:0; transform:rotate(-2deg)}
-
-/* ==============================
-   RSVP FORM-LIKE CARD
-============================== */
-.guest-box{
-  margin-top:22px;
-  display:grid;
-  gap:10px;
-}
-
-.guest-box input,
-.guest-box select{
-  width:100%;
-  border:none;
-  border-radius:20px;
-  padding:15px 14px;
-  background:#f4e2c8;
-  color:var(--ink);
-  outline:none;
-  border:1px solid rgba(45,33,25,.08);
-}
-
-.guest-box input::placeholder{
-  color:rgba(121,95,75,.76);
-}
-
-/* ==============================
-   BUTTONS
-============================== */
-.actions,.rsvp-buttons{
-  margin-top:22px;
-  display:grid;
-  gap:10px;
-}
-
-.btn{
-  width:100%;
-  border:none;
-  display:block;
-  text-decoration:none;
-  text-align:center;
-  padding:16px 16px;
-  border-radius:999px;
-  font-weight:900;
-  cursor:pointer;
-  transition:.25s ease;
-}
-
-.btn:hover{transform:translateY(-3px)}
-
-.btn.primary{
-  background:var(--terracotta);
-  color:#fffaf0;
-  box-shadow:0 12px 24px rgba(182,91,56,.25);
-}
-
-.btn.secondary{
-  background:#f4e2c8;
-  color:var(--ink);
-}
-
-.btn.dark{
-  background:var(--ink);
-  color:#fffaf0;
-}
-
-/* ==============================
-   BOTTOM NAV
-============================== */
-.bottom-nav{
-  position:fixed;
-  left:50%;
-  bottom:calc(14px + env(safe-area-inset-bottom));
-  transform:translateX(-50%);
-  z-index:1200;
-  width:min(94vw,500px);
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  padding:8px;
-  border-radius:26px;
-  background:rgba(255,247,232,.82);
-  backdrop-filter:blur(16px);
-  box-shadow:0 16px 40px rgba(45,33,25,.2);
-  border:1px solid rgba(45,33,25,.1);
-}
-
-.bottom-nav a{
-  text-decoration:none;
-  text-align:center;
-  padding:10px 4px;
-  border-radius:18px;
-  color:var(--muted);
-  font-size:11px;
-  font-weight:900;
-}
-
-.bottom-nav a.active,
-.bottom-nav a:hover{
-  background:var(--ink);
-  color:#fffaf0;
-}
-
-/* ==============================
-   MODAL
-============================== */
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:9998;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:rgba(45,33,25,.66);
-  backdrop-filter:blur(10px);
-}
-
-.modal-box{
-  width:min(92%,400px);
-  padding:28px 20px 22px;
-  border-radius:32px;
-  position:relative;
-  text-align:center;
-  background:#fffaf0;
-  color:var(--ink);
-  box-shadow:0 24px 60px rgba(0,0,0,.28);
-  animation:modalPop .35s ease forwards;
-}
-
-@keyframes modalPop{
-  from{opacity:0; transform:scale(.93) translateY(16px)}
-  to{opacity:1; transform:scale(1) translateY(0)}
-}
-
-.modal-box h2{
-  font-family:Fraunces, serif;
-  font-size:38px;
-  line-height:1;
-}
-
-.modal-box p{
-  margin-top:10px;
-  line-height:1.65;
-  color:var(--muted);
-}
-
-.close-modal{
-  position:absolute;
-  top:10px;
-  right:12px;
-  width:32px;
-  height:32px;
-  border:none;
-  border-radius:50%;
-  color:#fffaf0;
-  background:var(--ink);
-  font-size:22px;
-  cursor:pointer;
-}
-
-/* ==============================
-   PARTICLES
-============================== */
-.paper-piece{
-  position:fixed;
-  z-index:998;
-  pointer-events:none;
-  width:14px;
-  height:18px;
-  border-radius:4px;
-  background:linear-gradient(135deg,#fffaf0,#f1dfc2);
-  box-shadow:0 8px 18px rgba(45,33,25,.12);
-  animation:paperFall linear forwards;
-}
-
-@keyframes paperFall{
-  0%{opacity:0; transform:translateY(-40px) translateX(0) rotate(0deg)}
-  12%{opacity:.9}
-  50%{transform:translateY(300px) translateX(24px) rotate(180deg)}
-  100%{opacity:0; transform:translateY(720px) translateX(-20px) rotate(360deg)}
-}
-
-.float-heart{
-  position:fixed;
-  z-index:997;
-  pointer-events:none;
-  color:var(--terracotta);
-  font-size:18px;
-  animation:heartUp linear forwards;
-}
-
-@keyframes heartUp{
-  0%{opacity:0; transform:translateY(0) scale(.6)}
-  15%{opacity:.86}
-  100%{opacity:0; transform:translateY(-220px) scale(1.15)}
-}
-
-/* ==============================
-   FOOTER
-============================== */
-.site-footer{
-  text-align:center;
-  padding:8px 10px 18px;
-  color:var(--muted);
-}
-
-.site-footer p{
-  font-family:Fraunces, serif;
-  font-size:20px;
-  color:var(--ink);
-}
-
-.site-footer span{
-  display:block;
-  margin-top:7px;
-  font-size:12px;
-}
-
-/* ==============================
-   ARABIC
-============================== */
-body.ar{
-  direction:rtl;
-}
-
-body.ar .book-cover::after{
-  content:"قصة الزفاف";
-}
-
-body.ar,
-body.ar .book-label,
-body.ar .book-names,
-body.ar .book-date,
-body.ar .open-btn,
-body.ar .brand,
-body.ar .kicker,
-body.ar .names,
-body.ar .date,
-body.ar .info,
-body.ar .card-page h2,
-body.ar .card-page p,
-body.ar .page-number,
-body.ar .time-box,
-body.ar .choice-btn,
-body.ar .choice-result,
-body.ar .timeline-item,
-body.ar .detail-pill,
-body.ar .btn,
-body.ar .modal-box,
-body.ar .site-footer,
-body.ar .bottom-nav a{
-  font-family:'Amiri', serif;
-}
-
-body.ar .timeline-item{
-  text-align:right;
-  grid-template-columns:1fr 82px;
-}
-
-body.ar .timeline-time{
-  grid-column:2;
-  grid-row:1;
-}
-
-body.ar .timeline-text{
-  grid-column:1;
-  grid-row:1;
-}
-
-/* ==============================
-   SMALL SCREENS
-============================== */
-@media(max-width:420px){
-  .book-wrap{
-    width:90vw;
-    height:76svh;
-  }
-
-  .book-names{
-    font-size:54px;
-  }
-
-  .app-shell{
-    padding-left:10px;
-    padding-right:10px;
-  }
-
-  .topbar{
-    margin-left:-10px;
-    margin-right:-10px;
-  }
-
-  .names{
-    font-size:52px;
-  }
-
-  .card-page h2{
-    font-size:39px;
-  }
-
-  .countdown{
-    gap:6px;
-  }
-
-  .time-box span{
-    font-size:20px;
-  }
-
-  .memory-stack{
-    transform:scale(.9);
-    transform-origin:center top;
-    margin-bottom:-20px;
-  }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leon & Soraya | Celestial Wedding Invitation</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    :root{
+      --bg:#050814;
+      --bg2:#0b1125;
+      --panel:rgba(12,18,40,.62);
+      --panel-2:rgba(18,26,56,.74);
+      --glass:rgba(255,255,255,.08);
+      --line:rgba(255,255,255,.12);
+      --text:#eef4ff;
+      --muted:#adbbd8;
+      --accent:#f2c96e;
+      --accent-2:#ff9ac6;
+      --accent-3:#86d8ff;
+      --shadow:rgba(0,0,0,.34);
+      --good:#b7ffd3;
+      --danger:#ffd0d0;
+    }
+
+    body[data-theme="rose"]{
+      --accent:#ffb0c9;
+      --accent-2:#ffd3e4;
+      --accent-3:#ff8ab4;
+    }
+
+    body[data-theme="aurora"]{
+      --accent:#90fff1;
+      --accent-2:#8db9ff;
+      --accent-3:#c8a6ff;
+    }
+
+    body[data-theme="gold"]{
+      --accent:#f2c96e;
+      --accent-2:#ffdca0;
+      --accent-3:#ffb9d3;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:Manrope, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 20% 15%, rgba(134,216,255,.08), transparent 22%),
+        radial-gradient(circle at 80% 20%, rgba(255,154,198,.09), transparent 26%),
+        radial-gradient(circle at 50% 85%, rgba(242,201,110,.08), transparent 24%),
+        linear-gradient(180deg,#050814,#071024 34%,#050814 100%);
+      overflow-x:hidden;
+      min-height:100vh;
+    }
+
+    body.ar{
+      direction:rtl;
+    }
+
+    a,button,input,select,textarea{
+      font:inherit;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    canvas#starfield{
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      opacity:.9;
+    }
+
+    .ambient{
+      position:fixed;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
+      overflow:hidden;
+    }
+
+    .orb{
+      position:absolute;
+      border-radius:50%;
+      filter:blur(55px);
+      opacity:.28;
+      animation:floatOrb linear infinite alternate;
+    }
+
+    .orb.a{
+      width:260px;
+      height:260px;
+      background:var(--accent-3);
+      top:8%;
+      left:-3%;
+      animation-duration:13s;
+    }
+
+    .orb.b{
+      width:240px;
+      height:240px;
+      background:var(--accent-2);
+      top:58%;
+      right:-5%;
+      animation-duration:15s;
+    }
+
+    .orb.c{
+      width:220px;
+      height:220px;
+      background:var(--accent);
+      top:78%;
+      left:35%;
+      animation-duration:12s;
+    }
+
+    @keyframes floatOrb{
+      from{transform:translateY(-14px) translateX(-10px) scale(.96)}
+      to{transform:translateY(16px) translateX(14px) scale(1.04)}
+    }
+
+    .site{
+      display:none;
+      position:relative;
+      z-index:2;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .8s ease;
+    }
+
+    .site.show{
+      display:block;
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    /* ===========================
+       INTRO
+    =========================== */
+    .intro{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(242,201,110,.08), transparent 20%),
+        linear-gradient(180deg,#04060f,#091126 55%,#04060f);
+      transition:opacity 1s ease, transform 1s ease;
+    }
+
+    .intro.hide{
+      opacity:0;
+      transform:scale(1.04);
+      pointer-events:none;
+    }
+
+    .intro-stars{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      opacity:.6;
+      background:
+        radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1.5px) 20px 20px / 140px 140px,
+        radial-gradient(circle, rgba(255,255,255,.65) 1px, transparent 1.5px) 80px 90px / 180px 180px,
+        radial-gradient(circle, rgba(255,255,255,.55) 1px, transparent 1.5px) 40px 60px / 210px 210px;
+      animation:twinkleBg 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkleBg{
+      from{opacity:.45}
+      to{opacity:.8}
+    }
+
+    .portal-wrap{
+      position:relative;
+      width:min(92vw,460px);
+      min-height:560px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:24px;
+    }
+
+    .portal{
+      position:relative;
+      width:270px;
+      height:270px;
+      margin:0 auto 28px;
+      display:grid;
+      place-items:center;
+    }
+
+    .ring{
+      position:absolute;
+      inset:0;
+      border-radius:50%;
+      border:2px solid rgba(255,255,255,.09);
+      box-shadow:
+        0 0 34px rgba(255,255,255,.06),
+        inset 0 0 22px rgba(255,255,255,.03);
+      animation:spin 14s linear infinite;
+    }
+
+    .ring.r2{
+      inset:18px;
+      border-color:rgba(134,216,255,.42);
+      animation-duration:10s;
+      animation-direction:reverse;
+    }
+
+    .ring.r3{
+      inset:42px;
+      border-color:rgba(255,154,198,.38);
+      animation-duration:8s;
+    }
+
+    .ring.r4{
+      inset:68px;
+      border-color:rgba(242,201,110,.45);
+      animation-duration:6s;
+      animation-direction:reverse;
+      box-shadow:0 0 30px rgba(242,201,110,.16);
+    }
+
+    .core{
+      width:96px;
+      height:96px;
+      border-radius:50%;
+      background:
+        radial-gradient(circle at 35% 35%, #fff, var(--accent-2) 18%, var(--accent) 42%, rgba(255,255,255,.06) 72%);
+      box-shadow:
+        0 0 45px rgba(255,255,255,.25),
+        0 0 100px rgba(242,201,110,.18);
+      animation:pulseCore 2.4s ease-in-out infinite;
+    }
+
+    @keyframes spin{
+      to{transform:rotate(360deg)}
+    }
+
+    @keyframes pulseCore{
+      0%,100%{transform:scale(.96)}
+      50%{transform:scale(1.06)}
+    }
+
+    .spark{
+      position:absolute;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#fff;
+      box-shadow:0 0 18px rgba(255,255,255,.85);
+      animation:orbitSpark linear infinite;
+    }
+
+    .spark.s1{animation-duration:5.8s}
+    .spark.s2{animation-duration:7.1s}
+    .spark.s3{animation-duration:8.3s}
+    .spark.s4{animation-duration:6.6s}
+
+    .spark.s1{top:18px;left:50%}
+    .spark.s2{bottom:28px;right:44px}
+    .spark.s3{left:18px;top:58%}
+    .spark.s4{right:24px;top:22%}
+
+    @keyframes orbitSpark{
+      0%{transform:translate(0,0) scale(.8)}
+      50%{transform:translate(10px,-12px) scale(1.15)}
+      100%{transform:translate(0,0) scale(.8)}
+    }
+
+    .intro-kicker{
+      color:var(--accent);
+      letter-spacing:5px;
+      text-transform:uppercase;
+      font-weight:800;
+      font-size:11px;
+    }
+
+    .intro-title{
+      margin-top:18px;
+      font-family:'Cormorant Garamond', serif;
+      font-size:72px;
+      line-height:.88;
+      font-weight:700;
+    }
+
+    .intro-sub{
+      margin-top:14px;
+      color:var(--muted);
+      line-height:1.8;
+      max-width:360px;
+      margin-inline:auto;
+      font-size:15px;
+    }
+
+    .intro-meta{
+      margin-top:20px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:8px;
+    }
+
+    .meta-pill{
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.1);
+      color:var(--text);
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .enter-btn{
+      margin-top:24px;
+      border:none;
+      border-radius:999px;
+      padding:15px 22px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#120d16;
+      font-weight:900;
+      cursor:pointer;
+      box-shadow:0 14px 32px rgba(0,0,0,.28);
+      transition:.25s ease;
+    }
+
+    .enter-btn:hover{
+      transform:translateY(-2px) scale(1.02);
+    }
+
+    .intro.opening .portal{
+      animation:portalExplode 1.2s ease forwards;
+    }
+
+    @keyframes portalExplode{
+      0%{transform:scale(1); filter:brightness(1)}
+      60%{transform:scale(1.08); filter:brightness(1.35)}
+      100%{transform:scale(1.9); filter:brightness(1.8); opacity:0}
+    }
+
+    .intro.opening .intro-copy{
+      opacity:0;
+      transform:translateY(12px);
+      transition:.6s ease;
+    }
+
+    /* ===========================
+       TOPBAR
+    =========================== */
+    .topbar{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:1100;
+      padding:12px 14px;
+      background:linear-gradient(to bottom, rgba(4,7,18,.82), rgba(4,7,18,.45), transparent);
+      backdrop-filter:blur(16px);
+    }
+
+    .topbar-inner{
+      max-width:1280px;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .brand-mark{
+      width:42px;
+      height:42px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:0 10px 22px rgba(0,0,0,.18);
+      font-size:18px;
+    }
+
+    .brand-text{
+      min-width:0;
+    }
+
+    .brand-text strong{
+      display:block;
+      font-family:'Cormorant Garamond', serif;
+      font-size:28px;
+      line-height:.95;
+      white-space:nowrap;
+    }
+
+    .brand-text span{
+      display:block;
+      font-size:10px;
+      letter-spacing:2.2px;
+      color:var(--muted);
+      text-transform:uppercase;
+      margin-top:4px;
+      white-space:nowrap;
+    }
+
+    .top-nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .top-nav a{
+      text-decoration:none;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      padding:10px 12px;
+      border-radius:999px;
+      transition:.2s ease;
+    }
+
+    .top-nav a:hover,
+    .top-nav a.active{
+      background:rgba(255,255,255,.09);
+      color:var(--text);
+    }
+
+    .tool-row{
+      display:flex;
+      align-items:center;
+      gap:7px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .tool-btn{
+      width:40px;
+      height:40px;
+      border:none;
+      border-radius:14px;
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.1);
+      cursor:pointer;
+      transition:.25s ease;
+      backdrop-filter:blur(10px);
+    }
+
+    .tool-btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.12);
+    }
+
+    .tool-btn.muted{
+      background:rgba(255,255,255,.16);
+      color:var(--accent);
+    }
+
+    .progress-wrap{
+      max-width:1280px;
+      margin:10px auto 0;
+      height:5px;
+      border-radius:999px;
+      overflow:hidden;
+      background:rgba(255,255,255,.08);
+    }
+
+    .progress-fill{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
+      border-radius:999px;
+    }
+
+    /* ===========================
+       LAYOUT
+    =========================== */
+    .page{
+      position:relative;
+      z-index:2;
+      max-width:1220px;
+      margin:auto;
+      padding:112px 14px 84px;
+    }
+
+    .panel{
+      position:relative;
+      min-height:calc(100svh - 120px);
+      display:flex;
+      align-items:center;
+      margin-bottom:18px;
+    }
+
+    .card{
+      width:100%;
+      background:linear-gradient(180deg,var(--panel),var(--panel-2));
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:0 24px 60px rgba(0,0,0,.22);
+      border-radius:34px;
+      overflow:hidden;
+      backdrop-filter:blur(16px);
+      opacity:0;
+      transform:translateY(40px) scale(.985);
+      transition:opacity .9s ease, transform .9s ease;
+    }
+
+    .card.show{
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
+
+    .section-kicker{
+      color:var(--accent);
+      font-size:11px;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+
+    .section-title{
+      margin-top:16px;
+      font-family:'Cormorant Garamond', serif;
+      font-size:64px;
+      line-height:.94;
+      font-weight:700;
+    }
+
+    .section-text{
+      margin-top:14px;
+      color:var(--muted);
+      line-height:1.85;
+      font-size:15px;
+    }
+
+    .btn{
+      width:100%;
+      text-decoration:none;
+      display:block;
+      text-align:center;
+      border:none;
+      border-radius:999px;
+      padding:15px 16px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.25s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn.accent{
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#140e16;
+      box-shadow:0 14px 28px rgba(0,0,0,.18);
+    }
+
+    .btn.ghost{
+      background:rgba(255,255,255,.07);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.1);
+    }
+
+    .btn.dark{
+      background:rgba(255,255,255,.12);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.14);
+    }
+
+    /* ===========================
+       HERO
+    =========================== */
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:0;
+      min-height:76svh;
+    }
+
+    .hero-copy{
+      padding:34px 28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .hero-sub{
+      margin-top:18px;
+      font-size:18px;
+      color:#d8e3ff;
+      line-height:1.85;
+      max-width:600px;
+    }
+
+    .hero-badges{
+      margin-top:18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .badge{
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.1);
+      font-size:12px;
+      font-weight:700;
+      color:#f7fbff;
+    }
+
+    .countdown{
+      margin-top:24px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+    }
+
+    .time-box{
+      padding:14px 10px;
+      border-radius:22px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.08);
+      text-align:center;
+    }
+
+    .time-box span{
+      display:block;
+      font-size:28px;
+      font-weight:900;
+      color:var(--accent);
+      line-height:1;
+    }
+
+    .time-box small{
+      display:block;
+      margin-top:7px;
+      color:var(--muted);
+      font-size:10px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+    }
+
+    .hero-actions{
+      margin-top:22px;
+      display:grid;
+      gap:10px;
+      width:min(420px,100%);
+    }
+
+    .hero-visual{
+      position:relative;
+      min-height:76svh;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(134,216,255,.12), transparent 28%),
+        radial-gradient(circle at 75% 70%, rgba(255,154,198,.12), transparent 28%);
+    }
+
+    .invite-orbit{
+      position:relative;
+      width:min(94%,520px);
+      aspect-ratio:1/1.08;
+      display:grid;
+      place-items:center;
+    }
+
+    .halo{
+      position:absolute;
+      inset:8%;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.1);
+      animation:spin 24s linear infinite;
+    }
+
+    .halo.h2{
+      inset:18%;
+      animation-duration:15s;
+      animation-direction:reverse;
+      border-color:rgba(255,255,255,.08);
+    }
+
+    .halo.h3{
+      inset:28%;
+      animation-duration:10s;
+      border-color:rgba(242,201,110,.22);
+      box-shadow:0 0 30px rgba(242,201,110,.1);
+    }
+
+    .orbit-tag{
+      position:absolute;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      font-size:12px;
+      color:#f7fbff;
+      font-weight:800;
+      box-shadow:0 14px 24px rgba(0,0,0,.18);
+      backdrop-filter:blur(10px);
+      animation:tagFloat 5s ease-in-out infinite;
+    }
+
+    .orbit-tag.t1{top:8%;left:10%}
+    .orbit-tag.t2{top:18%;right:6%; animation-delay:.8s}
+    .orbit-tag.t3{bottom:14%;left:4%; animation-delay:1.2s}
+    .orbit-tag.t4{bottom:8%;right:16%; animation-delay:1.6s}
+
+    @keyframes tagFloat{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
+    }
+
+    .cosmic-card{
+      position:relative;
+      width:min(70vw,350px);
+      aspect-ratio: .78 / 1;
+      border-radius:34px;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,.15), rgba(0,0,0,.56)),
+        url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80") center/cover;
+      border:1px solid rgba(255,255,255,.16);
+      overflow:hidden;
+      box-shadow:
+        0 30px 70px rgba(0,0,0,.26),
+        0 0 80px rgba(255,255,255,.05);
+      transform:rotate(-6deg);
+      animation:cardFloat 4.6s ease-in-out infinite;
+    }
+
+    @keyframes cardFloat{
+      0%,100%{transform:rotate(-6deg) translateY(0)}
+      50%{transform:rotate(-3deg) translateY(-10px)}
+    }
+
+    .cosmic-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,.76), rgba(0,0,0,.06) 60%);
+    }
+
+    .cosmic-card::after{
+      content:"";
+      position:absolute;
+      inset:-20%;
+      background:linear-gradient(120deg, transparent 35%, rgba(255,255,255,.16) 46%, transparent 56%);
+      transform:translateX(-140%) rotate(12deg);
+      animation:shine 4.2s linear infinite;
+    }
+
+    @keyframes shine{
+      to{transform:translateX(140%) rotate(12deg)}
+    }
+
+    .card-label{
+      position:absolute;
+      left:16px;
+      right:16px;
+      bottom:18px;
+      z-index:2;
+      padding:14px;
+      border-radius:22px;
+      background:rgba(11,17,37,.65);
+      border:1px solid rgba(255,255,255,.1);
+      backdrop-filter:blur(12px);
+    }
+
+    .card-label strong{
+      display:block;
+      font-family:'Cormorant Garamond', serif;
+      font-size:28px;
+      line-height:1;
+    }
+
+    .card-label span{
+      display:block;
+      margin-top:6px;
+      color:#d5e2ff;
+      font-size:12px;
+      line-height:1.6;
+    }
+
+    /* ===========================
+       STORY CONSTELLATION
+    =========================== */
+    .story-grid{
+      display:grid;
+      grid-template-columns:1fr .95fr;
+      gap:0;
+    }
+
+    .map-side{
+      padding:34px 28px;
+      min-height:620px;
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 50% 15%, rgba(255,255,255,.06), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.02), transparent);
+    }
+
+    .story-side{
+      padding:34px 28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      background:rgba(255,255,255,.03);
+    }
+
+    .star-map{
+      position:relative;
+      margin-top:28px;
+      height:420px;
+      border-radius:30px;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,.06), transparent 40%),
+        rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+    }
+
+    .star-map .line{
+      position:absolute;
+      height:2px;
+      transform-origin:left center;
+      background:linear-gradient(90deg, rgba(255,255,255,.16), rgba(255,255,255,.03));
+      opacity:.75;
+    }
+
+    .story-star{
+      position:absolute;
+      width:22px;
+      height:22px;
+      border:none;
+      border-radius:50%;
+      background:radial-gradient(circle, #fff, var(--accent-3));
+      box-shadow:
+        0 0 16px rgba(255,255,255,.6),
+        0 0 34px rgba(134,216,255,.28);
+      cursor:pointer;
+      transition:.25s ease;
+    }
+
+    .story-star::after{
+      content:"";
+      position:absolute;
+      inset:-10px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.14);
+      animation:ripple 2.6s ease-out infinite;
+    }
+
+    @keyframes ripple{
+      0%{transform:scale(.86); opacity:.8}
+      100%{transform:scale(1.65); opacity:0}
+    }
+
+    .story-star.active{
+      transform:scale(1.22);
+      background:radial-gradient(circle, #fff, var(--accent));
+      box-shadow:
+        0 0 16px rgba(255,255,255,.8),
+        0 0 46px rgba(242,201,110,.45);
+    }
+
+    .star-label{
+      position:absolute;
+      transform:translate(-50%, 28px);
+      white-space:nowrap;
+      font-size:11px;
+      font-weight:800;
+      color:#f4f9ff;
+      letter-spacing:1px;
+      text-transform:uppercase;
+    }
+
+    .story-card-box{
+      margin-top:24px;
+      padding:20px;
+      border-radius:28px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 16px 28px rgba(0,0,0,.14);
+      min-height:250px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .story-card-box strong{
+      display:block;
+      color:var(--accent);
+      letter-spacing:3px;
+      font-size:11px;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+
+    .story-card-box h3{
+      margin-top:12px;
+      font-family:'Cormorant Garamond', serif;
+      font-size:40px;
+      line-height:1;
+    }
+
+    .story-card-box p{
+      margin-top:14px;
+      color:var(--muted);
+      line-height:1.85;
+      font-size:15px;
+    }
+
+    /* ===========================
+       TIMELINE
+    =========================== */
+    .timeline-wrap{
+      padding:34px 28px;
+    }
+
+    .timeline-grid{
+      margin-top:26px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+
+    .timeline-item{
+      position:relative;
+      min-height:230px;
+      padding:20px;
+      border-radius:28px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.09);
+      overflow:hidden;
+      transition:.25s ease;
+    }
+
+    .timeline-item:hover{
+      transform:translateY(-8px);
+      box-shadow:0 18px 36px rgba(0,0,0,.16);
+    }
+
+    .timeline-item::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:4px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));
+    }
+
+    .timeline-time{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.09);
+      color:var(--accent);
+      font-weight:900;
+      font-size:12px;
+    }
+
+    .timeline-item h3{
+      margin-top:16px;
+      font-family:'Cormorant Garamond', serif;
+      font-size:34px;
+      line-height:.98;
+    }
+
+    .timeline-item p{
+      margin-top:12px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14px;
+    }
+
+    /* ===========================
+       MOOD SWITCHER + MEMORIES
+    =========================== */
+    .mood-grid{
+      display:grid;
+      grid-template-columns:.86fr 1.14fr;
+      gap:0;
+    }
+
+    .mood-side{
+      padding:34px 28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .memory-side{
+      padding:34px 22px 34px 0;
+    }
+
+    .mood-picks{
+      margin-top:22px;
+      display:grid;
+      gap:10px;
+      width:min(360px,100%);
+    }
+
+    .mood-chip{
+      width:100%;
+      text-align:left;
+      border:none;
+      padding:15px 16px;
+      border-radius:22px;
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.08);
+      cursor:pointer;
+      font-weight:800;
+      transition:.25s ease;
+    }
+
+    .mood-chip.active,
+    .mood-chip:hover{
+      background:rgba(255,255,255,.14);
+      color:var(--accent);
+      transform:translateX(4px);
+    }
+
+    .mood-note{
+      margin-top:18px;
+      padding:18px;
+      border-radius:24px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+      line-height:1.8;
+      min-height:110px;
+    }
+
+    .memory-row{
+      display:grid;
+      grid-auto-flow:column;
+      grid-auto-columns:260px;
+      gap:14px;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      padding:4px 6px 8px 6px;
+    }
+
+    .memory-row::-webkit-scrollbar{
+      height:8px;
+    }
+
+    .memory-row::-webkit-scrollbar-thumb{
+      background:rgba(255,255,255,.14);
+      border-radius:999px;
+    }
+
+    .memory-card{
+      scroll-snap-align:start;
+      border-radius:28px;
+      overflow:hidden;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 18px 28px rgba(0,0,0,.18);
+      transition:.25s ease;
+    }
+
+    .memory-card:hover{
+      transform:translateY(-8px) rotate(-1deg);
+    }
+
+    .memory-image{
+      height:320px;
+      background-size:cover;
+      background-position:center;
+      position:relative;
+    }
+
+    .memory-image::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,.05));
+    }
+
+    .memory-caption{
+      padding:16px;
+    }
+
+    .memory-caption strong{
+      display:block;
+      font-family:'Cormorant Garamond', serif;
+      font-size:28px;
+      line-height:1;
+    }
+
+    .memory-caption span{
+      display:block;
+      margin-top:8px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:13px;
+    }
+
+    /* ===========================
+       RSVP + FAQ
+    =========================== */
+    .rsvp-grid{
+      display:grid;
+      grid-template-columns:1fr .94fr;
+      gap:0;
+    }
+
+    .faq-side,
+    .rsvp-side{
+      padding:34px 28px;
+    }
+
+    .faq-side{
+      background:rgba(255,255,255,.03);
+    }
+
+    .faq-list{
+      margin-top:24px;
+      display:grid;
+      gap:12px;
+    }
+
+    .faq-item{
+      border-radius:24px;
+      overflow:hidden;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .faq-q{
+      width:100%;
+      border:none;
+      padding:18px 18px;
+      background:transparent;
+      color:var(--text);
+      font-weight:800;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      text-align:left;
+    }
+
+    .faq-q span:last-child{
+      font-size:22px;
+      color:var(--accent);
+      transition:.2s ease;
+    }
+
+    .faq-item.open .faq-q span:last-child{
+      transform:rotate(45deg);
+    }
+
+    .faq-a{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .3s ease;
+      padding:0 18px;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:14px;
+    }
+
+    .faq-item.open .faq-a{
+      max-height:170px;
+      padding:0 18px 18px;
+    }
+
+    .field-grid{
+      margin-top:24px;
+      display:grid;
+      gap:12px;
+    }
+
+    .field{
+      width:100%;
+      padding:15px 14px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+      outline:none;
+    }
+
+    .field::placeholder{
+      color:#bac8e8;
+    }
+
+    .field option{
+      color:#111827;
+    }
+
+    .rsvp-mini{
+      margin-top:18px;
+      display:grid;
+      gap:10px;
+    }
+
+    .mini-info{
+      padding:12px 14px;
+      border-radius:18px;
+      background:rgba(255,255,255,.05);
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,.08);
+      font-size:14px;
+    }
+
+    .rsvp-actions{
+      margin-top:18px;
+      display:grid;
+      gap:10px;
+    }
+
+    /* ===========================
+       FINAL
+    =========================== */
+    .final-wrap{
+      padding:34px 28px;
+      text-align:center;
+    }
+
+    .final-wall{
+      min-height:58svh;
+      border-radius:30px;
+      padding:30px 20px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,.18), rgba(0,0,0,.68)),
+        url("https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=1400&q=80") center/cover;
+      border:1px solid rgba(255,255,255,.1);
+    }
+
+    .final-wall::before{
+      content:"";
+      position:absolute;
+      inset:18px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:26px;
+      pointer-events:none;
+    }
+
+    .final-wall .section-title,
+    .final-wall .section-text{
+      position:relative;
+      z-index:2;
+    }
+
+    .final-wall .section-text{
+      max-width:680px;
+      color:#dbe7ff;
+    }
+
+    .final-actions{
+      position:relative;
+      z-index:2;
+      margin-top:24px;
+      width:min(420px,100%);
+      display:grid;
+      gap:10px;
+    }
+
+    .footer{
+      padding:0 14px 100px;
+      text-align:center;
+      color:var(--muted);
+    }
+
+    .footer strong{
+      display:block;
+      font-family:'Cormorant Garamond', serif;
+      font-size:28px;
+      color:#f7fbff;
+    }
+
+    .footer span{
+      display:block;
+      margin-top:8px;
+      font-size:12px;
+    }
+
+    /* ===========================
+       BOTTOM NAV
+    =========================== */
+    .bottom-dock{
+      display:none;
+      position:fixed;
+      left:50%;
+      bottom:calc(12px + env(safe-area-inset-bottom));
+      transform:translateX(-50%);
+      z-index:1100;
+      width:min(94vw,560px);
+      padding:8px;
+      border-radius:24px;
+      background:rgba(6,10,22,.82);
+      backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:0 16px 34px rgba(0,0,0,.26);
+      grid-template-columns:repeat(4,1fr);
+      gap:8px;
+    }
+
+    .bottom-dock a{
+      text-decoration:none;
+      text-align:center;
+      padding:11px 4px;
+      border-radius:16px;
+      color:var(--muted);
+      font-size:11px;
+      font-weight:900;
+      text-transform:uppercase;
+    }
+
+    .bottom-dock a.active,
+    .bottom-dock a:hover{
+      background:rgba(255,255,255,.1);
+      color:var(--text);
+    }
+
+    /* ===========================
+       MODAL
+    =========================== */
+    .modal{
+      position:fixed;
+      inset:0;
+      z-index:2000;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background:rgba(0,0,0,.58);
+      backdrop-filter:blur(10px);
+    }
+
+    .modal-box{
+      width:min(92%,420px);
+      border-radius:30px;
+      padding:28px 20px 20px;
+      position:relative;
+      background:linear-gradient(180deg, rgba(13,19,42,.96), rgba(10,15,32,.96));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 30px 70px rgba(0,0,0,.34);
+      text-align:center;
+    }
+
+    .modal-box h2{
+      font-family:'Cormorant Garamond', serif;
+      font-size:42px;
+      line-height:1;
+    }
+
+    .modal-box p{
+      margin-top:12px;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .close-modal{
+      position:absolute;
+      top:10px;
+      right:12px;
+      width:34px;
+      height:34px;
+      border:none;
+      border-radius:50%;
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      font-size:22px;
+      cursor:pointer;
+    }
+
+    .modal-actions{
+      margin-top:20px;
+      display:grid;
+      gap:10px;
+    }
+
+    /* ===========================
+       FLOATING SPARKS
+    =========================== */
+    .sparkle{
+      position:fixed;
+      z-index:3;
+      pointer-events:none;
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:radial-gradient(circle,#fff, var(--accent) 60%, transparent 70%);
+      box-shadow:0 0 14px rgba(255,255,255,.8);
+      animation:sparkleUp linear forwards;
+    }
+
+    @keyframes sparkleUp{
+      0%{opacity:0; transform:translateY(0) scale(.7)}
+      12%{opacity:.9}
+      100%{opacity:0; transform:translateY(-180px) scale(1.2)}
+    }
+
+    .trail{
+      position:fixed;
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      pointer-events:none;
+      background:radial-gradient(circle,#fff, var(--accent-3) 65%, transparent 70%);
+      box-shadow:0 0 14px rgba(255,255,255,.8);
+      z-index:4;
+      animation:trailFade .7s linear forwards;
+    }
+
+    @keyframes trailFade{
+      to{opacity:0; transform:scale(.2)}
+    }
+
+    /* ===========================
+       RESPONSIVE
+    =========================== */
+    @media (max-width: 1080px){
+      .hero-grid,
+      .story-grid,
+      .mood-grid,
+      .rsvp-grid{
+        grid-template-columns:1fr;
+      }
+
+      .timeline-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .hero-visual{
+        min-height:70svh;
+      }
+
+      .memory-side{
+        padding:0 22px 30px;
+      }
+
+      .top-nav{
+        display:none;
+      }
+
+      .bottom-dock{
+        display:grid;
+      }
+
+      .panel{
+        min-height:auto;
+      }
+    }
+
+    @media (max-width: 720px){
+      .topbar{
+        padding:10px 10px;
+      }
+
+      .brand-mark{
+        width:38px;
+        height:38px;
+        border-radius:14px;
+      }
+
+      .brand-text strong{
+        font-size:24px;
+      }
+
+      .brand-text span{
+        display:none;
+      }
+
+      .tool-row{
+        gap:5px;
+      }
+
+      .tool-btn{
+        width:36px;
+        height:36px;
+        border-radius:12px;
+      }
+
+      .page{
+        padding:92px 8px 90px;
+      }
+
+      .card{
+        border-radius:26px;
+      }
+
+      .hero-copy,
+      .map-side,
+      .story-side,
+      .timeline-wrap,
+      .mood-side,
+      .faq-side,
+      .rsvp-side,
+      .final-wrap{
+        padding:24px 16px;
+      }
+
+      .memory-side{
+        padding:0 10px 22px;
+      }
+
+      .section-title{
+        font-size:46px;
+      }
+
+      .hero-sub{
+        font-size:16px;
+        line-height:1.8;
+      }
+
+      .countdown{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .time-box span{
+        font-size:24px;
+      }
+
+      .hero-visual{
+        min-height:58svh;
+      }
+
+      .cosmic-card{
+        width:min(78vw,300px);
+        border-radius:26px;
+      }
+
+      .orbit-tag{
+        font-size:10px;
+        padding:9px 11px;
+      }
+
+      .star-map{
+        height:340px;
+      }
+
+      .story-card-box h3{
+        font-size:34px;
+      }
+
+      .timeline-grid{
+        grid-template-columns:1fr;
+      }
+
+      .memory-row{
+        grid-auto-columns:78%;
+      }
+
+      .memory-image{
+        height:280px;
+      }
+
+      .final-wall{
+        min-height:54svh;
+        border-radius:24px;
+      }
+
+      .intro-title{
+        font-size:56px;
+      }
+
+      .portal{
+        width:230px;
+        height:230px;
+      }
+
+      .bottom-dock{
+        width:94vw;
+        gap:6px;
+        padding:7px;
+      }
+
+      .bottom-dock a{
+        font-size:10px;
+        padding:10px 3px;
+      }
+    }
+
+    @media (max-width: 430px){
+      .intro-title{
+        font-size:48px;
+      }
+
+      .section-title{
+        font-size:40px;
+      }
+
+      .hero-badges{
+        gap:8px;
+      }
+
+      .badge{
+        font-size:11px;
+      }
+
+      .memory-row{
+        grid-auto-columns:86%;
+      }
+
+      .modal-box{
+        border-radius:24px;
+      }
+    }
+
+    /* Arabic font targeting */
+    body.ar,
+    body.ar .intro-title,
+    body.ar .intro-sub,
+    body.ar .brand-text,
+    body.ar .section-title,
+    body.ar .section-text,
+    body.ar .hero-sub,
+    body.ar .time-box,
+    body.ar .card-label,
+    body.ar .story-card-box,
+    body.ar .timeline-item,
+    body.ar .mood-chip,
+    body.ar .mood-note,
+    body.ar .memory-caption,
+    body.ar .faq-item,
+    body.ar .rsvp-side,
+    body.ar .modal-box,
+    body.ar .footer,
+    body.ar .bottom-dock a{
+      font-family:Amiri, serif;
+    }
+
+    body.ar .faq-q,
+    body.ar .mood-chip{
+      text-align:right;
+    }
+  </style>
 </head>
+<body data-theme="gold">
 
-<body>
-<audio id="weddingMusic" loop preload="auto"></audio>
+  <canvas id="starfield"></canvas>
 
-<!-- INTRO -->
-<div class="intro" id="intro">
-  <div class="book-wrap">
-    <div class="page-behind"></div>
-    <div class="book-cover">
-      <div class="book-content">
-        <div class="book-label" data-i18n="bookLabel">Chapter One</div>
-        <div class="book-names" data-i18n="bookNames">Nadir<br>& Celeste</div>
-        <div class="book-date" data-i18n="bookDate">19 April 2028</div>
-        <button class="open-btn" id="openBtn" type="button" data-i18n="openBtn">Open the Story 📖</button>
+  <div class="ambient">
+    <div class="orb a"></div>
+    <div class="orb b"></div>
+    <div class="orb c"></div>
+  </div>
+
+  <audio id="bgMusic" loop preload="auto"></audio>
+
+  <!-- INTRO -->
+  <div class="intro" id="intro">
+    <div class="intro-stars"></div>
+
+    <div class="portal-wrap">
+      <div class="portal">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+        <div class="ring r4"></div>
+        <div class="core"></div>
+        <div class="spark s1"></div>
+        <div class="spark s2"></div>
+        <div class="spark s3"></div>
+        <div class="spark s4"></div>
+      </div>
+
+      <div class="intro-copy">
+        <div class="intro-kicker" data-i18n="introKicker">Interactive Celestial Invitation</div>
+        <div class="intro-title" data-i18n="introNames">Leon & Soraya</div>
+        <div class="intro-sub" data-i18n="introSub">
+          Step through the portal and enter a wedding invitation designed like a living universe.
+        </div>
+
+        <div class="intro-meta">
+          <div class="meta-pill" data-i18n="introMeta1">18 October 2028</div>
+          <div class="meta-pill" data-i18n="introMeta2">Luna Conservatory</div>
+          <div class="meta-pill" data-i18n="introMeta3">Barcelona</div>
+        </div>
+
+        <button class="enter-btn" id="enterBtn" type="button" data-i18n="enterBtn">Open the Stars ✨</button>
       </div>
     </div>
   </div>
-</div>
 
-<!-- WEBSITE -->
-<div class="website" id="website">
-  <main class="app-shell">
+  <!-- SITE -->
+  <div class="site" id="site">
     <header class="topbar">
       <div class="topbar-inner">
         <div class="brand">
-          <strong data-i18n="brandNames">Nadir & Celeste</strong>
-          <span data-i18n="brandSub">Interactive Storybook</span>
+          <div class="brand-mark">✦</div>
+          <div class="brand-text">
+            <strong data-i18n="brandNames">Leon & Soraya</strong>
+            <span data-i18n="brandSub">Celestial Wedding Invitation</span>
+          </div>
         </div>
-        <div class="icon-actions">
-          <button class="icon-btn" id="langToggle" type="button">عربي</button>
-          <button class="icon-btn" id="musicToggle" type="button">🔊</button>
+
+        <nav class="top-nav">
+          <a href="#hero" data-nav="hero" class="active" data-i18n="navHome">Home</a>
+          <a href="#story" data-nav="story" data-i18n="navStory">Story</a>
+          <a href="#moments" data-nav="moments" data-i18n="navMoments">Moments</a>
+          <a href="#rsvp" data-nav="rsvp" data-i18n="navRsvp">RSVP</a>
+        </nav>
+
+        <div class="tool-row">
+          <button class="tool-btn" id="langToggle" type="button">عربي</button>
+          <button class="tool-btn" id="musicToggle" type="button">🔊</button>
+          <button class="tool-btn" id="copyBtn" type="button">⧉</button>
+          <button class="tool-btn" id="shareBtn" type="button">↗</button>
         </div>
       </div>
-      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+      <div class="progress-wrap">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
     </header>
 
-    <!-- HOME -->
-    <section class="story-card hero-card" id="home">
-      <div class="hero-image">
-        <div class="hero-stamp" data-i18n="heroStamp">Save<br>The<br>Date</div>
-      </div>
-      <div class="hero-copy">
-        <div class="kicker" data-i18n="kicker">You are invited into the story of</div>
-        <div class="names" data-i18n="groom">Nadir</div>
-        <div class="and">&</div>
-        <div class="names" data-i18n="bride">Celeste</div>
-        <div class="date" data-i18n="date">19 / 4 / 2028</div>
-        <div class="info" data-i18n="mainInfo">
-          The Orchard House, Tuscany<br>
-          Ceremony begins at 4:30 PM<br>
-          Garden dinner to follow
+    <main class="page">
+      <!-- HERO -->
+      <section class="panel" id="hero">
+        <div class="card reveal">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <div class="section-kicker" data-i18n="heroKicker">A Night Written in the Stars</div>
+              <h1 class="section-title" data-i18n="heroTitle">An Invitation Beyond the Ordinary</h1>
+              <p class="hero-sub" data-i18n="heroSub">
+                Join us for a celestial evening of vows, music, light, and celebration as our two worlds become one.
+              </p>
+
+              <div class="hero-badges">
+                <div class="badge" data-i18n="heroBadge1">18 October 2028</div>
+                <div class="badge" data-i18n="heroBadge2">7:00 PM</div>
+                <div class="badge" data-i18n="heroBadge3">Luna Conservatory, Barcelona</div>
+              </div>
+
+              <div class="countdown">
+                <div class="time-box"><span id="days">00</span><small data-i18n="days">Days</small></div>
+                <div class="time-box"><span id="hours">00</span><small data-i18n="hours">Hours</small></div>
+                <div class="time-box"><span id="minutes">00</span><small data-i18n="minutes">Minutes</small></div>
+                <div class="time-box"><span id="seconds">00</span><small data-i18n="seconds">Seconds</small></div>
+              </div>
+
+              <div class="hero-actions">
+                <a class="btn accent" href="#rsvp" data-i18n="heroBtn1">Reserve Your Place</a>
+                <a class="btn ghost" href="https://www.google.com/maps/search/Luna+Conservatory+Barcelona" target="_blank" data-i18n="heroBtn2">Open Location 📍</a>
+              </div>
+            </div>
+
+            <div class="hero-visual">
+              <div class="invite-orbit">
+                <div class="halo h1"></div>
+                <div class="halo h2"></div>
+                <div class="halo h3"></div>
+
+                <div class="orbit-tag t1" data-i18n="orbit1">Ceremony</div>
+                <div class="orbit-tag t2" data-i18n="orbit2">Dinner</div>
+                <div class="orbit-tag t3" data-i18n="orbit3">Dancing</div>
+                <div class="orbit-tag t4" data-i18n="orbit4">Forever</div>
+
+                <div class="cosmic-card">
+                  <div class="card-label">
+                    <strong data-i18n="cardNames">Leon & Soraya</strong>
+                    <span data-i18n="cardInfo">One luminous evening, one unforgettable celebration.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="countdown">
-          <div class="time-box"><span id="days">00</span><small data-i18n="days">Days</small></div>
-          <div class="time-box"><span id="hours">00</span><small data-i18n="hours">Hours</small></div>
-          <div class="time-box"><span id="minutes">00</span><small data-i18n="minutes">Minutes</small></div>
-          <div class="time-box"><span id="seconds">00</span><small data-i18n="seconds">Seconds</small></div>
+      </section>
+
+      <!-- STORY -->
+      <section class="panel" id="story">
+        <div class="card reveal">
+          <div class="story-grid">
+            <div class="map-side">
+              <div class="section-kicker" data-i18n="storyKicker">Interactive Love Story</div>
+              <h2 class="section-title" data-i18n="storyTitle">Follow Our Constellation</h2>
+              <p class="section-text" data-i18n="storyText">
+                Tap the stars to reveal the moments that shaped our journey.
+              </p>
+
+              <div class="star-map">
+                <div class="line" style="top:92px; left:78px; width:112px; transform:rotate(15deg)"></div>
+                <div class="line" style="top:157px; left:179px; width:104px; transform:rotate(34deg)"></div>
+                <div class="line" style="top:242px; left:266px; width:96px; transform:rotate(-18deg)"></div>
+
+                <button class="story-star active" data-story="meeting" style="top:82px; left:70px;">
+                  <span class="star-label" data-i18n="star1">First Hello</span>
+                </button>
+
+                <button class="story-star" data-story="adventure" style="top:144px; left:182px;">
+                  <span class="star-label" data-i18n="star2">The Adventure</span>
+                </button>
+
+                <button class="story-star" data-story="promise" style="top:232px; left:276px;">
+                  <span class="star-label" data-i18n="star3">The Promise</span>
+                </button>
+
+                <button class="story-star" data-story="forever" style="top:204px; left:366px;">
+                  <span class="star-label" data-i18n="star4">Forever</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="story-side">
+              <div class="story-card-box" id="storyCard">
+                <strong data-i18n="storyCardKicker">Selected Moment</strong>
+                <h3 id="storyCardTitle">First Hello</h3>
+                <p id="storyCardText">
+                  Two lives crossed gently, quietly, and unexpectedly — the beginning of everything that followed.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- CHOICE / PERSONALIZED MOOD -->
-    <section class="story-card card-page" id="mood">
-      <div class="page-number" data-i18n="page1">Interactive Page</div>
-      <h2 data-i18n="moodTitle">Choose Your Wedding Mood</h2>
-      <p data-i18n="moodText">Tap one card and the invitation will answer you like a little story moment.</p>
-      <div class="choice-grid">
-        <button class="choice-btn" type="button" data-choice="romantic" data-i18n="choice1">Romantic Guest</button>
-        <button class="choice-btn" type="button" data-choice="party" data-i18n="choice2">Ready to Dance</button>
-        <button class="choice-btn" type="button" data-choice="family" data-i18n="choice3">Family Guest</button>
-      </div>
-      <div class="choice-result" id="choiceResult"></div>
-    </section>
+      <!-- TIMELINE -->
+      <section class="panel" id="journey">
+        <div class="card reveal">
+          <div class="timeline-wrap">
+            <div class="section-kicker" data-i18n="timelineKicker">Evening Journey</div>
+            <h2 class="section-title" data-i18n="timelineTitle">A Celebration in Four Acts</h2>
+            <p class="section-text" data-i18n="timelineText">
+              From the first note to the final dance, the night unfolds like a beautifully choreographed experience.
+            </p>
 
-    <!-- STORY -->
-    <section class="story-card full-image-card img-venue" id="story">
-      <div class="card-page">
-        <div class="page-number" data-i18n="page2">Chapter Two</div>
-        <h2 data-i18n="storyTitle">The Garden Chapter</h2>
-        <p data-i18n="storyText">Some love stories feel like sunlight through leaves — quiet, warm, and impossible to forget.</p>
-      </div>
-    </section>
+            <div class="timeline-grid">
+              <div class="timeline-item">
+                <div class="timeline-time" data-i18n="time1">7:00 PM</div>
+                <h3 data-i18n="event1Title">Arrival</h3>
+                <p data-i18n="event1Text">Guests enter through candlelit glass halls beneath a sky-inspired welcome.</p>
+              </div>
 
-    <!-- VENUE DETAILS -->
-    <section class="story-card card-page" id="details">
-      <div class="page-number" data-i18n="page3">Details</div>
-      <h2 data-i18n="detailsTitle">The Orchard House</h2>
-      <p data-i18n="detailsText">A soft Tuscan garden evening with vows beneath olive trees, dinner under string lights, and music after sunset.</p>
-      <div class="detail-grid">
-        <div class="detail-pill" data-i18n="detail1">The Orchard House, Tuscany</div>
-        <div class="detail-pill" data-i18n="detail2">4:30 PM Ceremony</div>
-        <div class="detail-pill" data-i18n="detail3">Garden formal attire</div>
-      </div>
-      <div class="actions">
-        <a class="btn secondary" href="https://www.google.com/maps/search/The+Orchard+House+Tuscany" target="_blank" data-i18n="mapBtn">Open Location 📍</a>
-      </div>
-    </section>
+              <div class="timeline-item">
+                <div class="timeline-time" data-i18n="time2">7:30 PM</div>
+                <h3 data-i18n="event2Title">Ceremony</h3>
+                <p data-i18n="event2Text">Vows are exchanged in the central atrium surrounded by light and music.</p>
+              </div>
 
-    <!-- TIMELINE -->
-    <section class="story-card card-page" id="timeline">
-      <div class="page-number" data-i18n="page4">Schedule</div>
-      <h2 data-i18n="timelineTitle">The Day’s Pages</h2>
-      <p data-i18n="timelineText">A gentle timeline from vows to dinner, music, and memories.</p>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-time" data-i18n="time1">4:30 PM</div>
-          <div class="timeline-text" data-i18n="event1">Garden ceremony</div>
+              <div class="timeline-item">
+                <div class="timeline-time" data-i18n="time3">8:30 PM</div>
+                <h3 data-i18n="event3Title">Dinner</h3>
+                <p data-i18n="event3Text">A refined seated dinner begins, paired with warm ambiance and quiet wonder.</p>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-time" data-i18n="time4">10:00 PM</div>
+                <h3 data-i18n="event4Title">Afterglow</h3>
+                <p data-i18n="event4Text">Music rises, the floor opens, and the celebration becomes pure energy.</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-time" data-i18n="time2">5:30 PM</div>
-          <div class="timeline-text" data-i18n="event2">Aperitivo and photos</div>
+      </section>
+
+      <!-- MOOD + MEMORIES -->
+      <section class="panel" id="moments">
+        <div class="card reveal">
+          <div class="mood-grid">
+            <div class="mood-side">
+              <div class="section-kicker" data-i18n="moodKicker">Interactive Ambiance</div>
+              <h2 class="section-title" data-i18n="moodTitle">Choose the Mood</h2>
+              <p class="section-text" data-i18n="moodText">
+                Tap a theme to shift the invitation atmosphere and preview different visual directions.
+              </p>
+
+              <div class="mood-picks">
+                <button class="mood-chip active" data-theme-choice="gold" data-i18n="themeGold">Golden Stardust</button>
+                <button class="mood-chip" data-theme-choice="rose" data-i18n="themeRose">Rose Nebula</button>
+                <button class="mood-chip" data-theme-choice="aurora" data-i18n="themeAurora">Aurora Sky</button>
+              </div>
+
+              <div class="mood-note" id="moodNote" data-i18n="moodNoteGold">
+                Warm gold light, romantic sparkle, and a classic celebratory glow.
+              </div>
+            </div>
+
+            <div class="memory-side">
+              <div class="memory-row">
+                <div class="memory-card">
+                  <div class="memory-image" style="background-image:url('https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=900&q=80')"></div>
+                  <div class="memory-caption">
+                    <strong data-i18n="memory1Title">The Rings</strong>
+                    <span data-i18n="memory1Text">A promise small in size, but infinite in meaning.</span>
+                  </div>
+                </div>
+
+                <div class="memory-card">
+                  <div class="memory-image" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80')"></div>
+                  <div class="memory-caption">
+                    <strong data-i18n="memory2Title">The Couple</strong>
+                    <span data-i18n="memory2Text">Two souls moving toward one shared horizon.</span>
+                  </div>
+                </div>
+
+                <div class="memory-card">
+                  <div class="memory-image" style="background-image:url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=900&q=80')"></div>
+                  <div class="memory-caption">
+                    <strong data-i18n="memory3Title">The Atmosphere</strong>
+                    <span data-i18n="memory3Text">Soft light, textures, and details that guests will remember.</span>
+                  </div>
+                </div>
+
+                <div class="memory-card">
+                  <div class="memory-image" style="background-image:url('https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=900&q=80')"></div>
+                  <div class="memory-caption">
+                    <strong data-i18n="memory4Title">The Finale</strong>
+                    <span data-i18n="memory4Text">The night closing in beauty, joy, and motion.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-time" data-i18n="time3">7:00 PM</div>
-          <div class="timeline-text" data-i18n="event3">Dinner under the lights</div>
+      </section>
+
+      <!-- RSVP + FAQ -->
+      <section class="panel" id="rsvp">
+        <div class="card reveal">
+          <div class="rsvp-grid">
+            <div class="faq-side">
+              <div class="section-kicker" data-i18n="faqKicker">Guest Notes</div>
+              <h2 class="section-title" data-i18n="faqTitle">Questions Before the Night?</h2>
+              <p class="section-text" data-i18n="faqText">
+                Here are a few details that may help before the celebration begins.
+              </p>
+
+              <div class="faq-list">
+                <div class="faq-item">
+                  <button class="faq-q" type="button">
+                    <span data-i18n="faq1Q">Can I bring a plus one?</span>
+                    <span>+</span>
+                  </button>
+                  <div class="faq-a" data-i18n="faq1A">
+                    Please RSVP according to the invitation sent to you. If your invitation includes a guest, they are warmly welcome.
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-q" type="button">
+                    <span data-i18n="faq2Q">Is there a dress code?</span>
+                    <span>+</span>
+                  </button>
+                  <div class="faq-a" data-i18n="faq2A">
+                    Yes — elegant evening attire in dark, neutral, or softly luminous tones is perfect.
+                  </div>
+                </div>
+
+                <div class="faq-item">
+                  <button class="faq-q" type="button">
+                    <span data-i18n="faq3Q">When should I arrive?</span>
+                    <span>+</span>
+                  </button>
+                  <div class="faq-a" data-i18n="faq3A">
+                    We recommend arriving 20 minutes before the ceremony so you can settle in comfortably.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="rsvp-side">
+              <div class="section-kicker" data-i18n="rsvpKicker">RSVP</div>
+              <h2 class="section-title" data-i18n="rsvpTitle">Reserve Your Star</h2>
+              <p class="section-text" data-i18n="rsvpText">
+                Add your name, choose your guest count, and confirm through WhatsApp.
+              </p>
+
+              <div class="rsvp-mini">
+                <div class="mini-info" data-i18n="mini1">Venue: Luna Conservatory, Barcelona</div>
+                <div class="mini-info" data-i18n="mini2">Date: 18 October 2028</div>
+                <div class="mini-info" data-i18n="mini3">Time: 7:00 PM</div>
+              </div>
+
+              <div class="field-grid">
+                <input class="field" id="guestName" type="text" placeholder="Your name" data-placeholder-en="Your name" data-placeholder-ar="اسمك" />
+                <select class="field" id="guestCount">
+                  <option value="1">1 Guest</option>
+                  <option value="2">2 Guests</option>
+                  <option value="3">3 Guests</option>
+                  <option value="4">4 Guests</option>
+                </select>
+              </div>
+
+              <div class="rsvp-actions">
+                <button class="btn accent" id="yesBtn" type="button" data-i18n="yesBtn">Yes, We’re Coming ✨</button>
+                <a class="btn ghost" id="noBtn" href="https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C" target="_blank" data-i18n="noBtn">Can’t Make It</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-time" data-i18n="time4">9:00 PM</div>
-          <div class="timeline-text" data-i18n="event4">Music and dancing</div>
+      </section>
+
+      <!-- FINAL -->
+      <section class="panel" id="final">
+        <div class="card reveal">
+          <div class="final-wrap">
+            <div class="final-wall">
+              <div class="section-kicker" data-i18n="finalKicker">One Last Tap</div>
+              <h2 class="section-title" data-i18n="finalTitle">We Can’t Wait to Celebrate With You</h2>
+              <p class="section-text" data-i18n="finalText">
+                Thank you for being part of our universe. Save the date, open the location, and join us beneath the lights.
+              </p>
+
+              <div class="final-actions">
+                <a class="btn accent" href="https://www.google.com/maps/search/Luna+Conservatory+Barcelona" target="_blank" data-i18n="locationBtn">Open Location 📍</a>
+                <a class="btn dark" id="calendarBtn" href="#" target="_blank" data-i18n="calendarBtn">Save to Calendar 🗓️</a>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
+
+      <footer class="footer">
+        <strong data-i18n="footerNames">Leon & Soraya · 18 October 2028</strong>
+        <span data-i18n="footerSub">A portfolio demo by Amour De Minuit ✨</span>
+      </footer>
+    </main>
+
+    <nav class="bottom-dock">
+      <a href="#hero" data-nav="hero" class="active" data-i18n="navHome">Home</a>
+      <a href="#story" data-nav="story" data-i18n="navStory">Story</a>
+      <a href="#moments" data-nav="moments" data-i18n="navMoments">Moments</a>
+      <a href="#rsvp" data-nav="rsvp" data-i18n="navRsvp">RSVP</a>
+    </nav>
+  </div>
+
+  <!-- RSVP MODAL -->
+  <div class="modal" id="sideModal">
+    <div class="modal-box">
+      <button class="close-modal" id="sideClose" type="button">×</button>
+      <h2 data-i18n="modalTitle">Which side are you from?</h2>
+      <p data-i18n="modalText">Please choose before confirming your RSVP.</p>
+
+      <div class="modal-actions">
+        <button class="btn accent" id="brideSideBtn" type="button" data-i18n="brideSide">Bride’s Side</button>
+        <button class="btn dark" id="groomSideBtn" type="button" data-i18n="groomSide">Groom’s Side</button>
       </div>
-    </section>
-
-    <!-- MEMORIES -->
-    <section class="story-card card-page" id="gallery">
-      <div class="page-number" data-i18n="page5">Memories</div>
-      <h2 data-i18n="galleryTitle">Little Polaroids</h2>
-      <p data-i18n="galleryText">A playful stack of moments, made to feel personal and touchable.</p>
-      <div class="memory-stack">
-        <div class="memory-photo one">
-          <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=600&q=80" alt="Rings">
-          <span data-i18n="mem1">The Promise</span>
-        </div>
-        <div class="memory-photo two">
-          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Couple">
-          <span data-i18n="mem2">The Walk</span>
-        </div>
-        <div class="memory-photo three">
-          <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=600&q=80" alt="Details">
-          <span data-i18n="mem3">The Details</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- DINNER -->
-    <section class="story-card full-image-card img-dinner" id="dinner">
-      <div class="card-page">
-        <div class="page-number" data-i18n="page6">Dinner</div>
-        <h2 data-i18n="dinnerTitle">Under String Lights</h2>
-        <p data-i18n="dinnerText">Dinner will be served in the garden after sunset, surrounded by candlelight, olive branches, and music.</p>
-      </div>
-    </section>
-
-    <!-- RSVP -->
-    <section class="story-card card-page" id="rsvp">
-      <div class="page-number" data-i18n="page7">RSVP</div>
-      <h2 data-i18n="rsvpTitle">Write Yourself Into the Story</h2>
-      <p data-i18n="rsvpText">Add your name and choose your side before sending your RSVP through WhatsApp.</p>
-
-      <div class="guest-box">
-        <input id="guestName" type="text" placeholder="Your name" data-placeholder-en="Your name" data-placeholder-ar="اسمك" />
-        <select id="guestCount">
-          <option value="1">1 Guest</option>
-          <option value="2">2 Guests</option>
-          <option value="3">3 Guests</option>
-          <option value="4">4 Guests</option>
-        </select>
-      </div>
-
-      <div class="rsvp-buttons">
-        <button class="btn primary" id="yesBtn" type="button" data-i18n="yesBtn">Yes, I’m Coming ✨</button>
-        <a class="btn secondary" id="noBtn" href="https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C" target="_blank" data-i18n="noBtn">Can’t Make It</a>
-      </div>
-    </section>
-
-    <!-- FINAL -->
-    <section class="story-card full-image-card img-rsvp" id="final">
-      <div class="card-page">
-        <div class="page-number" data-i18n="page8">Final Page</div>
-        <h2 data-i18n="finalTitle">Until the Garden</h2>
-        <p data-i18n="finalText">We cannot wait to celebrate this beautiful chapter with you.</p>
-        <div class="actions">
-          <a class="btn primary" id="calendarBtn" href="#" target="_blank" data-i18n="calendarBtn">Save to Calendar 🗓️</a>
-          <a class="btn dark" href="https://www.google.com/maps/search/The+Orchard+House+Tuscany" target="_blank" data-i18n="locationBtn">Open Location 📍</a>
-        </div>
-      </div>
-    </section>
-
-    <footer class="site-footer">
-      <p data-i18n="footerNames">Nadir & Celeste · 19 April 2028</p>
-      <span data-i18n="footerLove">A portfolio demo by Amour De Minuit ✨</span>
-    </footer>
-  </main>
-
-  <nav class="bottom-nav">
-    <a href="#home" class="active" data-nav="home" data-i18n="navHome">Home</a>
-    <a href="#details" data-nav="details" data-i18n="navDetails">Details</a>
-    <a href="#gallery" data-nav="gallery" data-i18n="navGallery">Gallery</a>
-    <a href="#rsvp" data-nav="rsvp" data-i18n="navRsvp">RSVP</a>
-  </nav>
-</div>
-
-<!-- RSVP SIDE MODAL -->
-<div class="modal" id="sideModal">
-  <div class="modal-box">
-    <button class="close-modal" id="sideClose" type="button">×</button>
-    <h2 data-i18n="sideTitle">Which side are you from?</h2>
-    <p data-i18n="sideText">Please choose before confirming your RSVP.</p>
-    <div class="actions">
-      <button class="btn primary" id="brideSideBtn" type="button" data-i18n="brideSide">Bride’s Side</button>
-      <button class="btn primary" id="groomSideBtn" type="button" data-i18n="groomSide">Groom’s Side</button>
     </div>
   </div>
-</div>
 
-<script>
-/* ==============================
-   ELEMENTS
-============================== */
-const intro=document.getElementById("intro");
-const website=document.getElementById("website");
-const openBtn=document.getElementById("openBtn");
-const music=document.getElementById("weddingMusic");
-const musicToggle=document.getElementById("musicToggle");
-const langToggle=document.getElementById("langToggle");
-const progressFill=document.getElementById("progressFill");
-const yesBtn=document.getElementById("yesBtn");
-const noBtn=document.getElementById("noBtn");
-const sideModal=document.getElementById("sideModal");
-const sideClose=document.getElementById("sideClose");
-const brideSideBtn=document.getElementById("brideSideBtn");
-const groomSideBtn=document.getElementById("groomSideBtn");
-const calendarBtn=document.getElementById("calendarBtn");
-const guestName=document.getElementById("guestName");
-const guestCount=document.getElementById("guestCount");
-const choiceResult=document.getElementById("choiceResult");
+  <script>
+    const intro = document.getElementById("intro");
+    const enterBtn = document.getElementById("enterBtn");
+    const site = document.getElementById("site");
+    const music = document.getElementById("bgMusic");
+    const musicToggle = document.getElementById("musicToggle");
+    const langToggle = document.getElementById("langToggle");
+    const copyBtn = document.getElementById("copyBtn");
+    const shareBtn = document.getElementById("shareBtn");
+    const progressFill = document.getElementById("progressFill");
+    const sideModal = document.getElementById("sideModal");
+    const sideClose = document.getElementById("sideClose");
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const brideSideBtn = document.getElementById("brideSideBtn");
+    const groomSideBtn = document.getElementById("groomSideBtn");
+    const guestName = document.getElementById("guestName");
+    const guestCount = document.getElementById("guestCount");
+    const calendarBtn = document.getElementById("calendarBtn");
+    const moodNote = document.getElementById("moodNote");
+    const storyCardTitle = document.getElementById("storyCardTitle");
+    const storyCardText = document.getElementById("storyCardText");
 
-let currentLang="en";
+    let currentLang = "en";
 
-/* ==============================
-   MUSIC
-============================== */
-const weddingSongs=[
-  "https://cdn.pixabay.com/download/audio/2022/03/15/audio_2c6f7b6f64.mp3?filename=piano-moment-9835.mp3",
-  "https://cdn.pixabay.com/download/audio/2021/11/25/audio_cb407cc8e9.mp3?filename=romantic-piano-11000.mp3"
-];
+    /* MUSIC */
+    const tracks = [
+      "https://cdn.pixabay.com/download/audio/2022/03/15/audio_2c6f7b6f64.mp3?filename=piano-moment-9835.mp3",
+      "https://cdn.pixabay.com/download/audio/2021/11/25/audio_cb407cc8e9.mp3?filename=romantic-piano-11000.mp3"
+    ];
+    music.src = tracks[Math.floor(Math.random() * tracks.length)];
+    music.volume = 0.13;
 
-music.src=weddingSongs[Math.floor(Math.random()*weddingSongs.length)];
-music.volume=0.14;
+    /* INTRO */
+    enterBtn.addEventListener("click", () => {
+      intro.classList.add("opening");
 
-openBtn.addEventListener("click",()=>{
-  intro.classList.add("opening");
+      for(let i=0;i<18;i++) spawnSpark(true);
 
-  music.play().then(()=>{
-    musicToggle.textContent="🔊";
-    musicToggle.classList.remove("muted");
-  }).catch(()=>{
-    musicToggle.textContent="🔇";
-    musicToggle.classList.add("muted");
-  });
+      music.play().then(() => {
+        musicToggle.textContent = "🔊";
+        musicToggle.classList.remove("muted");
+      }).catch(() => {
+        musicToggle.textContent = "🔇";
+        musicToggle.classList.add("muted");
+      });
 
-  setTimeout(()=>intro.classList.add("hide"),900);
+      setTimeout(() => {
+        intro.classList.add("hide");
+        site.classList.add("show");
+        window.scrollTo(0, 0);
+      }, 900);
 
-  setTimeout(()=>{
-    intro.style.display="none";
-    website.style.display="block";
-    window.scrollTo(0,0);
-    revealFirstCard();
-  },1500);
-});
+      setTimeout(() => {
+        intro.style.display = "none";
+      }, 1700);
+    });
 
-musicToggle.addEventListener("click",()=>{
-  if(music.paused){
-    music.play();
-    musicToggle.textContent="🔊";
-    musicToggle.classList.remove("muted");
-  }else{
-    music.pause();
-    musicToggle.textContent="🔇";
-    musicToggle.classList.add("muted");
-  }
-});
+    musicToggle.addEventListener("click", () => {
+      if (music.paused) {
+        music.play();
+        musicToggle.textContent = "🔊";
+        musicToggle.classList.remove("muted");
+      } else {
+        music.pause();
+        musicToggle.textContent = "🔇";
+        musicToggle.classList.add("muted");
+      }
+    });
 
-/* ==============================
-   COUNTDOWN
-============================== */
-const weddingDate=new Date("2028-04-19T16:30:00").getTime();
+    /* COUNTDOWN */
+    const weddingDate = new Date("2028-10-18T19:00:00").getTime();
 
-function updateCountdown(){
-  const now=new Date().getTime();
-  const diff=weddingDate-now;
+    function updateCountdown(){
+      const now = Date.now();
+      const diff = weddingDate - now;
 
-  if(diff<=0){
-    ["days","hours","minutes","seconds"].forEach(id=>document.getElementById(id).innerText="00");
-    return;
-  }
+      if(diff <= 0){
+        ["days","hours","minutes","seconds"].forEach(id => {
+          document.getElementById(id).textContent = "00";
+        });
+        return;
+      }
 
-  document.getElementById("days").innerText=Math.floor(diff/(1000*60*60*24));
-  document.getElementById("hours").innerText=Math.floor((diff/(1000*60*60))%24);
-  document.getElementById("minutes").innerText=Math.floor((diff/(1000*60))%60);
-  document.getElementById("seconds").innerText=Math.floor((diff/1000)%60);
-}
-
-setInterval(updateCountdown,1000);
-updateCountdown();
-
-/* ==============================
-   CALENDAR
-============================== */
-function setupCalendar(){
-  const title=encodeURIComponent("Nadir & Celeste Wedding");
-  const details=encodeURIComponent("Join Nadir & Celeste for their garden wedding at The Orchard House, Tuscany.");
-  const location=encodeURIComponent("The Orchard House, Tuscany");
-  const dates="20280419T163000/20280419T233000";
-  calendarBtn.href=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
-}
-setupCalendar();
-
-/* ==============================
-   SCROLL PROGRESS + NAV
-============================== */
-window.addEventListener("scroll",()=>{
-  const scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
-  const height=document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const progress=height ? (scrollTop/height)*100 : 0;
-  progressFill.style.width=progress+"%";
-
-  const sections=["home","details","gallery","rsvp"];
-  let active="home";
-  sections.forEach(id=>{
-    const sec=document.getElementById(id);
-    if(sec && sec.getBoundingClientRect().top < window.innerHeight*.45){
-      active=id;
+      document.getElementById("days").textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById("hours").textContent = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      document.getElementById("minutes").textContent = Math.floor((diff / (1000 * 60)) % 60);
+      document.getElementById("seconds").textContent = Math.floor((diff / 1000) % 60);
     }
-  });
 
-  document.querySelectorAll(".bottom-nav a").forEach(a=>{
-    a.classList.toggle("active", a.dataset.nav===active);
-  });
-});
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
 
-/* ==============================
-   REVEALS
-============================== */
-const cards=document.querySelectorAll(".story-card");
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
+    /* CALENDAR */
+    function setupCalendar(){
+      const title = encodeURIComponent("Leon & Soraya Wedding");
+      const details = encodeURIComponent("Join Leon & Soraya at Luna Conservatory, Barcelona for a celestial wedding celebration.");
+      const location = encodeURIComponent("Luna Conservatory, Barcelona");
+      const dates = "20281018T190000/20281019T010000";
+      calendarBtn.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
     }
-  });
-},{threshold:.12, rootMargin:"80px"});
+    setupCalendar();
 
-cards.forEach(card=>obs.observe(card));
+    /* REVEAL ON SCROLL */
+    const reveals = document.querySelectorAll(".reveal");
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "80px" });
 
-function revealFirstCard(){
-  document.querySelector(".story-card").classList.add("show");
-}
+    reveals.forEach(el => revealObserver.observe(el));
 
-/* ==============================
-   INTERACTIVE MOOD CHOICE
-============================== */
-const moodMessages={
-  en:{
-    romantic:"Your chapter is candlelight, soft music, and a seat close to the love story.",
-    party:"Your chapter begins when the music starts. We expect you on the dance floor.",
-    family:"Your chapter is warmth, hugs, photos, and the people who make the day complete."
-  },
-  ar:{
-    romantic:"فصلك هو ضوء الشموع، موسيقى ناعمة، ومكان قريب من قصة الحب.",
-    party:"فصلك يبدأ عندما تبدأ الموسيقى. ننتظرك على ساحة الرقص.",
-    family:"فصلك هو الدفء، الأحضان، الصور، والناس الذين يكملون اليوم."
-  }
-};
+    /* PROGRESS + ACTIVE NAV */
+    const sectionIds = ["hero","story","moments","rsvp"];
+    const navLinks = document.querySelectorAll("[data-nav]");
 
-function setChoice(choice, btn){
-  document.querySelectorAll(".choice-btn").forEach(b=>b.classList.remove("active"));
-  btn.classList.add("active");
-  choiceResult.textContent=moodMessages[currentLang][choice];
-  choiceResult.classList.add("show");
-}
+    function updateScrollUI(){
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = height ? (scrollTop / height) * 100 : 0;
+      progressFill.style.width = progress + "%";
 
-document.querySelectorAll(".choice-btn").forEach(btn=>{
-  btn.addEventListener("click",()=>setChoice(btn.dataset.choice,btn));
-});
+      let active = "hero";
+      sectionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if(el && el.getBoundingClientRect().top < window.innerHeight * 0.45){
+          active = id;
+        }
+      });
 
-/* ==============================
-   FLOATING EFFECTS
-============================== */
-function paperPiece(){
-  if(website.style.display!=="block") return;
-  const p=document.createElement("div");
-  p.className="paper-piece";
-  p.style.left=Math.random()*window.innerWidth+"px";
-  p.style.top="-40px";
-  p.style.animationDuration=(7+Math.random()*5)+"s";
-  document.body.appendChild(p);
-  setTimeout(()=>p.remove(),12000);
-}
-
-function heart(){
-  if(website.style.display!=="block") return;
-  const h=document.createElement("div");
-  h.className="float-heart";
-  h.textContent="♥";
-  h.style.left=Math.random()*window.innerWidth+"px";
-  h.style.top=(window.innerHeight-20+Math.random()*70)+"px";
-  h.style.animationDuration=(4+Math.random()*4)+"s";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),8500);
-}
-
-setInterval(paperPiece,1500);
-setInterval(heart,700);
-
-/* ==============================
-   LANGUAGE
-============================== */
-const translations={
-  en:{
-    bookLabel:"Chapter One",
-    bookNames:"Nadir<br>& Celeste",
-    bookDate:"19 April 2028",
-    openBtn:"Open the Story 📖",
-    brandNames:"Nadir & Celeste",
-    brandSub:"Interactive Storybook",
-    heroStamp:"Save<br>The<br>Date",
-    kicker:"You are invited into the story of",
-    groom:"Nadir",
-    bride:"Celeste",
-    date:"19 / 4 / 2028",
-    mainInfo:"The Orchard House, Tuscany<br>Ceremony begins at 4:30 PM<br>Garden dinner to follow",
-    days:"Days",
-    hours:"Hours",
-    minutes:"Minutes",
-    seconds:"Seconds",
-    page1:"Interactive Page",
-    moodTitle:"Choose Your Wedding Mood",
-    moodText:"Tap one card and the invitation will answer you like a little story moment.",
-    choice1:"Romantic Guest",
-    choice2:"Ready to Dance",
-    choice3:"Family Guest",
-    page2:"Chapter Two",
-    storyTitle:"The Garden Chapter",
-    storyText:"Some love stories feel like sunlight through leaves — quiet, warm, and impossible to forget.",
-    page3:"Details",
-    detailsTitle:"The Orchard House",
-    detailsText:"A soft Tuscan garden evening with vows beneath olive trees, dinner under string lights, and music after sunset.",
-    detail1:"The Orchard House, Tuscany",
-    detail2:"4:30 PM Ceremony",
-    detail3:"Garden formal attire",
-    mapBtn:"Open Location 📍",
-    page4:"Schedule",
-    timelineTitle:"The Day’s Pages",
-    timelineText:"A gentle timeline from vows to dinner, music, and memories.",
-    time1:"4:30 PM",
-    event1:"Garden ceremony",
-    time2:"5:30 PM",
-    event2:"Aperitivo and photos",
-    time3:"7:00 PM",
-    event3:"Dinner under the lights",
-    time4:"9:00 PM",
-    event4:"Music and dancing",
-    page5:"Memories",
-    galleryTitle:"Little Polaroids",
-    galleryText:"A playful stack of moments, made to feel personal and touchable.",
-    mem1:"The Promise",
-    mem2:"The Walk",
-    mem3:"The Details",
-    page6:"Dinner",
-    dinnerTitle:"Under String Lights",
-    dinnerText:"Dinner will be served in the garden after sunset, surrounded by candlelight, olive branches, and music.",
-    page7:"RSVP",
-    rsvpTitle:"Write Yourself Into the Story",
-    rsvpText:"Add your name and choose your side before sending your RSVP through WhatsApp.",
-    yesBtn:"Yes, I’m Coming ✨",
-    noBtn:"Can’t Make It",
-    page8:"Final Page",
-    finalTitle:"Until the Garden",
-    finalText:"We cannot wait to celebrate this beautiful chapter with you.",
-    calendarBtn:"Save to Calendar 🗓️",
-    locationBtn:"Open Location 📍",
-    navHome:"Home",
-    navDetails:"Details",
-    navGallery:"Gallery",
-    navRsvp:"RSVP",
-    sideTitle:"Which side are you from?",
-    sideText:"Please choose before confirming your RSVP.",
-    brideSide:"Bride’s Side",
-    groomSide:"Groom’s Side",
-    footerNames:"Nadir & Celeste · 19 April 2028",
-    footerLove:"A portfolio demo by Amour De Minuit ✨"
-  },
-  ar:{
-    bookLabel:"الفصل الأول",
-    bookNames:"نادر<br>وسيليست",
-    bookDate:"١٩ نيسان ٢٠٢٨",
-    openBtn:"افتحوا القصة 📖",
-    brandNames:"نادر وسيليست",
-    brandSub:"دعوة قصة تفاعلية",
-    heroStamp:"احفظوا<br>هذا<br>التاريخ",
-    kicker:"ندعوكم للدخول إلى قصة",
-    groom:"نادر",
-    bride:"سيليست",
-    date:"١٩ / ٤ / ٢٠٢٨",
-    mainInfo:"ذا أورشارد هاوس، توسكانا<br>تبدأ المراسم الساعة ٤:٣٠ مساءً<br>عشاء في الحديقة بعدها",
-    days:"أيام",
-    hours:"ساعات",
-    minutes:"دقايق",
-    seconds:"ثواني",
-    page1:"صفحة تفاعلية",
-    moodTitle:"اختاروا أجواءكم في الزفاف",
-    moodText:"اضغطوا على بطاقة واحدة وسترد الدعوة كأنها لحظة صغيرة من القصة.",
-    choice1:"ضيف رومانسي",
-    choice2:"جاهز للرقص",
-    choice3:"ضيف من العائلة",
-    page2:"الفصل الثاني",
-    storyTitle:"فصل الحديقة",
-    storyText:"بعض قصص الحب تشبه ضوء الشمس بين الأوراق — هادئة، دافئة، ولا تُنسى.",
-    page3:"التفاصيل",
-    detailsTitle:"ذا أورشارد هاوس",
-    detailsText:"أمسية حديقة ناعمة في توسكانا، عهود تحت أشجار الزيتون، عشاء تحت الأضواء، وموسيقى بعد الغروب.",
-    detail1:"ذا أورشارد هاوس، توسكانا",
-    detail2:"المراسم الساعة ٤:٣٠ مساءً",
-    detail3:"لباس رسمي للحديقة",
-    mapBtn:"افتح الموقع 📍",
-    page4:"البرنامج",
-    timelineTitle:"صفحات اليوم",
-    timelineText:"برنامج هادئ من العهود إلى العشاء، الموسيقى، والذكريات.",
-    time1:"٤:٣٠ مساءً",
-    event1:"مراسم الحديقة",
-    time2:"٥:٣٠ مساءً",
-    event2:"أبيريتيفو وصور",
-    time3:"٧:٠٠ مساءً",
-    event3:"عشاء تحت الأضواء",
-    time4:"٩:٠٠ مساءً",
-    event4:"موسيقى ورقص",
-    page5:"ذكريات",
-    galleryTitle:"صور بولارويد صغيرة",
-    galleryText:"مجموعة لحظات مرحة تجعل الدعوة شخصية وقريبة.",
-    mem1:"الوعد",
-    mem2:"المشوار",
-    mem3:"التفاصيل",
-    page6:"العشاء",
-    dinnerTitle:"تحت الأضواء",
-    dinnerText:"سيتم تقديم العشاء في الحديقة بعد الغروب، بين الشموع وأغصان الزيتون والموسيقى.",
-    page7:"تأكيد الحضور",
-    rsvpTitle:"اكتبوا أنفسكم داخل القصة",
-    rsvpText:"أضيفوا اسمكم واختاروا الطرف قبل إرسال تأكيد الحضور عبر واتساب.",
-    yesBtn:"نعم، سأحضر ✨",
-    noBtn:"ما فيني إحضر",
-    page8:"الصفحة الأخيرة",
-    finalTitle:"إلى اللقاء في الحديقة",
-    finalText:"لا نستطيع الانتظار لنحتفل معكم بهذا الفصل الجميل.",
-    calendarBtn:"احفظ في التقويم 🗓️",
-    locationBtn:"افتح الموقع 📍",
-    navHome:"الرئيسية",
-    navDetails:"التفاصيل",
-    navGallery:"الصور",
-    navRsvp:"تأكيد",
-    sideTitle:"من أي طرف؟",
-    sideText:"اختاروا قبل تأكيد الحضور.",
-    brideSide:"طرف العروس",
-    groomSide:"طرف العريس",
-    footerNames:"نادر وسيليست · ١٩ نيسان ٢٠٢٨",
-    footerLove:"نموذج من Amour De Minuit ✨"
-  }
-};
-
-function setLanguage(lang){
-  currentLang=lang;
-  document.body.classList.toggle("ar",lang==="ar");
-
-  document.querySelectorAll("[data-i18n]").forEach(el=>{
-    const key=el.getAttribute("data-i18n");
-    if(translations[lang][key]){
-      el.innerHTML=translations[lang][key];
+      navLinks.forEach(link => {
+        link.classList.toggle("active", link.dataset.nav === active);
+      });
     }
-  });
+    window.addEventListener("scroll", updateScrollUI);
+    updateScrollUI();
 
-  guestName.placeholder=lang==="ar" ? guestName.dataset.placeholderAr : guestName.dataset.placeholderEn;
-  langToggle.textContent=lang==="en" ? "عربي" : "EN";
+    /* FAQ */
+    document.querySelectorAll(".faq-item").forEach(item => {
+      item.querySelector(".faq-q").addEventListener("click", () => {
+        item.classList.toggle("open");
+      });
+    });
 
-  if(choiceResult.classList.contains("show")){
-    const active=document.querySelector(".choice-btn.active");
-    if(active){
-      choiceResult.textContent=moodMessages[currentLang][active.dataset.choice];
+    /* STORY INTERACTION */
+    const storyContent = {
+      en: {
+        meeting: {
+          title: "First Hello",
+          text: "Two lives crossed gently, quietly, and unexpectedly — the beginning of everything that followed."
+        },
+        adventure: {
+          title: "The Adventure",
+          text: "What started with conversation became a thousand shared moments, laughter, distance, effort, and growing closeness."
+        },
+        promise: {
+          title: "The Promise",
+          text: "There came a moment when love felt certain — no longer a question, but a vow waiting to be spoken."
+        },
+        forever: {
+          title: "Forever",
+          text: "And now, under one sky and in front of the people we love most, we begin our next chapter together."
+        }
+      },
+      ar: {
+        meeting: {
+          title: "أول لقاء",
+          text: "تقاطع طريقان بهدوء وببساطة، ومن تلك اللحظة بدأت كل الحكاية."
+        },
+        adventure: {
+          title: "المشوار",
+          text: "ما بدأ بكلمات أصبح ألف لحظة مشتركة، وضحك، ومسافات، وجهد، وقربًا أكبر كل يوم."
+        },
+        promise: {
+          title: "الوعد",
+          text: "جاءت لحظة صار فيها الحب مؤكدًا — لم يعد سؤالًا، بل وعدًا ينتظر أن يُقال."
+        },
+        forever: {
+          title: "إلى الأبد",
+          text: "والآن، تحت سماء واحدة وأمام أحب الناس إلى قلوبنا، نبدأ فصلنا الجديد معًا."
+        }
+      }
+    };
+
+    document.querySelectorAll(".story-star").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".story-star").forEach(s => s.classList.remove("active"));
+        btn.classList.add("active");
+        const key = btn.dataset.story;
+        storyCardTitle.textContent = storyContent[currentLang][key].title;
+        storyCardText.textContent = storyContent[currentLang][key].text;
+      });
+    });
+
+    /* THEME SWITCHER */
+    const moodNotes = {
+      en: {
+        gold: "Warm gold light, romantic sparkle, and a classic celebratory glow.",
+        rose: "A softer, dreamy palette with blush energy and elegant intimacy.",
+        aurora: "Cool luminous tones, futuristic shimmer, and a sky-like glow."
+      },
+      ar: {
+        gold: "إضاءة ذهبية دافئة، لمعة رومانسية، وأجواء احتفالية كلاسيكية.",
+        rose: "ألوان ناعمة وحالمة بطاقة وردية وأناقة حميمة.",
+        aurora: "درجات باردة مضيئة، لمعة مستقبلية، وتوهج يشبه السماء."
+      }
+    };
+
+    document.querySelectorAll(".mood-chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        document.querySelectorAll(".mood-chip").forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        const theme = chip.dataset.themeChoice;
+        document.body.setAttribute("data-theme", theme);
+        moodNote.textContent = moodNotes[currentLang][theme];
+      });
+    });
+
+    /* RSVP */
+    yesBtn.addEventListener("click", () => {
+      sideModal.style.display = "flex";
+      for(let i=0;i<10;i++) spawnSpark();
+    });
+
+    sideClose.addEventListener("click", () => {
+      sideModal.style.display = "none";
+    });
+
+    sideModal.addEventListener("click", e => {
+      if(e.target === sideModal){
+        sideModal.style.display = "none";
+      }
+    });
+
+    function rsvpText(){
+      const name = guestName.value.trim() || (currentLang === "ar" ? "ضيف" : "Guest");
+      const guests = guestCount.value;
+
+      if(currentLang === "ar"){
+        return encodeURIComponent(`نعم، سنحضر زفاف ليون وسورايا ✅\nالاسم: ${name}\nعدد الأشخاص: ${guests}`);
+      }
+      return encodeURIComponent(`Yes, we will attend Leon & Soraya's wedding ✅\nName: ${name}\nNumber of Guests: ${guests}`);
     }
-  }
 
-  if(lang==="ar"){
-    noBtn.href="https://wa.me/96100000000?text=%D8%A2%D8%B3%D9%81%D8%8C%20%D9%84%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9%20%D8%A7%D9%84%D8%AD%D8%B6%D9%88%D8%B1%20%E2%9D%8C";
-  }else{
-    noBtn.href="https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C";
-  }
-}
+    brideSideBtn.addEventListener("click", () => {
+      window.open("https://wa.me/96100000000?text=" + rsvpText(), "_blank");
+      sideModal.style.display = "none";
+      for(let i=0;i<12;i++) spawnSpark();
+    });
 
-langToggle.addEventListener("click",()=>setLanguage(currentLang==="en" ? "ar" : "en"));
+    groomSideBtn.addEventListener("click", () => {
+      window.open("https://wa.me/96111111111?text=" + rsvpText(), "_blank");
+      sideModal.style.display = "none";
+      for(let i=0;i<12;i++) spawnSpark();
+    });
 
-/* ==============================
-   RSVP
-============================== */
-yesBtn.addEventListener("click",()=>{
-  sideModal.style.display="flex";
-});
+    /* COPY + SHARE */
+    function inviteSummary(){
+      if(currentLang === "ar"){
+        return "دعوة زفاف ليون وسورايا\nالمكان: Luna Conservatory, Barcelona\nالتاريخ: 18 تشرين الأول 2028\nالوقت: 7:00 مساءً";
+      }
+      return "Leon & Soraya Wedding Invitation\nVenue: Luna Conservatory, Barcelona\nDate: 18 October 2028\nTime: 7:00 PM";
+    }
 
-sideClose.addEventListener("click",()=>{
-  sideModal.style.display="none";
-});
+    copyBtn.addEventListener("click", async () => {
+      try{
+        await navigator.clipboard.writeText(inviteSummary());
+        copyBtn.textContent = "✓";
+        setTimeout(() => copyBtn.textContent = "⧉", 1200);
+      }catch(e){
+        copyBtn.textContent = "!";
+        setTimeout(() => copyBtn.textContent = "⧉", 1200);
+      }
+    });
 
-sideModal.addEventListener("click",e=>{
-  if(e.target===sideModal){
-    sideModal.style.display="none";
-  }
-});
+    shareBtn.addEventListener("click", async () => {
+      const data = {
+        title: "Leon & Soraya Wedding",
+        text: inviteSummary(),
+        url: window.location.href
+      };
 
-function comingMessage(){
-  const name=guestName.value.trim() || (currentLang==="ar" ? "ضيف" : "Guest");
-  const count=guestCount.value;
+      if(navigator.share){
+        try{ await navigator.share(data); }catch(e){}
+      }else{
+        try{
+          await navigator.clipboard.writeText(inviteSummary() + "\n" + window.location.href);
+          shareBtn.textContent = "✓";
+          setTimeout(() => shareBtn.textContent = "↗", 1200);
+        }catch(e){}
+      }
+    });
 
-  if(currentLang==="ar"){
-    return encodeURIComponent(`نعم، سأحضر زفاف نادر وسيليست ✅\nالاسم: ${name}\nعدد الأشخاص: ${count}`);
-  }
+    /* FLOATING PARTICLES */
+    function spawnSpark(forceCenter = false){
+      if(!site.classList.contains("show") && !forceCenter) return;
+      const s = document.createElement("div");
+      s.className = "sparkle";
+      const size = 4 + Math.random() * 8;
+      s.style.width = size + "px";
+      s.style.height = size + "px";
+      s.style.left = (forceCenter ? (window.innerWidth/2 + (Math.random()*120 - 60)) : Math.random() * window.innerWidth) + "px";
+      s.style.top = (forceCenter ? (window.innerHeight/2 + (Math.random()*80 - 40)) : (window.innerHeight - 10 + Math.random()*70)) + "px";
+      s.style.animationDuration = (3.6 + Math.random()*3) + "s";
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 7500);
+    }
 
-  return encodeURIComponent(`Yes, I will attend Nadir & Celeste's wedding ✅\nName: ${name}\nNumber of Guests: ${count}`);
-}
+    setInterval(() => spawnSpark(false), 600);
 
-brideSideBtn.addEventListener("click",()=>{
-  window.open("https://wa.me/96100000000?text="+comingMessage(),"_blank");
-  sideModal.style.display="none";
-});
+    /* CURSOR TRAIL */
+    let trailCooldown = false;
+    window.addEventListener("mousemove", e => {
+      if(trailCooldown) return;
+      trailCooldown = true;
+      const t = document.createElement("div");
+      t.className = "trail";
+      t.style.left = e.clientX + "px";
+      t.style.top = e.clientY + "px";
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 800);
+      setTimeout(() => trailCooldown = false, 36);
+    });
 
-groomSideBtn.addEventListener("click",()=>{
-  window.open("https://wa.me/96111111111?text="+comingMessage(),"_blank");
-  sideModal.style.display="none";
-});
-</script>
+    window.addEventListener("touchmove", e => {
+      const touch = e.touches[0];
+      if(!touch) return;
+      const t = document.createElement("div");
+      t.className = "trail";
+      t.style.left = touch.clientX + "px";
+      t.style.top = touch.clientY + "px";
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 700);
+    }, { passive:true });
+
+    /* STARFIELD CANVAS */
+    const canvas = document.getElementById("starfield");
+    const ctx = canvas.getContext("2d");
+    let stars = [];
+
+    function resizeCanvas(){
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      stars = Array.from({length: Math.min(180, Math.floor(window.innerWidth / 8))}, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5 + .3,
+        v: Math.random() * .18 + .03,
+        a: Math.random() * .8 + .2
+      }));
+    }
+
+    function drawStars(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for(const star of stars){
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255,255,255,${star.a})`;
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI*2);
+        ctx.fill();
+
+        star.y += star.v;
+        if(star.y > canvas.height){
+          star.y = -5;
+          star.x = Math.random() * canvas.width;
+        }
+      }
+      requestAnimationFrame(drawStars);
+    }
+
+    resizeCanvas();
+    drawStars();
+    window.addEventListener("resize", resizeCanvas);
+
+    /* LANGUAGE */
+    const translations = {
+      en: {
+        introKicker:"Interactive Celestial Invitation",
+        introNames:"Leon & Soraya",
+        introSub:"Step through the portal and enter a wedding invitation designed like a living universe.",
+        introMeta1:"18 October 2028",
+        introMeta2:"Luna Conservatory",
+        introMeta3:"Barcelona",
+        enterBtn:"Open the Stars ✨",
+
+        brandNames:"Leon & Soraya",
+        brandSub:"Celestial Wedding Invitation",
+
+        navHome:"Home",
+        navStory:"Story",
+        navMoments:"Moments",
+        navRsvp:"RSVP",
+
+        heroKicker:"A Night Written in the Stars",
+        heroTitle:"An Invitation Beyond the Ordinary",
+        heroSub:"Join us for a celestial evening of vows, music, light, and celebration as our two worlds become one.",
+        heroBadge1:"18 October 2028",
+        heroBadge2:"7:00 PM",
+        heroBadge3:"Luna Conservatory, Barcelona",
+        days:"Days",
+        hours:"Hours",
+        minutes:"Minutes",
+        seconds:"Seconds",
+        heroBtn1:"Reserve Your Place",
+        heroBtn2:"Open Location 📍",
+        orbit1:"Ceremony",
+        orbit2:"Dinner",
+        orbit3:"Dancing",
+        orbit4:"Forever",
+        cardNames:"Leon & Soraya",
+        cardInfo:"One luminous evening, one unforgettable celebration.",
+
+        storyKicker:"Interactive Love Story",
+        storyTitle:"Follow Our Constellation",
+        storyText:"Tap the stars to reveal the moments that shaped our journey.",
+        star1:"First Hello",
+        star2:"The Adventure",
+        star3:"The Promise",
+        star4:"Forever",
+        storyCardKicker:"Selected Moment",
+
+        timelineKicker:"Evening Journey",
+        timelineTitle:"A Celebration in Four Acts",
+        timelineText:"From the first note to the final dance, the night unfolds like a beautifully choreographed experience.",
+        time1:"7:00 PM",
+        event1Title:"Arrival",
+        event1Text:"Guests enter through candlelit glass halls beneath a sky-inspired welcome.",
+        time2:"7:30 PM",
+        event2Title:"Ceremony",
+        event2Text:"Vows are exchanged in the central atrium surrounded by light and music.",
+        time3:"8:30 PM",
+        event3Title:"Dinner",
+        event3Text:"A refined seated dinner begins, paired with warm ambiance and quiet wonder.",
+        time4:"10:00 PM",
+        event4Title:"Afterglow",
+        event4Text:"Music rises, the floor opens, and the celebration becomes pure energy.",
+
+        moodKicker:"Interactive Ambiance",
+        moodTitle:"Choose the Mood",
+        moodText:"Tap a theme to shift the invitation atmosphere and preview different visual directions.",
+        themeGold:"Golden Stardust",
+        themeRose:"Rose Nebula",
+        themeAurora:"Aurora Sky",
+        moodNoteGold:"Warm gold light, romantic sparkle, and a classic celebratory glow.",
+        moodNoteRose:"A softer, dreamy palette with blush energy and elegant intimacy.",
+        moodNoteAurora:"Cool luminous tones, futuristic shimmer, and a sky-like glow.",
+
+        memory1Title:"The Rings",
+        memory1Text:"A promise small in size, but infinite in meaning.",
+        memory2Title:"The Couple",
+        memory2Text:"Two souls moving toward one shared horizon.",
+        memory3Title:"The Atmosphere",
+        memory3Text:"Soft light, textures, and details that guests will remember.",
+        memory4Title:"The Finale",
+        memory4Text:"The night closing in beauty, joy, and motion.",
+
+        faqKicker:"Guest Notes",
+        faqTitle:"Questions Before the Night?",
+        faqText:"Here are a few details that may help before the celebration begins.",
+        faq1Q:"Can I bring a plus one?",
+        faq1A:"Please RSVP according to the invitation sent to you. If your invitation includes a guest, they are warmly welcome.",
+        faq2Q:"Is there a dress code?",
+        faq2A:"Yes — elegant evening attire in dark, neutral, or softly luminous tones is perfect.",
+        faq3Q:"When should I arrive?",
+        faq3A:"We recommend arriving 20 minutes before the ceremony so you can settle in comfortably.",
+
+        rsvpKicker:"RSVP",
+        rsvpTitle:"Reserve Your Star",
+        rsvpText:"Add your name, choose your guest count, and confirm through WhatsApp.",
+        mini1:"Venue: Luna Conservatory, Barcelona",
+        mini2:"Date: 18 October 2028",
+        mini3:"Time: 7:00 PM",
+        yesBtn:"Yes, We’re Coming ✨",
+        noBtn:"Can’t Make It",
+
+        finalKicker:"One Last Tap",
+        finalTitle:"We Can’t Wait to Celebrate With You",
+        finalText:"Thank you for being part of our universe. Save the date, open the location, and join us beneath the lights.",
+        locationBtn:"Open Location 📍",
+        calendarBtn:"Save to Calendar 🗓️",
+
+        modalTitle:"Which side are you from?",
+        modalText:"Please choose before confirming your RSVP.",
+        brideSide:"Bride’s Side",
+        groomSide:"Groom’s Side",
+
+        footerNames:"Leon & Soraya · 18 October 2028",
+        footerSub:"A portfolio demo by Amour De Minuit ✨"
+      },
+
+      ar: {
+        introKicker:"دعوة سماوية تفاعلية",
+        introNames:"ليون وسورايا",
+        introSub:"اعبروا البوابة وادخلوا دعوة زفاف مصممة كأنها عالم حي ومضيء.",
+        introMeta1:"١٨ تشرين الأول ٢٠٢٨",
+        introMeta2:"لونا كونسرفتوري",
+        introMeta3:"برشلونة",
+        enterBtn:"افتحوا النجوم ✨",
+
+        brandNames:"ليون وسورايا",
+        brandSub:"دعوة زفاف سماوية",
+
+        navHome:"الرئيسية",
+        navStory:"القصة",
+        navMoments:"اللحظات",
+        navRsvp:"تأكيد",
+
+        heroKicker:"ليلة مكتوبة بين النجوم",
+        heroTitle:"دعوة تتجاوز المألوف",
+        heroSub:"انضموا إلينا في أمسية سماوية من العهود والموسيقى والضوء والاحتفال، حيث يصبح عالمان عالمًا واحدًا.",
+        heroBadge1:"١٨ تشرين الأول ٢٠٢٨",
+        heroBadge2:"٧:٠٠ مساءً",
+        heroBadge3:"Luna Conservatory, Barcelona",
+        days:"أيام",
+        hours:"ساعات",
+        minutes:"دقايق",
+        seconds:"ثواني",
+        heroBtn1:"احجزوا مكانكم",
+        heroBtn2:"افتح الموقع 📍",
+        orbit1:"المراسم",
+        orbit2:"العشاء",
+        orbit3:"الرقص",
+        orbit4:"للأبد",
+        cardNames:"ليون وسورايا",
+        cardInfo:"أمسية مضيئة واحدة واحتفال لا يُنسى.",
+
+        storyKicker:"قصة حب تفاعلية",
+        storyTitle:"اتبعوا كوكبتنا",
+        storyText:"اضغطوا على النجوم لاكتشاف اللحظات التي صنعت رحلتنا.",
+        star1:"أول لقاء",
+        star2:"المشوار",
+        star3:"الوعد",
+        star4:"للأبد",
+        storyCardKicker:"اللحظة المختارة",
+
+        timelineKicker:"مسار الأمسية",
+        timelineTitle:"احتفال في أربعة فصول",
+        timelineText:"من أول نغمة إلى آخر رقصة، تنكشف الأمسية كتجربة منسقة بعناية.",
+        time1:"٧:٠٠ مساءً",
+        event1Title:"الوصول",
+        event1Text:"يدخل الضيوف عبر ممرات زجاجية مضاءة على أجواء مستوحاة من السماء.",
+        time2:"٧:٣٠ مساءً",
+        event2Title:"المراسم",
+        event2Text:"تُتبادل العهود في القاعة المركزية وسط الضوء والموسيقى.",
+        time3:"٨:٣٠ مساءً",
+        event3Title:"العشاء",
+        event3Text:"يبدأ عشاء أنيق ضمن أجواء دافئة ولمسات ساحرة.",
+        time4:"١٠:٠٠ مساءً",
+        event4Title:"الاحتفال",
+        event4Text:"ترتفع الموسيقى، تُفتح الساحة، ويتحول المساء إلى طاقة وفرح.",
+
+        moodKicker:"أجواء تفاعلية",
+        moodTitle:"اختاروا المزاج",
+        moodText:"اضغطوا على أحد الأنماط لتغيير أجواء الدعوة ومعاينة اتجاه بصري مختلف.",
+        themeGold:"غبار ذهبي",
+        themeRose:"سديم وردي",
+        themeAurora:"سماء الشفق",
+        moodNoteGold:"إضاءة ذهبية دافئة ولمعة رومانسية وأجواء احتفالية كلاسيكية.",
+        moodNoteRose:"ألوان حالمة وناعمة بطاقة وردية وأناقة حميمة.",
+        moodNoteAurora:"درجات باردة مضيئة، لمعة مستقبلية، وتوهج يشبه السماء.",
+
+        memory1Title:"الخواتم",
+        memory1Text:"وعد صغير بالحجم، لكن معناه لا نهاية له.",
+        memory2Title:"العروسان",
+        memory2Text:"روحان تتجهان نحو أفق واحد مشترك.",
+        memory3Title:"الأجواء",
+        memory3Text:"ضوء ناعم، وتفاصيل وملمس سيبقى في ذاكرة الضيوف.",
+        memory4Title:"الختام",
+        memory4Text:"ليلة تنتهي بالجمال والفرح والحركة.",
+
+        faqKicker:"ملاحظات الضيوف",
+        faqTitle:"أسئلة قبل بدء الأمسية؟",
+        faqText:"إليكم بعض التفاصيل المفيدة قبل بداية الاحتفال.",
+        faq1Q:"هل يمكنني إحضار مرافق؟",
+        faq1A:"يرجى تأكيد الحضور بحسب الدعوة المرسلة إليكم. إذا كانت دعوتكم تشمل مرافقًا فهو مرحّب به بكل محبة.",
+        faq2Q:"هل هناك لباس محدد؟",
+        faq2A:"نعم — لباس مسائي أنيق بدرجات داكنة أو حيادية أو مضيئة بشكل ناعم سيكون مناسبًا جدًا.",
+        faq3Q:"متى يجب أن أصل؟",
+        faq3A:"ننصح بالوصول قبل ٢٠ دقيقة من المراسم حتى تتمكنوا من الاستقرار براحة.",
+
+        rsvpKicker:"تأكيد الحضور",
+        rsvpTitle:"احجزوا نجمتكم",
+        rsvpText:"أضيفوا اسمكم، اختاروا عدد الضيوف، وأكدوا حضوركم عبر واتساب.",
+        mini1:"المكان: Luna Conservatory, Barcelona",
+        mini2:"التاريخ: ١٨ تشرين الأول ٢٠٢٨",
+        mini3:"الوقت: ٧:٠٠ مساءً",
+        yesBtn:"نعم، سنحضر ✨",
+        noBtn:"ما فينا نحضر",
+
+        finalKicker:"ضغطة أخيرة",
+        finalTitle:"لا يمكننا الانتظار للاحتفال معكم",
+        finalText:"شكرًا لكونكم جزءًا من عالمنا. احفظوا التاريخ، وافتحوا الموقع، وانضموا إلينا تحت الأضواء.",
+        locationBtn:"افتح الموقع 📍",
+        calendarBtn:"احفظ في التقويم 🗓️",
+
+        modalTitle:"من أي طرف أنتم؟",
+        modalText:"يرجى الاختيار قبل تأكيد حضوركم.",
+        brideSide:"طرف العروس",
+        groomSide:"طرف العريس",
+
+        footerNames:"ليون وسورايا · ١٨ تشرين الأول ٢٠٢٨",
+        footerSub:"نموذج أعمال من Amour De Minuit ✨"
+      }
+    };
+
+    function applyMoodText(){
+      const theme = document.body.getAttribute("data-theme") || "gold";
+      moodNote.textContent =
+        theme === "gold" ? translations[currentLang].moodNoteGold :
+        theme === "rose" ? translations[currentLang].moodNoteRose :
+        translations[currentLang].moodNoteAurora;
+    }
+
+    function setLanguage(lang){
+      currentLang = lang;
+      document.body.classList.toggle("ar", lang === "ar");
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if(translations[lang][key]){
+          el.innerHTML = translations[lang][key];
+        }
+      });
+
+      guestName.placeholder = lang === "ar" ? guestName.dataset.placeholderAr : guestName.dataset.placeholderEn;
+      langToggle.textContent = lang === "en" ? "عربي" : "EN";
+
+      const activeStory = document.querySelector(".story-star.active")?.dataset.story || "meeting";
+      storyCardTitle.textContent = storyContent[currentLang][activeStory].title;
+      storyCardText.textContent = storyContent[currentLang][activeStory].text;
+
+      applyMoodText();
+
+      if(lang === "ar"){
+        noBtn.href = "https://wa.me/96100000000?text=%D8%A2%D8%B3%D9%81%D8%8C%20%D9%84%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9%20%D8%A7%D9%84%D8%AD%D8%B6%D9%88%D8%B1%20%E2%9D%8C";
+      }else{
+        noBtn.href = "https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C";
+      }
+    }
+
+    langToggle.addEventListener("click", () => {
+      setLanguage(currentLang === "en" ? "ar" : "en");
+    });
+
+  </script>
 </body>
 </html>
