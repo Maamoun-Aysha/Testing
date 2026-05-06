@@ -3,798 +3,187 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Adrian & Maya | Grand Aurelia Wedding Concierge</title>
+<title>Cassian & Elowen | Royal Theatre Wedding Invitation</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:wght@600;700;900&family=Manrope:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 :root{
-  --cream:#f8efe1;
-  --ivory:#fffaf2;
-  --champagne:#d6b675;
-  --gold:#b68a3d;
-  --coffee:#211815;
-  --espresso:#120d0c;
-  --brown:#4a352b;
-  --muted:#a89682;
-  --green:#193b34;
-  --sage:#7c8d7c;
-  --rose:#b87869;
-  --glass:rgba(255,250,242,.12);
-  --glass2:rgba(255,250,242,.22);
-  --line:rgba(255,250,242,.18);
-  --shadow:rgba(0,0,0,.28);
+  --night:#07040c;
+  --plum:#170d24;
+  --plum2:#2a143a;
+  --velvet:#621638;
+  --velvet2:#8f2550;
+  --gold:#d7a84f;
+  --gold2:#ffe2a0;
+  --cream:#fff6df;
+  --muted:#cbb891;
+  --rose:#e9a7c5;
+  --blue:#8eb8ff;
+  --glass:rgba(255,255,255,.08);
+  --line:rgba(255,226,160,.18);
+  --darkLine:rgba(0,0,0,.22);
 }
-
-html{scroll-behavior:smooth}
-
+html,body{width:100%;min-height:100%;overflow:hidden}
 body{
-  min-height:100vh;
-  overflow-x:hidden;
   font-family:Manrope,sans-serif;
-  color:var(--ivory);
+  color:var(--cream);
   background:
-    radial-gradient(circle at 15% 12%, rgba(214,182,117,.14), transparent 28%),
-    radial-gradient(circle at 85% 76%, rgba(124,141,124,.12), transparent 34%),
-    linear-gradient(145deg,#0f0a09,#211815 45%,#0e0b0a);
+    radial-gradient(circle at 50% 12%, rgba(255,226,160,.17), transparent 26%),
+    radial-gradient(circle at 16% 24%, rgba(233,167,197,.13), transparent 24%),
+    radial-gradient(circle at 84% 26%, rgba(142,184,255,.11), transparent 24%),
+    linear-gradient(155deg,#050309,#170c25 52%,#07040d);
 }
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  opacity:.14;
-  background-image:
-    linear-gradient(30deg, rgba(255,250,242,.12) 12%, transparent 12.5%, transparent 87%, rgba(255,250,242,.12) 87.5%, rgba(255,250,242,.12)),
-    linear-gradient(150deg, rgba(255,250,242,.12) 12%, transparent 12.5%, transparent 87%, rgba(255,250,242,.12) 87.5%, rgba(255,250,242,.12));
-  background-size:64px 112px;
-}
-
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:1;
-  pointer-events:none;
-  background:
-    radial-gradient(circle at 50% -10%, rgba(255,250,242,.16), transparent 38%),
-    linear-gradient(to bottom, rgba(255,255,255,.04), transparent 42%);
-}
-
+body.ar{direction:rtl;font-family:Amiri,serif}
 button,a,input,select{font:inherit;-webkit-tap-highlight-color:transparent}
-body.ar{direction:rtl}
 
-/* =========================
-   INTRO CHECK-IN
-========================= */
-.intro{
-  position:fixed;
-  inset:0;
-  height:100dvh;
-  min-height:100svh;
-  z-index:9999;
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-  background:
-    linear-gradient(to bottom, rgba(18,13,12,.12), rgba(18,13,12,.84)),
-    url("https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1800&q=80") center/cover;
-  transition:opacity 1s ease, transform 1s ease;
-}
+/* THEATRE BACKDROP */
+.theatre-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:
+  linear-gradient(to bottom,rgba(0,0,0,.08),rgba(0,0,0,.78)),
+  url('https://images.unsplash.com/photo-1519167758481-83f29b2a2e9f?auto=format&fit=crop&w=1800&q=80') center/cover;filter:saturate(.82)}
+.theatre-bg::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 14%,rgba(255,226,160,.23),transparent 28%),linear-gradient(90deg,rgba(9,4,12,.76),transparent 45%,rgba(9,4,12,.76))}
+.spotlight{position:fixed;top:-26vh;width:42vw;height:130vh;z-index:1;pointer-events:none;background:linear-gradient(to bottom,rgba(255,238,185,.22),transparent 70%);filter:blur(16px);mix-blend-mode:screen;opacity:.8}.spotlight.one{left:18%;transform:rotate(14deg);animation:sweep1 6s ease-in-out infinite alternate}.spotlight.two{right:18%;transform:rotate(-14deg);animation:sweep2 7s ease-in-out infinite alternate}@keyframes sweep1{to{transform:rotate(2deg);opacity:.55}}@keyframes sweep2{to{transform:rotate(-2deg);opacity:.7}}
+.stage-floor{position:fixed;left:-10%;right:-10%;bottom:-22%;height:42%;z-index:2;pointer-events:none;background:radial-gradient(ellipse at center,#6c4424 0%,#2c1713 58%,#0d0708 100%);border-radius:50% 50% 0 0;box-shadow:0 -30px 70px rgba(0,0,0,.36),inset 0 18px 60px rgba(255,226,160,.08)}
+.curtain{position:fixed;top:0;bottom:0;width:24vw;z-index:20;pointer-events:none;background:repeating-linear-gradient(90deg,#351126 0 18px,#641638 18px 36px,#45102d 36px 54px);box-shadow:inset 0 0 50px rgba(0,0,0,.55)}.curtain.left{left:0;border-radius:0 0 60px 0}.curtain.right{right:0;border-radius:0 0 0 60px}.curtain-top{position:fixed;left:0;right:0;top:0;height:92px;z-index:21;pointer-events:none;background:repeating-linear-gradient(90deg,#45102d 0 28px,#641638 28px 54px,#351126 54px 80px);box-shadow:0 18px 30px rgba(0,0,0,.32);border-radius:0 0 50% 50%}.opened .curtain.left{animation:curtainLeft 1.3s cubic-bezier(.77,0,.18,1) forwards}.opened .curtain.right{animation:curtainRight 1.3s cubic-bezier(.77,0,.18,1) forwards}.opened .curtain-top{animation:curtainTop 1.3s cubic-bezier(.77,0,.18,1) forwards}@keyframes curtainLeft{to{transform:translateX(-92%)}}@keyframes curtainRight{to{transform:translateX(92%)}}@keyframes curtainTop{to{transform:translateY(-75%)}}
 
-.intro.hide{opacity:0;transform:scale(1.04);pointer-events:none}
+/* INTRO PLAYBILL */
+.intro{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:linear-gradient(180deg,rgba(5,3,9,.55),rgba(5,3,9,.96));transition:.9s ease;overflow:hidden}.intro.hide{opacity:0;transform:scale(1.04);pointer-events:none}
+.playbill{width:min(90vw,430px);min-height:610px;position:relative;padding:28px 24px;border-radius:34px;text-align:center;color:#2b1a13;background:linear-gradient(145deg,#fff3cf,#d5aa68);box-shadow:0 40px 95px rgba(0,0,0,.48);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;animation:billFloat 4s ease-in-out infinite}.playbill::before{content:"";position:absolute;inset:17px;border:2px solid rgba(43,26,19,.18);border-radius:24px}.playbill::after{content:"";position:absolute;inset:-60%;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.30) 48%,transparent 56%);animation:shine 4s linear infinite}@keyframes billFloat{50%{transform:translateY(-12px) rotateX(3deg)}}@keyframes shine{to{transform:translateX(54%)}}
+.playbill>*{position:relative;z-index:2}.ornate{font-size:34px;color:#7b1a42}.play-kicker{font-size:11px;letter-spacing:5px;text-transform:uppercase;font-weight:900;color:#7b1a42}.play-title{margin-top:14px;font-family:Cinzel,serif;font-size:40px;line-height:1.05}.play-sub{margin-top:14px;line-height:1.75;color:#6b4a31;font-size:14px}.ticket-stubs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:20px}.stub{padding:10px 8px;border-radius:16px;background:rgba(123,26,66,.1);border:1px dashed rgba(43,26,19,.22);font-weight:900;font-size:12px}.start-btn{border:none;border-radius:999px;padding:16px 18px;background:linear-gradient(135deg,#7b1a42,#d04972,#7b1a42);color:#fff6df;font-weight:900;cursor:pointer;box-shadow:0 16px 34px rgba(0,0,0,.26);transition:.25s}.start-btn:hover{transform:translateY(-2px)}.intro.opening .playbill{animation:billOpen 1.05s ease forwards}@keyframes billOpen{60%{transform:scale(1.06);filter:brightness(1.15)}100%{transform:translateY(60px) scale(.78);opacity:0;filter:blur(8px)}}
 
-.lobby-light{
-  position:absolute;
-  top:-24%;
-  left:50%;
-  width:520px;
-  height:120vh;
-  transform:translateX(-50%);
-  background:linear-gradient(to bottom, rgba(255,239,194,.32), transparent 58%);
-  filter:blur(18px);
-  opacity:.75;
-  animation:lobbyLight 5s ease-in-out infinite alternate;
-}
-@keyframes lobbyLight{
-  from{transform:translateX(-57%) rotate(-4deg);opacity:.62}
-  to{transform:translateX(-43%) rotate(5deg);opacity:.9}
-}
+/* MAIN */
+.app{position:relative;z-index:5;width:100vw;height:100svh;display:none;opacity:0;transition:.7s ease;grid-template-rows:auto 1fr auto}.app.show{display:grid;opacity:1}.topbar{height:70px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:linear-gradient(to bottom,rgba(5,3,9,.86),rgba(5,3,9,.42));backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;min-width:0}.brand-mark{width:44px;height:44px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#2b1a13;font-size:23px;box-shadow:0 12px 24px rgba(0,0,0,.24)}.brand strong{display:block;font-family:Cinzel,serif;font-size:21px;white-space:nowrap}.brand span{display:block;color:var(--muted);font-size:10px;letter-spacing:1.8px;text-transform:uppercase;white-space:nowrap}.tools{display:flex;gap:7px}.tool{width:38px;height:38px;border:none;border-radius:14px;background:var(--glass);border:1px solid var(--line);color:var(--cream);cursor:pointer}.tool:hover{background:rgba(255,255,255,.15)}.tool.muted{color:var(--gold2)}
 
-.key-scene{
-  width:min(92vw,430px);
-  position:relative;
-  z-index:3;
-  perspective:1400px;
-}
+.stage{position:relative;display:grid;place-items:center;padding:0 12px}.turntable{position:relative;width:min(1120px,100%);height:min(680px,calc(100svh - 154px));min-height:520px;border-radius:48px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.035));border:1px solid rgba(255,226,160,.24);box-shadow:0 32px 85px rgba(0,0,0,.38),inset 0 0 80px rgba(215,168,79,.08);overflow:hidden}.turntable::before{content:"";position:absolute;inset:16px;border:1px solid rgba(255,226,160,.18);border-radius:36px;pointer-events:none}.act{position:absolute;inset:18px;border-radius:34px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;opacity:0;transform:translateX(40px) rotateY(18deg) scale(.95);pointer-events:none;transition:.55s cubic-bezier(.2,.8,.2,1)}.act.active{opacity:1;transform:translateX(0) rotateY(0) scale(1);pointer-events:auto}.act.leaving{transform:translateX(-40px) rotateY(-18deg) scale(.95)}
+.visual{position:relative;background-size:cover;background-position:center}.visual::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.64),rgba(0,0,0,.04))}.visual-label{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;padding:14px;border-radius:22px;background:rgba(5,3,9,.62);border:1px solid rgba(255,226,160,.18);backdrop-filter:blur(10px);color:#f9e6bc;font-weight:900;text-align:center}.content{padding:34px;display:flex;flex-direction:column;justify-content:center;background:rgba(7,4,12,.78);backdrop-filter:blur(14px)}.kicker{color:var(--gold2);font-size:11px;letter-spacing:4px;text-transform:uppercase;font-weight:900}.title{margin-top:14px;font-family:Playfair Display,serif;font-size:58px;line-height:.96}.text{margin-top:16px;color:#d8c49f;line-height:1.85;font-size:15px}.actions{margin-top:22px;display:grid;gap:10px;width:min(430px,100%)}.btn{border:none;text-decoration:none;text-align:center;border-radius:999px;padding:15px 16px;font-weight:900;cursor:pointer;transition:.25s;display:block}.btn.gold{background:linear-gradient(135deg,var(--gold2),var(--gold),#966b2e);color:#24130d}.btn.glass{background:rgba(255,255,255,.09);border:1px solid var(--line);color:var(--cream)}.btn:hover{transform:translateY(-2px)}
+.countdown{margin-top:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.time{padding:12px 6px;border-radius:18px;background:rgba(255,255,255,.09);border:1px solid var(--line);text-align:center}.time span{display:block;font-weight:900;font-size:24px;color:var(--gold2)}.time small{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#d8c49f}
+.room-grid{margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.room{padding:14px;border-radius:20px;background:rgba(255,255,255,.08);border:1px solid var(--line);cursor:pointer;transition:.25s}.room:hover,.room.active{background:rgba(255,255,255,.16);transform:translateY(-3px)}.room strong{display:block;color:var(--gold2)}.room span{display:block;margin-top:5px;color:#d8c49f;font-size:13px}.note{margin-top:18px;padding:16px;border-radius:22px;background:rgba(255,255,255,.08);border:1px dashed rgba(255,226,160,.26);color:#f8e7c4;line-height:1.65}
+.gallery{margin-top:22px;display:grid;grid-auto-flow:column;grid-auto-columns:165px;gap:12px;overflow-x:auto;padding-bottom:8px}.gallery::-webkit-scrollbar{height:8px}.gallery::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:99px}.photo{height:240px;border-radius:22px;background-size:cover;background-position:center;border:1px solid var(--line);transition:.25s}.photo:hover{transform:translateY(-8px) scale(1.03)}.form{margin-top:20px;display:grid;gap:10px}.field{width:100%;padding:14px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.09);color:var(--cream);outline:none}.field::placeholder{color:#d8c49f}.field option{color:#111}
 
-.key-card{
-  min-height:610px;
-  border-radius:34px;
-  padding:24px;
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  background:
-    radial-gradient(circle at 20% 16%, rgba(255,250,242,.18), transparent 34%),
-    linear-gradient(145deg, rgba(36,27,23,.94), rgba(18,13,12,.96));
-  border:1px solid rgba(255,250,242,.28);
-  box-shadow:0 32px 80px rgba(0,0,0,.46), inset 0 0 50px rgba(214,182,117,.06);
-  transform-style:preserve-3d;
-  animation:keyFloat 4s ease-in-out infinite;
-  transition:1s cubic-bezier(.77,0,.18,1);
-}
+/* ACT SELECTOR */
+.act-nav{padding:10px 12px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(5,3,9,.9),rgba(5,3,9,.45));backdrop-filter:blur(15px)}.act-track{width:min(760px,94vw);margin:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:8px;border-radius:30px;background:rgba(5,3,9,.74);border:1px solid var(--line)}.act-btn{border:none;border-radius:22px;padding:12px 5px;background:transparent;color:#d8c49f;font-size:11px;text-transform:uppercase;font-weight:900;cursor:pointer}.act-btn.active,.act-btn:hover{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#24130d}
 
-@keyframes keyFloat{
-  0%,100%{transform:translateY(0) rotateY(-4deg) rotateX(2deg)}
-  50%{transform:translateY(-10px) rotateY(4deg) rotateX(-1deg)}
-}
-
-.intro.opening .key-card{
-  animation:none;
-  transform:rotateY(70deg) scale(.92);
-  opacity:0;
-  filter:blur(6px);
-}
-
-.key-card::before{
-  content:"";
-  position:absolute;
-  inset:-60%;
-  background:linear-gradient(115deg, transparent 38%, rgba(255,255,255,.18) 48%, transparent 58%);
-  animation:keyShine 4.5s linear infinite;
-}
-@keyframes keyShine{to{transform:translateX(65%)}}
-
-.key-top,.key-bottom{position:relative;z-index:2}
-.key-top{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:12px;
-}
-.hotel-mark{
-  width:58px;height:58px;border-radius:20px;
-  display:grid;place-items:center;
-  background:rgba(255,250,242,.1);
-  border:1px solid rgba(255,250,242,.18);
-  color:var(--champagne);
-  font-family:Italiana,serif;
-  font-size:30px;
-}
-.key-label{text-align:right;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:3px;font-weight:800;line-height:1.5}
-.key-room{
-  margin-top:64px;
-  color:var(--champagne);
-  letter-spacing:7px;
-  text-transform:uppercase;
-  font-size:12px;
-  font-weight:900;
-}
-.key-names{
-  margin-top:18px;
-  font-family:Italiana,serif;
-  font-size:76px;
-  line-height:.92;
-  color:var(--ivory);
-}
-.key-date{
-  margin-top:18px;
-  font-family:'Cormorant Garamond',serif;
-  font-size:24px;
-  color:#f5dca3;
-}
-.key-chip{
-  position:absolute;
-  right:24px;
-  top:150px;
-  width:62px;
-  height:46px;
-  border-radius:12px;
-  background:linear-gradient(135deg,#e8d29c,#a57935);
-  box-shadow:inset 0 0 0 7px rgba(255,255,255,.16), 0 12px 20px rgba(0,0,0,.24);
-}
-.key-barcode{
-  margin-top:28px;
-  height:54px;
-  display:flex;
-  align-items:stretch;
-  gap:4px;
-  opacity:.75;
-}
-.key-barcode span{display:block;background:rgba(255,250,242,.58);border-radius:2px}
-.key-barcode span:nth-child(1){width:4px}.key-barcode span:nth-child(2){width:10px}.key-barcode span:nth-child(3){width:6px}.key-barcode span:nth-child(4){width:14px}.key-barcode span:nth-child(5){width:5px}.key-barcode span:nth-child(6){width:16px}.key-barcode span:nth-child(7){width:7px}.key-barcode span:nth-child(8){width:12px}.key-barcode span:nth-child(9){width:4px}.key-barcode span:nth-child(10){width:18px}
-
-.checkin-btn{
-  position:relative;z-index:2;
-  width:100%;
-  margin-top:22px;
-  border:none;
-  border-radius:999px;
-  padding:16px 18px;
-  background:linear-gradient(135deg,#fff0bd,var(--champagne),#a57935);
-  color:#18100d;
-  font-weight:900;
-  cursor:pointer;
-  box-shadow:0 16px 32px rgba(0,0,0,.25);
-  transition:.25s ease;
-}
-.checkin-btn:hover{transform:translateY(-2px)}
-
-.scan-line{
-  position:fixed;
-  left:0;right:0;top:-12%;
-  height:130px;
-  z-index:9998;
-  display:none;
-  pointer-events:none;
-  background:linear-gradient(to bottom, transparent, rgba(255,240,189,.32), transparent);
-  filter:blur(3px);
-}
-.scan-line.play{display:block;animation:scanDown 1.4s ease forwards}
-@keyframes scanDown{to{top:105%}}
-
-/* =========================
-   SITE SHELL
-========================= */
-.site{
-  display:none;
-  position:relative;
-  z-index:2;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .7s ease;
-}
-.site.show{display:block;opacity:1;pointer-events:auto}
-
-.concierge-bar{
-  position:fixed;
-  top:12px;left:50%;transform:translateX(-50%);
-  width:min(94vw,980px);
-  z-index:1200;
-  border-radius:28px;
-  padding:10px;
-  background:rgba(18,13,12,.68);
-  border:1px solid rgba(255,250,242,.14);
-  backdrop-filter:blur(18px);
-  box-shadow:0 18px 44px rgba(0,0,0,.28);
-}
-.bar-inner{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.bar-brand{display:flex;align-items:center;gap:11px;min-width:0}
-.bar-logo{width:42px;height:42px;border-radius:15px;display:grid;place-items:center;background:rgba(255,250,242,.12);border:1px solid rgba(255,250,242,.16);font-family:Italiana,serif;color:var(--champagne);font-size:24px;flex-shrink:0}
-.bar-brand strong{display:block;font-family:Italiana,serif;font-size:25px;line-height:1;white-space:nowrap}
-.bar-brand span{display:block;margin-top:4px;color:var(--muted);font-size:10px;letter-spacing:2px;text-transform:uppercase;white-space:nowrap}
-.bar-tools{display:flex;align-items:center;gap:7px;flex-shrink:0}
-.tool-btn{width:38px;height:38px;border:none;border-radius:14px;background:rgba(255,250,242,.1);color:var(--ivory);border:1px solid rgba(255,250,242,.12);cursor:pointer;transition:.25s ease}
-.tool-btn:hover{transform:translateY(-2px);background:rgba(255,250,242,.16)}
-.tool-btn.muted{color:var(--champagne);background:rgba(255,250,242,.18)}
-.progress-track{height:5px;border-radius:999px;overflow:hidden;background:rgba(255,250,242,.1);margin-top:8px}
-.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--champagne),var(--rose),var(--sage));border-radius:999px}
-
-.desk-nav{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:1100;display:grid;gap:10px}
-.desk-nav a{width:44px;height:44px;border-radius:16px;display:grid;place-items:center;text-decoration:none;color:var(--muted);background:rgba(18,13,12,.6);border:1px solid rgba(255,250,242,.12);backdrop-filter:blur(12px);font-size:11px;font-weight:900;transition:.25s ease}
-.desk-nav a.active,.desk-nav a:hover{background:var(--champagne);color:#1a100c}
-
-.page{max-width:1220px;margin:auto;padding:112px 14px 86px;position:relative;z-index:2}
-.section{min-height:calc(100svh - 125px);display:flex;align-items:center;margin-bottom:20px}
-.card{width:100%;border-radius:36px;overflow:hidden;background:linear-gradient(180deg,rgba(255,250,242,.10),rgba(255,250,242,.055));border:1px solid rgba(255,250,242,.12);box-shadow:0 28px 70px rgba(0,0,0,.24);backdrop-filter:blur(18px);opacity:0;transform:translateY(40px) scale(.985);transition:.9s ease}
-.card.show{opacity:1;transform:translateY(0) scale(1)}
-.kicker{color:var(--champagne);font-size:11px;letter-spacing:4px;text-transform:uppercase;font-weight:900}
-.title{margin-top:14px;font-family:Italiana,serif;font-size:68px;line-height:.94;font-weight:400;color:var(--ivory)}
-.text{margin-top:14px;color:var(--muted);line-height:1.85;font-size:15px}
-.btn{width:100%;display:block;border:none;text-decoration:none;text-align:center;border-radius:999px;padding:15px 16px;font-weight:900;cursor:pointer;transition:.25s ease}
-.btn:hover{transform:translateY(-2px)}
-.btn.gold{background:linear-gradient(135deg,#fff0bd,var(--champagne),#a57935);color:#1a100c}
-.btn.glass{background:rgba(255,250,242,.09);color:var(--ivory);border:1px solid rgba(255,250,242,.13)}
-.btn.dark{background:rgba(0,0,0,.26);color:var(--ivory);border:1px solid rgba(255,250,242,.12)}
-
-/* HERO */
-.hero-grid{display:grid;grid-template-columns:.95fr 1.05fr;min-height:76svh}
-.hero-copy{padding:36px 30px;display:flex;flex-direction:column;justify-content:center}
-.hotel-status{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
-.status-card{padding:14px 10px;border-radius:22px;background:rgba(255,250,242,.08);border:1px solid rgba(255,250,242,.1);text-align:center}
-.status-card strong{display:block;color:var(--champagne);font-size:18px;font-weight:900}
-.status-card span{display:block;margin-top:5px;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:1px}
-.countdown{margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.time-box{padding:12px 6px;border-radius:20px;text-align:center;background:rgba(255,250,242,.08);border:1px solid rgba(255,250,242,.1)}
-.time-box span{display:block;font-size:25px;font-weight:900;color:var(--champagne);line-height:1}
-.time-box small{display:block;margin-top:6px;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:1px}
-.hero-actions{margin-top:22px;display:grid;gap:10px;width:min(430px,100%)}
-.hero-visual{min-height:76svh;position:relative;overflow:hidden;background:linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.5)),url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1500&q=80") center/cover}
-.hero-visual::before{content:"";position:absolute;inset:24px;border:1px solid rgba(255,250,242,.24);border-radius:30px;pointer-events:none}
-.concierge-pass{position:absolute;left:28px;right:28px;bottom:28px;padding:20px;border-radius:28px;background:rgba(18,13,12,.62);border:1px solid rgba(255,250,242,.16);backdrop-filter:blur(14px)}
-.pass-top{display:flex;justify-content:space-between;gap:12px;align-items:center;color:var(--champagne);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:900}
-.pass-names{margin-top:10px;font-family:Italiana,serif;font-size:42px;line-height:1}
-.pass-info{margin-top:8px;color:#e7d6bd;line-height:1.6;font-size:13px}
-
-/* DIGITAL ROOM KEY / CHECKIN */
-.dashboard-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.dashboard-copy{padding:34px 30px;display:flex;flex-direction:column;justify-content:center}
-.key-dashboard{padding:34px 30px;background:rgba(255,250,242,.04)}
-.digital-key{position:relative;min-height:440px;border-radius:34px;padding:24px;overflow:hidden;background:linear-gradient(145deg,#f8efe1,#d8c298);color:#211815;box-shadow:0 28px 60px rgba(0,0,0,.26)}
-.digital-key::before{content:"";position:absolute;inset:-40%;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.45) 48%,transparent 58%);animation:keyDashShine 4s linear infinite}
-@keyframes keyDashShine{to{transform:translateX(55%)}}
-.dk-content{position:relative;z-index:2;display:flex;flex-direction:column;height:392px;justify-content:space-between}
-.dk-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.dk-room{font-size:12px;text-transform:uppercase;letter-spacing:3px;font-weight:900;color:#6b5125}
-.dk-chip{width:58px;height:42px;border-radius:12px;background:linear-gradient(135deg,#fff4c7,#a57935);box-shadow:inset 0 0 0 7px rgba(255,255,255,.24)}
-.dk-title{font-family:Italiana,serif;font-size:54px;line-height:.96;color:#211815}
-.dk-detail{display:grid;gap:8px}
-.dk-line{padding:12px 14px;border-radius:18px;background:rgba(255,255,255,.34);font-weight:800;color:#3b2a20}
-.key-actions{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.service-result{margin-top:16px;padding:16px;border-radius:22px;background:rgba(255,250,242,.08);border:1px solid rgba(255,250,242,.1);color:var(--muted);line-height:1.75;display:none}
-.service-result.show{display:block;animation:popIn .35s ease forwards}
-@keyframes popIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
-
-/* SERVICES */
-.services-wrap{padding:34px 30px}
-.service-grid{margin-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.service-card{min-height:230px;padding:22px;border-radius:28px;background:rgba(255,250,242,.075);border:1px solid rgba(255,250,242,.1);transition:.25s ease;position:relative;overflow:hidden}
-.service-card:hover{transform:translateY(-8px);background:rgba(255,250,242,.12)}
-.service-card::after{content:"";position:absolute;right:-28px;bottom:-28px;width:90px;height:90px;border-radius:50%;background:rgba(214,182,117,.1)}
-.service-icon{width:54px;height:54px;border-radius:20px;display:grid;place-items:center;background:rgba(214,182,117,.15);font-size:25px;color:var(--champagne)}
-.service-card h3{margin-top:18px;font-family:'Cormorant Garamond',serif;font-size:28px;line-height:1}
-.service-card p{margin-top:12px;color:var(--muted);line-height:1.65;font-size:14px}
-
-/* TIMELINE */
-.itinerary-wrap{padding:34px 30px}
-.itinerary{margin-top:24px;display:grid;gap:12px}
-.itinerary-item{display:grid;grid-template-columns:110px 1fr 48px;gap:14px;align-items:center;padding:14px;border-radius:26px;background:rgba(255,250,242,.075);border:1px solid rgba(255,250,242,.1)}
-.it-time{padding:14px 10px;border-radius:20px;background:var(--champagne);color:#1a100c;text-align:center;font-weight:900;font-size:14px}
-.it-text strong{display:block;font-family:'Cormorant Garamond',serif;font-size:28px;line-height:1}
-.it-text span{display:block;margin-top:5px;color:var(--muted);line-height:1.55;font-size:14px}
-.it-icon{width:48px;height:48px;border-radius:18px;display:grid;place-items:center;background:rgba(255,250,242,.09);font-size:22px}
-
-/* GALLERY */
-.gallery-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:0}
-.gallery-copy{padding:34px 30px;display:flex;flex-direction:column;justify-content:center}
-.suite-gallery{padding:30px 26px 30px 0;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.suite-photo{min-height:250px;border-radius:28px;overflow:hidden;background-size:cover;background-position:center;position:relative;border:1px solid rgba(255,250,242,.12);transition:.28s ease}
-.suite-photo:hover{transform:translateY(-7px) scale(1.02)}
-.suite-photo::after{content:attr(data-label);position:absolute;left:14px;right:14px;bottom:14px;padding:10px 12px;border-radius:999px;background:rgba(18,13,12,.58);backdrop-filter:blur(10px);color:var(--ivory);font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:900;text-align:center}
-
-/* RSVP */
-.rsvp-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
-.faq-side,.rsvp-side{padding:34px 30px}
-.faq-side{background:rgba(255,250,242,.035)}
-.faq-list{margin-top:22px;display:grid;gap:12px}
-.faq-item{border-radius:24px;overflow:hidden;background:rgba(255,250,242,.075);border:1px solid rgba(255,250,242,.1)}
-.faq-q{width:100%;border:none;background:transparent;color:var(--ivory);padding:17px;display:flex;justify-content:space-between;gap:10px;text-align:left;font-weight:900;cursor:pointer}
-.faq-q span:last-child{color:var(--champagne);font-size:22px;transition:.2s ease}.faq-item.open .faq-q span:last-child{transform:rotate(45deg)}
-.faq-a{max-height:0;overflow:hidden;padding:0 17px;color:var(--muted);line-height:1.75;font-size:14px;transition:max-height .32s ease}.faq-item.open .faq-a{max-height:170px;padding:0 17px 17px}
-.guest-form{margin-top:22px;display:grid;gap:12px}.field{width:100%;border:none;outline:none;border-radius:20px;padding:15px 14px;background:rgba(255,250,242,.08);border:1px solid rgba(255,250,242,.11);color:var(--ivory)}.field::placeholder{color:#d0bfa5}.field option{color:#111}
-.rsvp-mini{margin-top:18px;display:grid;gap:10px}.mini{padding:12px 14px;border-radius:18px;background:rgba(255,250,242,.07);color:var(--muted);border:1px solid rgba(255,250,242,.09);font-size:14px}
-.rsvp-actions{margin-top:18px;display:grid;gap:10px}
-
-/* FINAL */
-.final-wrap{padding:30px;text-align:center}.final-wall{min-height:58svh;border-radius:30px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:30px 20px;position:relative;overflow:hidden;background:linear-gradient(to bottom,rgba(0,0,0,.12),rgba(0,0,0,.68)),url("https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=1400&q=80") center/cover;border:1px solid rgba(255,250,242,.12)}.final-wall::before{content:"";position:absolute;inset:20px;border:1px solid rgba(255,250,242,.25);border-radius:26px}.final-wall>*{position:relative;z-index:2}.final-wall .text{max-width:680px;color:#eedfc8}.final-actions{margin-top:24px;display:grid;gap:10px;width:min(430px,100%)}
-.footer{text-align:center;color:var(--muted);padding:0 12px 100px}.footer strong{display:block;font-family:Italiana,serif;color:var(--ivory);font-size:28px}.footer span{display:block;margin-top:8px;font-size:12px}
-
-/* Bottom dock */
-.bottom-dock{display:none;position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:1200;width:min(94vw,560px);grid-template-columns:repeat(4,1fr);gap:7px;padding:8px;border-radius:26px;background:rgba(18,13,12,.78);border:1px solid rgba(255,250,242,.12);backdrop-filter:blur(16px);box-shadow:0 18px 40px rgba(0,0,0,.32)}.bottom-dock a{text-decoration:none;text-align:center;color:var(--muted);padding:11px 4px;border-radius:17px;font-size:10px;text-transform:uppercase;font-weight:900}.bottom-dock a.active,.bottom-dock a:hover{background:rgba(255,250,242,.12);color:var(--ivory)}
-
-/* Modal */
-.modal{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.62);backdrop-filter:blur(10px)}.modal-box{width:min(92%,430px);border-radius:30px;padding:28px 20px 20px;position:relative;background:linear-gradient(180deg,rgba(36,27,23,.98),rgba(18,13,12,.98));border:1px solid rgba(255,250,242,.16);box-shadow:0 30px 70px rgba(0,0,0,.36);text-align:center}.modal-box h2{font-family:Italiana,serif;font-size:44px;line-height:1}.modal-box p{margin-top:12px;color:var(--muted);line-height:1.8}.close-modal{position:absolute;top:10px;right:12px;width:34px;height:34px;border:none;border-radius:50%;background:rgba(255,250,242,.12);color:var(--ivory);font-size:22px;cursor:pointer}.modal-actions{margin-top:20px;display:grid;gap:10px}
-
-/* floating effects */
-.bell{position:fixed;z-index:3;pointer-events:none;font-size:18px;animation:bellFloat linear forwards;filter:drop-shadow(0 0 10px rgba(214,182,117,.5))}@keyframes bellFloat{0%{opacity:0;transform:translateY(0) rotate(-8deg) scale(.8)}15%{opacity:.85}100%{opacity:0;transform:translateY(-220px) rotate(12deg) scale(1.15)}}
-.sparkle{position:fixed;z-index:3;pointer-events:none;width:7px;height:7px;border-radius:50%;background:var(--champagne);box-shadow:0 0 14px rgba(214,182,117,.8);animation:sparkUp linear forwards}@keyframes sparkUp{0%{opacity:0;transform:translateY(0) scale(.6)}15%{opacity:.9}100%{opacity:0;transform:translateY(-190px) scale(1.15)}}
-
-/* Arabic */
-body.ar,body.ar .key-names,body.ar .key-date,body.ar .bar-brand,body.ar .title,body.ar .text,body.ar .time-box,body.ar .status-card,body.ar .pass-names,body.ar .digital-key,body.ar .service-card,body.ar .itinerary-item,body.ar .faq-item,body.ar .rsvp-side,body.ar .modal-box,body.ar .footer,body.ar .btn{font-family:Amiri,serif}body.ar .key-label{text-align:left}body.ar .faq-q{text-align:right}body.ar .itinerary-item{grid-template-columns:48px 1fr 110px}body.ar .it-icon{grid-column:1;grid-row:1}body.ar .it-text{grid-column:2;grid-row:1}body.ar .it-time{grid-column:3;grid-row:1}
-
-/* Responsive */
-@media(max-width:1080px){.hero-grid,.dashboard-grid,.gallery-grid,.rsvp-grid{grid-template-columns:1fr}.service-grid{grid-template-columns:repeat(2,1fr)}.suite-gallery{padding:0 24px 28px;grid-template-columns:1fr 1fr}.gallery-copy{padding-bottom:20px}.hero-visual{min-height:60svh}.section{min-height:auto}.desk-nav{display:none}.bottom-dock{display:grid}.key-dashboard{padding-top:0}}
-@media(max-width:720px){.concierge-bar{top:8px;width:calc(100% - 18px);padding:8px;border-radius:22px}.bar-logo{width:36px;height:36px;border-radius:13px;font-size:21px}.bar-brand strong{font-size:20px}.bar-brand span{display:none}.tool-btn{width:34px;height:34px;border-radius:12px;font-size:12px}.page{padding:92px 8px 86px}.card{border-radius:26px}.hero-copy,.dashboard-copy,.key-dashboard,.services-wrap,.itinerary-wrap,.gallery-copy,.faq-side,.rsvp-side,.final-wrap{padding:24px 16px}.title{font-size:45px}.text{font-size:14px;line-height:1.75}.hotel-status{grid-template-columns:1fr}.countdown{grid-template-columns:repeat(2,1fr)}.hero-visual{min-height:52svh}.hero-visual::before{inset:14px;border-radius:22px}.concierge-pass{left:16px;right:16px;bottom:16px;border-radius:22px;padding:16px}.pass-names{font-size:34px}.digital-key{min-height:390px;border-radius:26px}.dk-content{height:342px}.dk-title{font-size:44px}.key-actions{grid-template-columns:1fr}.service-grid{grid-template-columns:1fr}.service-card{min-height:auto}.itinerary-item{grid-template-columns:1fr;gap:10px}.it-time{text-align:left}.it-icon{display:none}body.ar .itinerary-item{grid-template-columns:1fr}body.ar .it-time,body.ar .it-text{grid-column:auto;grid-row:auto}.suite-gallery{grid-template-columns:1fr;padding:0 16px 24px}.suite-photo{min-height:260px}.final-wall{min-height:52svh;border-radius:24px}.bottom-dock{width:94vw;padding:7px;gap:6px}.bottom-dock a{font-size:9px;padding:10px 3px}.key-card{min-height:570px;padding:18px;border-radius:28px}.key-names{font-size:58px}.key-room{margin-top:52px}.key-chip{top:132px;right:18px}.exhibit-title{font-size:44px}}
-@media(max-width:420px){.title{font-size:40px}.key-names{font-size:52px}.hotel-mark{width:50px;height:50px}.key-label{font-size:9px}.digital-key{padding:20px}.dk-title{font-size:38px}.modal-box{border-radius:24px}}
+/* MODAL */
+.modal{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;background:rgba(5,3,8,.72);backdrop-filter:blur(12px);padding:20px}.modal-box{width:min(92%,430px);padding:24px;border-radius:30px;background:linear-gradient(145deg,#fff4d8,#d8b375);color:#2b1a13;text-align:center;box-shadow:0 34px 80px rgba(0,0,0,.45);position:relative}.modal-box h2{font-family:Cinzel,serif;font-size:31px}.modal-box p{margin-top:10px;color:#65462f;line-height:1.65}.close{position:absolute;top:10px;right:12px;width:34px;height:34px;border:none;border-radius:50%;background:#2b1a13;color:#fff4d8;font-size:22px;cursor:pointer}.modal-actions{display:grid;gap:9px;margin-top:18px}
+.spark,.floaty{position:fixed;pointer-events:none;z-index:30}.spark{width:7px;height:7px;border-radius:50%;background:var(--gold2);box-shadow:0 0 14px rgba(255,227,165,.8);animation:spark 4s linear forwards}.floaty{color:var(--gold2);font-size:22px;text-shadow:0 0 12px rgba(255,227,165,.55);animation:floaty 6s linear forwards}@keyframes spark{0%{opacity:0;transform:translateY(0) scale(.5)}15%{opacity:1}100%{opacity:0;transform:translateY(-180px) scale(1.2)}}@keyframes floaty{0%{opacity:0;transform:translateY(0) rotate(-8deg)}15%{opacity:1}100%{opacity:0;transform:translateY(-220px) rotate(12deg)}}
+body.ar .brand strong,body.ar .title,body.ar .play-title,body.ar .modal-box h2{font-family:Amiri,serif}
+@media(max-width:850px){html,body{overflow:auto}.app{height:auto;min-height:100svh}.topbar{position:sticky;top:0;z-index:100}.curtain,.curtain-top,.spotlight{display:none}.stage{padding:6px 8px}.turntable{height:auto;min-height:0;border-radius:30px}.act{position:relative;display:none;grid-template-columns:1fr;inset:auto;border-radius:26px}.act.active{display:grid}.visual{min-height:310px}.content{padding:24px 18px}.title{font-size:40px}.countdown{grid-template-columns:repeat(2,1fr)}.room-grid{grid-template-columns:1fr}.act-nav{position:sticky;bottom:0;z-index:100}.act-btn{font-size:9px;padding:10px 2px}.gallery{grid-auto-columns:74%}.photo{height:260px}.brand span{display:none}.brand strong{font-size:18px}.tool{width:34px;height:34px}.playbill{min-height:560px}}
+@media(max-width:430px){.play-title{font-size:33px}.title{font-size:34px}.visual{min-height:280px}.gallery{grid-auto-columns:86%}.topbar{padding:8px}.brand-mark{width:38px;height:38px}.tools{gap:5px}.ticket-stubs{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<audio id="hotelMusic" loop preload="auto"></audio>
+<div class="theatre-bg"></div><div class="spotlight one"></div><div class="spotlight two"></div><div class="stage-floor"></div><div class="curtain left"></div><div class="curtain right"></div><div class="curtain-top"></div>
+<audio id="music" loop preload="auto"></audio>
 
-<!-- INTRO -->
 <div class="intro" id="intro">
-  <div class="lobby-light"></div>
-  <div class="key-scene">
-    <div class="key-card">
-      <div class="key-top">
-        <div class="hotel-mark">A</div>
-        <div class="key-label" data-i18n="introLabel">Grand Aurelia<br>Private Check-In</div>
-      </div>
-      <div class="key-chip"></div>
-      <div class="key-bottom">
-        <div class="key-room" data-i18n="introRoom">Wedding Suite 1208</div>
-        <div class="key-names" data-i18n="introNames">Adrian<br>& Maya</div>
-        <div class="key-date" data-i18n="introDate">12 August 2028 · 7:30 PM</div>
-        <div class="key-barcode"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-        <button class="checkin-btn" id="checkinBtn" type="button" data-i18n="checkinBtn">Tap to Check In 🔑</button>
-      </div>
+  <div class="playbill">
+    <div class="ornate">♕</div>
+    <div>
+      <div class="play-kicker" data-i18n="introK">One Night Only</div>
+      <h1 class="play-title" data-i18n="introT">Cassian<br>& Elowen</h1>
+      <p class="play-sub" data-i18n="introP">A royal theatre wedding invitation where every guest moves through the celebration like acts on a stage.</p>
+      <div class="ticket-stubs"><div class="stub" data-i18n="stub1">Royal Theatre</div><div class="stub" data-i18n="stub2">14 June 2028</div><div class="stub" data-i18n="stub3">Act I</div><div class="stub" data-i18n="stub4">8:00 PM</div></div>
     </div>
+    <button class="start-btn" id="startBtn" data-i18n="start">Raise the Curtain 🎭</button>
   </div>
 </div>
-<div class="scan-line" id="scanLine"></div>
 
-<!-- SITE -->
-<div class="site" id="site">
-  <header class="concierge-bar">
-    <div class="bar-inner">
-      <div class="bar-brand">
-        <div class="bar-logo">A</div>
-        <div>
-          <strong data-i18n="brandNames">Adrian & Maya</strong>
-          <span data-i18n="brandSub">Grand Aurelia Wedding Concierge</span>
-        </div>
-      </div>
-      <div class="bar-tools">
-        <button class="tool-btn" id="langToggle" type="button">عربي</button>
-        <button class="tool-btn" id="musicToggle" type="button">🔊</button>
-        <button class="tool-btn" id="copyBtn" type="button">⧉</button>
-        <button class="tool-btn" id="shareBtn" type="button">↗</button>
-      </div>
-    </div>
-    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+<div class="app" id="app">
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark">🎭</div><div><strong data-i18n="brand">Cassian & Elowen</strong><span data-i18n="sub">Royal Theatre Invitation</span></div></div>
+    <div class="tools"><button class="tool" id="langBtn">عربي</button><button class="tool" id="musicBtn">🔊</button><button class="tool" id="copyBtn">⧉</button><button class="tool" id="shareBtn">↗</button></div>
   </header>
 
-  <nav class="desk-nav">
-    <a href="#home" data-nav="home" class="active">01</a>
-    <a href="#key" data-nav="key">02</a>
-    <a href="#services" data-nav="services">03</a>
-    <a href="#rsvp" data-nav="rsvp">04</a>
-  </nav>
-
-  <main class="page">
-    <!-- HERO -->
-    <section class="section" id="home">
-      <div class="card reveal">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <div class="kicker" data-i18n="heroKicker">Welcome to Grand Aurelia</div>
-            <h1 class="title" data-i18n="heroTitle">Your Wedding Stay Begins Here</h1>
-            <p class="text" data-i18n="heroText">You are invited to an elegant evening of vows, dinner, music, and celebration at the Grand Aurelia Hotel.</p>
-            <div class="hotel-status">
-              <div class="status-card"><strong data-i18n="suiteNo">1208</strong><span data-i18n="suiteLabel">Suite</span></div>
-              <div class="status-card"><strong data-i18n="guestCode">VIP</strong><span data-i18n="guestLabel">Pass</span></div>
-              <div class="status-card"><strong data-i18n="dressCode">Formal</strong><span data-i18n="dressLabel">Attire</span></div>
-            </div>
-            <div class="countdown">
-              <div class="time-box"><span id="days">00</span><small data-i18n="days">Days</small></div>
-              <div class="time-box"><span id="hours">00</span><small data-i18n="hours">Hours</small></div>
-              <div class="time-box"><span id="minutes">00</span><small data-i18n="minutes">Minutes</small></div>
-              <div class="time-box"><span id="seconds">00</span><small data-i18n="seconds">Seconds</small></div>
-            </div>
-            <div class="hero-actions">
-              <a class="btn gold" href="#rsvp" data-i18n="reserveBtn">Check In as Guest</a>
-              <a class="btn glass" href="https://www.google.com/maps/search/Grand+Aurelia+Hotel+Rome" target="_blank" data-i18n="mapBtn">Open Location 📍</a>
-            </div>
-          </div>
-          <div class="hero-visual">
-            <div class="concierge-pass">
-              <div class="pass-top"><span data-i18n="passType">Wedding Guest Pass</span><span>ADM-1208</span></div>
-              <div class="pass-names" data-i18n="passNames">Adrian & Maya</div>
-              <div class="pass-info" data-i18n="passInfo">12 August 2028 · Grand Aurelia Hotel, Rome · Ceremony 7:30 PM</div>
-            </div>
-          </div>
+  <main class="stage">
+    <section class="turntable">
+      <article class="act active" data-act="opening">
+        <div class="visual" style="background-image:url('https://images.unsplash.com/photo-1519167758481-83f29b2a2e9f?auto=format&fit=crop&w=1200&q=80')"><div class="visual-label" data-i18n="label1">Act I · The Invitation</div></div>
+        <div class="content">
+          <div class="kicker" data-i18n="a1k">The Curtain Rises</div>
+          <h1 class="title" data-i18n="a1t">A Royal Wedding Performance</h1>
+          <p class="text" data-i18n="a1p">You are invited to a theatre-inspired royal celebration filled with velvet curtains, candlelight, dinner, music, and a grand final dance.</p>
+          <div class="countdown"><div class="time"><span id="days">00</span><small data-i18n="days">Days</small></div><div class="time"><span id="hours">00</span><small data-i18n="hours">Hours</small></div><div class="time"><span id="minutes">00</span><small data-i18n="minutes">Minutes</small></div><div class="time"><span id="seconds">00</span><small data-i18n="seconds">Seconds</small></div></div>
+          <div class="actions"><button class="btn gold" data-jump="rsvp" data-i18n="reserve">Reserve Your Seat</button><a class="btn glass" href="https://www.google.com/maps/search/royal+theatre+wedding+venue" target="_blank" data-i18n="map">Open Location 📍</a></div>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <!-- DIGITAL KEY -->
-    <section class="section" id="key">
-      <div class="card reveal">
-        <div class="dashboard-grid">
-          <div class="dashboard-copy">
-            <div class="kicker" data-i18n="keyKicker">Digital Room Key</div>
-            <h2 class="title" data-i18n="keyTitle">Unlock the Evening</h2>
-            <p class="text" data-i18n="keyText">Tap the concierge options to preview the experience: ceremony, reception, afterparty, and guest care.</p>
-            <div class="key-actions">
-              <button class="btn gold service-choice" type="button" data-service="ceremony" data-i18n="serviceChoice1">Ceremony</button>
-              <button class="btn glass service-choice" type="button" data-service="reception" data-i18n="serviceChoice2">Reception</button>
-              <button class="btn glass service-choice" type="button" data-service="afterparty" data-i18n="serviceChoice3">Afterparty</button>
-              <button class="btn glass service-choice" type="button" data-service="concierge" data-i18n="serviceChoice4">Concierge</button>
-            </div>
-            <div class="service-result show" id="serviceResult"></div>
+      <article class="act" data-act="program">
+        <div class="visual" style="background-image:url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1200&q=80')"><div class="visual-label" data-i18n="label2">Act II · The Program</div></div>
+        <div class="content">
+          <div class="kicker" data-i18n="a2k">Performance Program</div>
+          <h2 class="title" data-i18n="a2t">Choose an Act</h2>
+          <p class="text" data-i18n="a2p">Tap each act to reveal the exact moment of the celebration.</p>
+          <div class="room-grid">
+            <div class="room active" data-room="arrival"><strong data-i18n="r1">Act I · Arrival</strong><span data-i18n="r1s">7:30 PM</span></div>
+            <div class="room" data-room="vows"><strong data-i18n="r2">Act II · Vows</strong><span data-i18n="r2s">8:00 PM</span></div>
+            <div class="room" data-room="dinner"><strong data-i18n="r3">Act III · Banquet</strong><span data-i18n="r3s">9:00 PM</span></div>
+            <div class="room" data-room="dance"><strong data-i18n="r4">Finale · Dance</strong><span data-i18n="r4s">10:30 PM</span></div>
           </div>
-          <div class="key-dashboard">
-            <div class="digital-key">
-              <div class="dk-content">
-                <div class="dk-top">
-                  <div>
-                    <div class="dk-room" data-i18n="dkRoom">Wedding Suite</div>
-                    <div class="dk-title" data-i18n="dkNames">Adrian<br>& Maya</div>
-                  </div>
-                  <div class="dk-chip"></div>
-                </div>
-                <div class="dk-detail">
-                  <div class="dk-line" data-i18n="dkLine1">Grand Ballroom · 7:30 PM</div>
-                  <div class="dk-line" data-i18n="dkLine2">Garden Terrace Reception</div>
-                  <div class="dk-line" data-i18n="dkLine3">Guest Access: VIP Evening</div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="note" id="roomNote"></div>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <!-- SERVICES -->
-    <section class="section" id="services">
-      <div class="card reveal">
-        <div class="services-wrap">
-          <div class="kicker" data-i18n="servicesKicker">Concierge Services</div>
-          <h2 class="title" data-i18n="servicesTitle">Everything Prepared for You</h2>
-          <p class="text" data-i18n="servicesText">A wedding invitation designed like a private hotel experience, with each detail ready for guests.</p>
-          <div class="service-grid">
-            <div class="service-card"><div class="service-icon">🛎️</div><h3 data-i18n="serv1Title">Arrival</h3><p data-i18n="serv1Text">Guests are welcomed through the marble lobby before entering the ballroom.</p></div>
-            <div class="service-card"><div class="service-icon">🥂</div><h3 data-i18n="serv2Title">Reception</h3><p data-i18n="serv2Text">A champagne reception follows in the garden terrace with live music.</p></div>
-            <div class="service-card"><div class="service-icon">🍽️</div><h3 data-i18n="serv3Title">Dinner</h3><p data-i18n="serv3Text">A refined seated dinner experience curated for the celebration.</p></div>
-            <div class="service-card"><div class="service-icon">🎹</div><h3 data-i18n="serv4Title">After Hours</h3><p data-i18n="serv4Text">Music, dancing, and a late-night lounge atmosphere after dinner.</p></div>
-          </div>
+      <article class="act" data-act="ticket">
+        <div class="visual" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')"><div class="visual-label" data-i18n="label3">Act III · Your Ticket</div></div>
+        <div class="content">
+          <div class="kicker" data-i18n="a3k">Royal Seat Ticket</div>
+          <h2 class="title" data-i18n="a3t">Generate a Guest Ticket</h2>
+          <p class="text" data-i18n="a3p">When guests enter their name in RSVP, the site creates a theatre-style wedding ticket.</p>
+          <div class="note" id="liveTicket">ROYAL THEATRE TICKET · Guest · 14 June 2028 · 8:00 PM</div>
+          <div class="actions"><button class="btn gold" data-jump="rsvp" data-i18n="makeTicket">Make My Ticket</button><a class="btn glass" id="calendarBtn" target="_blank" data-i18n="calendar">Save to Calendar 🗓️</a></div>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <!-- ITINERARY -->
-    <section class="section" id="itinerary">
-      <div class="card reveal">
-        <div class="itinerary-wrap">
-          <div class="kicker" data-i18n="itinKicker">Guest Itinerary</div>
-          <h2 class="title" data-i18n="itinTitle">Your Evening Schedule</h2>
-          <p class="text" data-i18n="itinText">A polished timeline from check-in to the final song.</p>
-          <div class="itinerary">
-            <div class="itinerary-item"><div class="it-time" data-i18n="time1">7:00 PM</div><div class="it-text"><strong data-i18n="event1Title">Guest Check-In</strong><span data-i18n="event1Text">Arrive through the Grand Aurelia lobby and collect your welcome drink.</span></div><div class="it-icon">🔑</div></div>
-            <div class="itinerary-item"><div class="it-time" data-i18n="time2">7:30 PM</div><div class="it-text"><strong data-i18n="event2Title">Ceremony</strong><span data-i18n="event2Text">The couple enters the Grand Ballroom for the wedding ceremony.</span></div><div class="it-icon">💍</div></div>
-            <div class="itinerary-item"><div class="it-time" data-i18n="time3">8:30 PM</div><div class="it-text"><strong data-i18n="event3Title">Dinner Service</strong><span data-i18n="event3Text">A seated dinner begins with warm candlelight and soft piano.</span></div><div class="it-icon">🍽️</div></div>
-            <div class="itinerary-item"><div class="it-time" data-i18n="time4">10:00 PM</div><div class="it-text"><strong data-i18n="event4Title">Lounge Celebration</strong><span data-i18n="event4Text">The terrace opens for music, dancing, and late-night celebration.</span></div><div class="it-icon">✨</div></div>
-          </div>
+      <article class="act" data-act="gallery">
+        <div class="visual" style="background-image:url('https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=1200&q=80')"><div class="visual-label" data-i18n="label4">Act IV · The Mood</div></div>
+        <div class="content">
+          <div class="kicker" data-i18n="a4k">Stage Moodboard</div>
+          <h2 class="title" data-i18n="a4t">Swipe the Scenery</h2>
+          <p class="text" data-i18n="a4p">The gallery is presented like stage scenery, not as normal website photos.</p>
+          <div class="gallery"><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1519167758481-83f29b2a2e9f?auto=format&fit=crop&w=700&q=80')"></div><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=700&q=80')"></div><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=700&q=80')"></div><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=700&q=80')"></div></div>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <!-- GALLERY -->
-    <section class="section" id="gallery">
-      <div class="card reveal">
-        <div class="gallery-grid">
-          <div class="gallery-copy">
-            <div class="kicker" data-i18n="galleryKicker">Hotel Moodboard</div>
-            <h2 class="title" data-i18n="galleryTitle">A Five-Star Wedding Atmosphere</h2>
-            <p class="text" data-i18n="galleryText">Grand interiors, candlelit tables, polished details, and a celebration that feels like a weekend escape.</p>
-          </div>
-          <div class="suite-gallery">
-            <div class="suite-photo" data-label="Lobby Arrival" style="background-image:url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=800&q=80')"></div>
-            <div class="suite-photo" data-label="Wedding Couple" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80')"></div>
-            <div class="suite-photo" data-label="Ballroom" style="background-image:url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80')"></div>
-            <div class="suite-photo" data-label="Final Toast" style="background-image:url('https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=800&q=80')"></div>
-          </div>
+      <article class="act" data-act="rsvp">
+        <div class="visual" style="background-image:url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=80')"><div class="visual-label" data-i18n="label5">Final Act · RSVP</div></div>
+        <div class="content">
+          <div class="kicker" data-i18n="a5k">Final Curtain Reply</div>
+          <h2 class="title" data-i18n="a5t">Reserve Your Royal Seat</h2>
+          <p class="text" data-i18n="a5p">Add your name, guest count, and choose which royal side you are attending from.</p>
+          <div class="form"><input class="field" id="guestName" placeholder="Your name" data-placeholder-en="Your name" data-placeholder-ar="اسمك"><select class="field" id="guestCount"><option value="1">1 Guest</option><option value="2">2 Guests</option><option value="3">3 Guests</option><option value="4">4 Guests</option></select><button class="btn gold" id="yesBtn" data-i18n="yes">Yes, I Will Attend 🎭</button><a class="btn glass" id="noBtn" href="https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C" target="_blank" data-i18n="no">Can’t Make It</a></div>
         </div>
-      </div>
+      </article>
     </section>
-
-    <!-- RSVP -->
-    <section class="section" id="rsvp">
-      <div class="card reveal">
-        <div class="rsvp-grid">
-          <div class="faq-side">
-            <div class="kicker" data-i18n="faqKicker">Guest Questions</div>
-            <h2 class="title" data-i18n="faqTitle">Before You Check In</h2>
-            <p class="text" data-i18n="faqText">Helpful details for the wedding evening.</p>
-            <div class="faq-list">
-              <div class="faq-item"><button class="faq-q" type="button"><span data-i18n="faq1Q">Is there parking?</span><span>+</span></button><div class="faq-a" data-i18n="faq1A">Yes, valet parking will be available at the Grand Aurelia entrance.</div></div>
-              <div class="faq-item"><button class="faq-q" type="button"><span data-i18n="faq2Q">Is it adults only?</span><span>+</span></button><div class="faq-a" data-i18n="faq2A">Yes, this is planned as an adults-only evening.</div></div>
-              <div class="faq-item"><button class="faq-q" type="button"><span data-i18n="faq3Q">What should I wear?</span><span>+</span></button><div class="faq-a" data-i18n="faq3A">Formal evening attire is kindly requested. Black, champagne, ivory, and deep green tones are welcome.</div></div>
-            </div>
-          </div>
-          <div class="rsvp-side">
-            <div class="kicker" data-i18n="rsvpKicker">Guest Check-In</div>
-            <h2 class="title" data-i18n="rsvpTitle">Confirm Your Stay</h2>
-            <p class="text" data-i18n="rsvpText">Add your name, guest count, and confirm your attendance through WhatsApp.</p>
-            <div class="rsvp-mini">
-              <div class="mini" data-i18n="mini1">Grand Aurelia Hotel, Rome</div>
-              <div class="mini" data-i18n="mini2">12 August 2028</div>
-              <div class="mini" data-i18n="mini3">Ceremony 7:30 PM</div>
-            </div>
-            <div class="guest-form">
-              <input class="field" id="guestName" type="text" placeholder="Your name" data-placeholder-en="Your name" data-placeholder-ar="اسمك">
-              <select class="field" id="guestCount"><option value="1">1 Guest</option><option value="2">2 Guests</option><option value="3">3 Guests</option><option value="4">4 Guests</option></select>
-            </div>
-            <div class="rsvp-actions">
-              <button class="btn gold" id="yesBtn" type="button" data-i18n="yesBtn">Yes, Check Me In 🛎️</button>
-              <a class="btn glass" id="noBtn" href="https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C" target="_blank" data-i18n="noBtn">Can’t Make It</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FINAL -->
-    <section class="section" id="final">
-      <div class="card reveal">
-        <div class="final-wrap">
-          <div class="final-wall">
-            <div class="kicker" data-i18n="finalKicker">Concierge Note</div>
-            <h2 class="title" data-i18n="finalTitle">We Look Forward to Welcoming You</h2>
-            <p class="text" data-i18n="finalText">Thank you for being part of this elegant evening. Save the date and join us at Grand Aurelia.</p>
-            <div class="final-actions">
-              <a class="btn gold" href="https://www.google.com/maps/search/Grand+Aurelia+Hotel+Rome" target="_blank" data-i18n="locationBtn">Open Location 📍</a>
-              <a class="btn dark" id="calendarBtn" href="#" target="_blank" data-i18n="calendarBtn">Save to Calendar 🗓️</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer"><strong data-i18n="footerNames">Adrian & Maya · 12 August 2028</strong><span data-i18n="footerSub">A portfolio demo by Amour De Minuit ✨</span></footer>
   </main>
 
-  <nav class="bottom-dock">
-    <a href="#home" data-nav="home" class="active" data-i18n="navHome">Home</a>
-    <a href="#key" data-nav="key" data-i18n="navKey">Key</a>
-    <a href="#services" data-nav="services" data-i18n="navServices">Services</a>
-    <a href="#rsvp" data-nav="rsvp" data-i18n="navRsvp">RSVP</a>
-  </nav>
+  <nav class="act-nav"><div class="act-track"><button class="act-btn active" data-actbtn="opening" data-i18n="nav1">Opening</button><button class="act-btn" data-actbtn="program" data-i18n="nav2">Program</button><button class="act-btn" data-actbtn="ticket" data-i18n="nav3">Ticket</button><button class="act-btn" data-actbtn="gallery" data-i18n="nav4">Gallery</button><button class="act-btn" data-actbtn="rsvp" data-i18n="nav5">RSVP</button></div></nav>
 </div>
 
-<!-- SIDE MODAL -->
-<div class="modal" id="sideModal">
-  <div class="modal-box">
-    <button class="close-modal" id="sideClose" type="button">×</button>
-    <h2 data-i18n="modalTitle">Which side are you from?</h2>
-    <p data-i18n="modalText">Please choose before confirming your guest check-in.</p>
-    <div class="modal-actions">
-      <button class="btn gold" id="brideSideBtn" type="button" data-i18n="brideSide">Bride’s Side</button>
-      <button class="btn dark" id="groomSideBtn" type="button" data-i18n="groomSide">Groom’s Side</button>
-    </div>
-  </div>
-</div>
+<div class="modal" id="sideModal"><div class="modal-box"><button class="close" id="closeModal">×</button><h2 data-i18n="modalT">Choose Your Side</h2><p data-i18n="modalP">Select which royal side should receive your reply.</p><div class="modal-actions"><button class="btn gold" id="brideBtn" data-i18n="bride">Princess Side</button><button class="btn glass" id="groomBtn" data-i18n="groom">Prince Side</button></div></div></div>
 
 <script>
-const intro=document.getElementById('intro');
-const scanLine=document.getElementById('scanLine');
-const checkinBtn=document.getElementById('checkinBtn');
-const site=document.getElementById('site');
-const music=document.getElementById('hotelMusic');
-const musicToggle=document.getElementById('musicToggle');
-const langToggle=document.getElementById('langToggle');
-const copyBtn=document.getElementById('copyBtn');
-const shareBtn=document.getElementById('shareBtn');
-const progressFill=document.getElementById('progressFill');
-const serviceResult=document.getElementById('serviceResult');
-const yesBtn=document.getElementById('yesBtn');
-const noBtn=document.getElementById('noBtn');
-const sideModal=document.getElementById('sideModal');
-const sideClose=document.getElementById('sideClose');
-const brideSideBtn=document.getElementById('brideSideBtn');
-const groomSideBtn=document.getElementById('groomSideBtn');
-const guestName=document.getElementById('guestName');
-const guestCount=document.getElementById('guestCount');
-const calendarBtn=document.getElementById('calendarBtn');
-let currentLang='en';
-
-const tracks=[
-  'https://cdn.pixabay.com/download/audio/2022/03/15/audio_2c6f7b6f64.mp3?filename=piano-moment-9835.mp3',
-  'https://cdn.pixabay.com/download/audio/2021/11/25/audio_cb407cc8e9.mp3?filename=romantic-piano-11000.mp3'
-];
-music.src=tracks[Math.floor(Math.random()*tracks.length)];
-music.volume=.13;
-
-checkinBtn.addEventListener('click',()=>{
-  intro.classList.add('opening');
-  scanLine.classList.add('play');
-  for(let i=0;i<12;i++) spawnBell(true);
-  music.play().then(()=>{musicToggle.textContent='🔊';musicToggle.classList.remove('muted')}).catch(()=>{musicToggle.textContent='🔇';musicToggle.classList.add('muted')});
-  setTimeout(()=>{intro.classList.add('hide');site.classList.add('show');window.scrollTo(0,0)},900);
-  setTimeout(()=>{intro.style.display='none';scanLine.style.display='none'},1650);
-});
-
-musicToggle.addEventListener('click',()=>{
-  if(music.paused){music.play();musicToggle.textContent='🔊';musicToggle.classList.remove('muted')}else{music.pause();musicToggle.textContent='🔇';musicToggle.classList.add('muted')}
-});
-
-const weddingDate=new Date('2028-08-12T19:30:00').getTime();
-function updateCountdown(){
-  const diff=weddingDate-Date.now();
-  if(diff<=0){['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).textContent='00');return}
-  document.getElementById('days').textContent=Math.floor(diff/(1000*60*60*24));
-  document.getElementById('hours').textContent=Math.floor((diff/(1000*60*60))%24);
-  document.getElementById('minutes').textContent=Math.floor((diff/(1000*60))%60);
-  document.getElementById('seconds').textContent=Math.floor((diff/1000)%60);
-}
-setInterval(updateCountdown,1000);updateCountdown();
-
-function setupCalendar(){
-  const title=encodeURIComponent('Adrian & Maya Wedding');
-  const details=encodeURIComponent('Join Adrian & Maya for their wedding at Grand Aurelia Hotel, Rome.');
-  const location=encodeURIComponent('Grand Aurelia Hotel, Rome');
-  const dates='20280812T193000/20280813T010000';
-  calendarBtn.href=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
-}
-setupCalendar();
-
-const serviceText={
-  en:{
-    ceremony:'Ceremony access unlocked: guests will enter the Grand Ballroom for vows beneath chandeliers and warm candlelight.',
-    reception:'Reception access unlocked: champagne, garden terrace photos, live piano, and soft evening lights.',
-    afterparty:'Afterparty access unlocked: lounge seating, music, dancing, and a late-night celebration atmosphere.',
-    concierge:'Concierge note: arrive early, dress formal, and use the RSVP check-in below to confirm your guest count.'
-  },
-  ar:{
-    ceremony:'تم فتح المراسم: يدخل الضيوف إلى القاعة الكبرى للعهود تحت الثريات وضوء الشموع الدافئ.',
-    reception:'تم فتح الاستقبال: شامبانيا، صور في التراس، بيانو مباشر، وإضاءة مسائية ناعمة.',
-    afterparty:'تم فتح الاحتفال: جلسات لاونج، موسيقى، رقص، وأجواء احتفال ليلية.',
-    concierge:'ملاحظة الكونسييرج: يرجى الوصول مبكرًا، ارتداء لباس رسمي، وتأكيد عدد الضيوف من قسم RSVP.'
-  }
-};
-function setService(key){serviceResult.textContent=serviceText[currentLang][key];serviceResult.classList.add('show');spawnSpark();}
-document.querySelectorAll('.service-choice').forEach(btn=>btn.addEventListener('click',()=>setService(btn.dataset.service)));
-setService('ceremony');
-
-const reveals=document.querySelectorAll('.reveal');
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')})},{threshold:.12,rootMargin:'80px'});
-reveals.forEach(r=>obs.observe(r));
-
-const navTargets=['home','key','services','rsvp'];
-const navLinks=document.querySelectorAll('[data-nav]');
-function updateScroll(){
-  const top=document.documentElement.scrollTop||document.body.scrollTop;
-  const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
-  progressFill.style.width=(h?top/h*100:0)+'%';
-  let active='home';
-  navTargets.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<window.innerHeight*.45)active=id});
-  navLinks.forEach(a=>a.classList.toggle('active',a.dataset.nav===active));
-}
-window.addEventListener('scroll',updateScroll);updateScroll();
-
-document.querySelectorAll('.faq-item').forEach(item=>item.querySelector('.faq-q').addEventListener('click',()=>item.classList.toggle('open')));
-
-yesBtn.addEventListener('click',()=>{sideModal.style.display='flex';spawnBell();});
-sideClose.addEventListener('click',()=>sideModal.style.display='none');
-sideModal.addEventListener('click',e=>{if(e.target===sideModal)sideModal.style.display='none'});
-
-function rsvpText(){
-  const name=guestName.value.trim()||(currentLang==='ar'?'ضيف':'Guest');
-  const count=guestCount.value;
-  if(currentLang==='ar')return encodeURIComponent(`نعم، سأحضر زفاف أدريان ومايا ✅\nالاسم: ${name}\nعدد الأشخاص: ${count}`);
-  return encodeURIComponent(`Yes, I will attend Adrian & Maya's wedding ✅\nName: ${name}\nNumber of Guests: ${count}`);
-}
-brideSideBtn.addEventListener('click',()=>{window.open('https://wa.me/96100000000?text='+rsvpText(),'_blank');sideModal.style.display='none';spawnBell();});
-groomSideBtn.addEventListener('click',()=>{window.open('https://wa.me/96111111111?text='+rsvpText(),'_blank');sideModal.style.display='none';spawnBell();});
-
-function inviteSummary(){
-  if(currentLang==='ar')return 'دعوة زفاف أدريان ومايا\nالمكان: Grand Aurelia Hotel, Rome\nالتاريخ: 12 آب 2028\nالوقت: 7:30 مساءً';
-  return 'Adrian & Maya Wedding Invitation\nVenue: Grand Aurelia Hotel, Rome\nDate: 12 August 2028\nTime: 7:30 PM';
-}
-copyBtn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(inviteSummary());copyBtn.textContent='✓';setTimeout(()=>copyBtn.textContent='⧉',1200)}catch(e){copyBtn.textContent='!';setTimeout(()=>copyBtn.textContent='⧉',1200)}});
-shareBtn.addEventListener('click',async()=>{const data={title:'Adrian & Maya Wedding',text:inviteSummary(),url:location.href};if(navigator.share){try{await navigator.share(data)}catch(e){}}else{try{await navigator.clipboard.writeText(inviteSummary()+'\n'+location.href);shareBtn.textContent='✓';setTimeout(()=>shareBtn.textContent='↗',1200)}catch(e){}}});
-
-function spawnSpark(){if(!site.classList.contains('show'))return;const s=document.createElement('div');s.className='sparkle';const size=3+Math.random()*6;s.style.width=size+'px';s.style.height=size+'px';s.style.left=Math.random()*innerWidth+'px';s.style.top=(innerHeight-20+Math.random()*70)+'px';s.style.animationDuration=(3.5+Math.random()*3)+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),7500)}
-function spawnBell(force=false){if(!site.classList.contains('show')&&!force)return;const b=document.createElement('div');b.className='bell';b.textContent=Math.random()>.5?'🛎️':'✦';b.style.left=(force?innerWidth/2+(Math.random()*180-90):Math.random()*innerWidth)+'px';b.style.top=(force?innerHeight/2+(Math.random()*80-40):innerHeight-20+Math.random()*70)+'px';b.style.animationDuration=(4+Math.random()*3)+'s';document.body.appendChild(b);setTimeout(()=>b.remove(),8000)}
-setInterval(spawnSpark,700);setInterval(()=>spawnBell(false),2300);
-
-const translations={
-  en:{
-    introLabel:'Grand Aurelia<br>Private Check-In',introRoom:'Wedding Suite 1208',introNames:'Adrian<br>& Maya',introDate:'12 August 2028 · 7:30 PM',checkinBtn:'Tap to Check In 🔑',brandNames:'Adrian & Maya',brandSub:'Grand Aurelia Wedding Concierge',navHome:'Home',navKey:'Key',navServices:'Services',navRsvp:'RSVP',heroKicker:'Welcome to Grand Aurelia',heroTitle:'Your Wedding Stay Begins Here',heroText:'You are invited to an elegant evening of vows, dinner, music, and celebration at the Grand Aurelia Hotel.',suiteNo:'1208',suiteLabel:'Suite',guestCode:'VIP',guestLabel:'Pass',dressCode:'Formal',dressLabel:'Attire',days:'Days',hours:'Hours',minutes:'Minutes',seconds:'Seconds',reserveBtn:'Check In as Guest',mapBtn:'Open Location 📍',passType:'Wedding Guest Pass',passNames:'Adrian & Maya',passInfo:'12 August 2028 · Grand Aurelia Hotel, Rome · Ceremony 7:30 PM',keyKicker:'Digital Room Key',keyTitle:'Unlock the Evening',keyText:'Tap the concierge options to preview the experience: ceremony, reception, afterparty, and guest care.',serviceChoice1:'Ceremony',serviceChoice2:'Reception',serviceChoice3:'Afterparty',serviceChoice4:'Concierge',dkRoom:'Wedding Suite',dkNames:'Adrian<br>& Maya',dkLine1:'Grand Ballroom · 7:30 PM',dkLine2:'Garden Terrace Reception',dkLine3:'Guest Access: VIP Evening',servicesKicker:'Concierge Services',servicesTitle:'Everything Prepared for You',servicesText:'A wedding invitation designed like a private hotel experience, with each detail ready for guests.',serv1Title:'Arrival',serv1Text:'Guests are welcomed through the marble lobby before entering the ballroom.',serv2Title:'Reception',serv2Text:'A champagne reception follows in the garden terrace with live music.',serv3Title:'Dinner',serv3Text:'A refined seated dinner experience curated for the celebration.',serv4Title:'After Hours',serv4Text:'Music, dancing, and a late-night lounge atmosphere after dinner.',itinKicker:'Guest Itinerary',itinTitle:'Your Evening Schedule',itinText:'A polished timeline from check-in to the final song.',time1:'7:00 PM',event1Title:'Guest Check-In',event1Text:'Arrive through the Grand Aurelia lobby and collect your welcome drink.',time2:'7:30 PM',event2Title:'Ceremony',event2Text:'The couple enters the Grand Ballroom for the wedding ceremony.',time3:'8:30 PM',event3Title:'Dinner Service',event3Text:'A seated dinner begins with warm candlelight and soft piano.',time4:'10:00 PM',event4Title:'Lounge Celebration',event4Text:'The terrace opens for music, dancing, and late-night celebration.',galleryKicker:'Hotel Moodboard',galleryTitle:'A Five-Star Wedding Atmosphere',galleryText:'Grand interiors, candlelit tables, polished details, and a celebration that feels like a weekend escape.',faqKicker:'Guest Questions',faqTitle:'Before You Check In',faqText:'Helpful details for the wedding evening.',faq1Q:'Is there parking?',faq1A:'Yes, valet parking will be available at the Grand Aurelia entrance.',faq2Q:'Is it adults only?',faq2A:'Yes, this is planned as an adults-only evening.',faq3Q:'What should I wear?',faq3A:'Formal evening attire is kindly requested. Black, champagne, ivory, and deep green tones are welcome.',rsvpKicker:'Guest Check-In',rsvpTitle:'Confirm Your Stay',rsvpText:'Add your name, guest count, and confirm your attendance through WhatsApp.',mini1:'Grand Aurelia Hotel, Rome',mini2:'12 August 2028',mini3:'Ceremony 7:30 PM',yesBtn:'Yes, Check Me In 🛎️',noBtn:'Can’t Make It',finalKicker:'Concierge Note',finalTitle:'We Look Forward to Welcoming You',finalText:'Thank you for being part of this elegant evening. Save the date and join us at Grand Aurelia.',locationBtn:'Open Location 📍',calendarBtn:'Save to Calendar 🗓️',modalTitle:'Which side are you from?',modalText:'Please choose before confirming your guest check-in.',brideSide:'Bride’s Side',groomSide:'Groom’s Side',footerNames:'Adrian & Maya · 12 August 2028',footerSub:'A portfolio demo by Amour De Minuit ✨'
-  },
-  ar:{
-    introLabel:'غراند أوريليا<br>تسجيل دخول خاص',introRoom:'جناح الزفاف 1208',introNames:'أدريان<br>ومايا',introDate:'١٢ آب ٢٠٢٨ · ٧:٣٠ مساءً',checkinBtn:'اضغطوا لتسجيل الدخول 🔑',brandNames:'أدريان ومايا',brandSub:'كونسييرج زفاف غراند أوريليا',navHome:'الرئيسية',navKey:'المفتاح',navServices:'الخدمات',navRsvp:'تأكيد',heroKicker:'أهلًا بكم في غراند أوريليا',heroTitle:'تبدأ إقامتكم في الزفاف هنا',heroText:'أنتم مدعوون إلى أمسية أنيقة من العهود والعشاء والموسيقى والاحتفال في فندق غراند أوريليا.',suiteNo:'1208',suiteLabel:'الجناح',guestCode:'VIP',guestLabel:'بطاقة',dressCode:'رسمي',dressLabel:'اللباس',days:'أيام',hours:'ساعات',minutes:'دقايق',seconds:'ثواني',reserveBtn:'سجّل كضيف',mapBtn:'افتح الموقع 📍',passType:'بطاقة ضيف الزفاف',passNames:'أدريان ومايا',passInfo:'١٢ آب ٢٠٢٨ · فندق غراند أوريليا، روما · المراسم ٧:٣٠ مساءً',keyKicker:'مفتاح غرفة رقمي',keyTitle:'افتحوا الأمسية',keyText:'اضغطوا على خيارات الكونسييرج لمعاينة التجربة: المراسم، الاستقبال، الاحتفال، وخدمة الضيوف.',serviceChoice1:'المراسم',serviceChoice2:'الاستقبال',serviceChoice3:'الاحتفال',serviceChoice4:'الكونسييرج',dkRoom:'جناح الزفاف',dkNames:'أدريان<br>ومايا',dkLine1:'القاعة الكبرى · ٧:٣٠ مساءً',dkLine2:'استقبال تراس الحديقة',dkLine3:'دخول الضيوف: أمسية VIP',servicesKicker:'خدمات الكونسييرج',servicesTitle:'كل شيء مُجهّز لكم',servicesText:'دعوة زفاف مصممة كتجربة فندق خاصة، مع كل التفاصيل جاهزة للضيوف.',serv1Title:'الوصول',serv1Text:'يُستقبل الضيوف عبر اللوبي الرخامي قبل دخول القاعة.',serv2Title:'الاستقبال',serv2Text:'استقبال شامبانيا في تراس الحديقة مع موسيقى مباشرة.',serv3Title:'العشاء',serv3Text:'تجربة عشاء جلوس راقية مصممة للاحتفال.',serv4Title:'بعد العشاء',serv4Text:'موسيقى ورقص وأجواء لاونج ليلية بعد العشاء.',itinKicker:'برنامج الضيوف',itinTitle:'جدول الأمسية',itinText:'جدول أنيق من تسجيل الدخول إلى آخر أغنية.',time1:'٧:٠٠ مساءً',event1Title:'تسجيل دخول الضيوف',event1Text:'الوصول عبر لوبي غراند أوريليا واستلام مشروب الترحيب.',time2:'٧:٣٠ مساءً',event2Title:'المراسم',event2Text:'يدخل العروسان إلى القاعة الكبرى لمراسم الزفاف.',time3:'٨:٣٠ مساءً',event3Title:'خدمة العشاء',event3Text:'يبدأ عشاء جلوس مع ضوء الشموع والبيانو الناعم.',time4:'١٠:٠٠ مساءً',event4Title:'احتفال اللاونج',event4Text:'يفتح التراس للموسيقى والرقص والاحتفال الليلي.',galleryKicker:'لوحة أجواء الفندق',galleryTitle:'أجواء زفاف خمس نجوم',galleryText:'ديكورات فخمة، طاولات مضاءة بالشموع، تفاصيل أنيقة، واحتفال يشبه عطلة نهاية أسبوع.',faqKicker:'أسئلة الضيوف',faqTitle:'قبل تسجيل الدخول',faqText:'تفاصيل مفيدة لأمسية الزفاف.',faq1Q:'هل يوجد موقف سيارات؟',faq1A:'نعم، خدمة صف السيارات ستكون متاحة عند مدخل غراند أوريليا.',faq2Q:'هل الأمسية للكبار فقط؟',faq2A:'نعم، هذه الأمسية مخططة للكبار فقط.',faq3Q:'ماذا يجب أن أرتدي؟',faq3A:'يرجى اعتماد لباس رسمي مسائي. الأسود، الشامبانيا، العاجي، والأخضر الداكن مرحب بها.',rsvpKicker:'تسجيل دخول الضيف',rsvpTitle:'أكدوا إقامتكم',rsvpText:'أضيفوا اسمكم وعدد الضيوف وأكدوا حضوركم عبر واتساب.',mini1:'فندق غراند أوريليا، روما',mini2:'١٢ آب ٢٠٢٨',mini3:'المراسم ٧:٣٠ مساءً',yesBtn:'نعم، سجّلني 🛎️',noBtn:'ما فيني إحضر',finalKicker:'ملاحظة الكونسييرج',finalTitle:'نتطلع لاستقبالكم',finalText:'شكرًا لكونكم جزءًا من هذه الأمسية الأنيقة. احفظوا التاريخ وانضموا إلينا في غراند أوريليا.',locationBtn:'افتح الموقع 📍',calendarBtn:'احفظ في التقويم 🗓️',modalTitle:'من أي طرف أنتم؟',modalText:'يرجى الاختيار قبل تأكيد تسجيل حضوركم.',brideSide:'طرف العروس',groomSide:'طرف العريس',footerNames:'أدريان ومايا · ١٢ آب ٢٠٢٨',footerSub:'نموذج أعمال من Amour De Minuit ✨'
-  }
-};
-
-function setLanguage(lang){
-  currentLang=lang;document.body.classList.toggle('ar',lang==='ar');
-  document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.getAttribute('data-i18n');if(translations[lang][key])el.innerHTML=translations[lang][key]});
-  guestName.placeholder=lang==='ar'?guestName.dataset.placeholderAr:guestName.dataset.placeholderEn;
-  langToggle.textContent=lang==='en'?'عربي':'EN';
-  const first=document.querySelector('.service-choice');
-  const selected=document.querySelector('.service-choice.selected')||first;
-  setService(selected?.dataset.service||'ceremony');
-  noBtn.href=lang==='ar'?'https://wa.me/96100000000?text=%D8%A2%D8%B3%D9%81%D8%8C%20%D9%84%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9%20%D8%A7%D9%84%D8%AD%D8%B6%D9%88%D8%B1%20%E2%9D%8C':'https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C';
-}
-langToggle.addEventListener('click',()=>setLanguage(currentLang==='en'?'ar':'en'));
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);let lang='en';
+const intro=$('#intro'),app=$('#app'),start=$('#startBtn'),music=$('#music'),musicBtn=$('#musicBtn'),langBtn=$('#langBtn'),guestName=$('#guestName'),guestCount=$('#guestCount'),liveTicket=$('#liveTicket'),sideModal=$('#sideModal');
+music.src=['https://cdn.pixabay.com/download/audio/2022/03/15/audio_2c6f7b6f64.mp3?filename=piano-moment-9835.mp3','https://cdn.pixabay.com/download/audio/2021/11/25/audio_cb407cc8e9.mp3?filename=romantic-piano-11000.mp3'][Math.floor(Math.random()*2)];music.volume=.13;
+start.onclick=()=>{intro.classList.add('opening');document.body.classList.add('opened');for(let i=0;i<18;i++)floaty(true);music.play().catch(()=>{musicBtn.textContent='🔇';musicBtn.classList.add('muted')});setTimeout(()=>{intro.classList.add('hide');app.classList.add('show')},900);setTimeout(()=>intro.style.display='none',1600)};
+musicBtn.onclick=()=>{if(music.paused){music.play();musicBtn.textContent='🔊';musicBtn.classList.remove('muted')}else{music.pause();musicBtn.textContent='🔇';musicBtn.classList.add('muted')}};
+function openAct(name){$$('.act').forEach(a=>a.classList.toggle('active',a.dataset.act===name));$$('.act-btn').forEach(b=>b.classList.toggle('active',b.dataset.actbtn===name));spark()}
+$$('[data-actbtn]').forEach(b=>b.onclick=()=>openAct(b.dataset.actbtn));$$('[data-jump]').forEach(b=>b.onclick=()=>openAct(b.dataset.jump));
+const weddingDate=new Date('2028-06-14T20:00:00').getTime();function tick(){const d=weddingDate-Date.now();if(d<=0)return;$('#days').textContent=Math.floor(d/86400000);$('#hours').textContent=Math.floor(d/3600000%24);$('#minutes').textContent=Math.floor(d/60000%60);$('#seconds').textContent=Math.floor(d/1000%60)}setInterval(tick,1000);tick();
+$('#calendarBtn').href=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Cassian & Elowen Wedding')}&dates=20280614T200000/20280615T013000&details=${encodeURIComponent('Royal theatre wedding celebration.')}&location=${encodeURIComponent('Royal Theatre Wedding Venue')}`;
+const roomData={en:{arrival:'Act I · Guests arrive at 7:30 PM through the velvet foyer for welcome drinks and candlelit portraits.',vows:'Act II · The ceremony begins at 8:00 PM beneath chandeliers and a royal floral arch.',dinner:'Act III · Dinner and toasts begin at 9:00 PM with palace-inspired table styling.',dance:'Finale · At 10:30 PM, the floor opens for music, dancing, and the final curtain celebration.'},ar:{arrival:'الفصل الأول · يصل الضيوف الساعة ٧:٣٠ مساءً عبر المدخل المخملي لمشروبات الترحيب والصور.',vows:'الفصل الثاني · تبدأ المراسم الساعة ٨:٠٠ مساءً تحت الثريات وقوس الزهور الملكي.',dinner:'الفصل الثالث · يبدأ العشاء والنخب الساعة ٩:٠٠ مساءً مع تنسيق طاولات مستوحى من القصور.',dance:'الختام · الساعة ١٠:٣٠ مساءً تُفتح ساحة الرقص للموسيقى والاحتفال الأخير.'}};
+function setRoom(key){$('#roomNote').textContent=roomData[lang][key];$$('.room').forEach(r=>r.classList.toggle('active',r.dataset.room===key));}$$('.room').forEach(r=>r.onclick=()=>setRoom(r.dataset.room));setRoom('arrival');
+function updateTicket(){const n=guestName.value.trim()||(lang==='ar'?'ضيف':'Guest');liveTicket.textContent=lang==='ar'?`تذكرة المسرح الملكي · ${n} · ${guestCount.value} ضيف · 14 يونيو 2028`:`ROYAL THEATRE TICKET · ${n} · ${guestCount.value} guest(s) · 14 June 2028`}guestName.oninput=updateTicket;guestCount.onchange=updateTicket;
+$('#yesBtn').onclick=()=>{sideModal.style.display='flex';floaty()};$('#closeModal').onclick=()=>sideModal.style.display='none';sideModal.onclick=e=>{if(e.target===sideModal)sideModal.style.display='none'};
+function rsvpText(){const n=guestName.value.trim()||(lang==='ar'?'ضيف':'Guest'),c=guestCount.value;return lang==='ar'?encodeURIComponent(`نعم، سأحضر زفاف كاسيان وإلوين ✅\nالاسم: ${n}\nعدد الأشخاص: ${c}`):encodeURIComponent(`Yes, I will attend Cassian & Elowen's wedding ✅\nName: ${n}\nNumber of Guests: ${c}`)}
+$('#brideBtn').onclick=()=>{open('https://wa.me/96100000000?text='+rsvpText(),'_blank');sideModal.style.display='none'};$('#groomBtn').onclick=()=>{open('https://wa.me/96111111111?text='+rsvpText(),'_blank');sideModal.style.display='none'};
+function summary(){return lang==='ar'?'دعوة زفاف كاسيان وإلوين\nالمكان: Royal Theatre Wedding Venue\nالتاريخ: 14 يونيو 2028\nالوقت: 8:00 مساءً':'Cassian & Elowen Wedding Invitation\nVenue: Royal Theatre Wedding Venue\nDate: 14 June 2028\nTime: 8:00 PM'}
+$('#copyBtn').onclick=async()=>{await navigator.clipboard.writeText(summary());$('#copyBtn').textContent='✓';setTimeout(()=>$('#copyBtn').textContent='⧉',1200)};$('#shareBtn').onclick=async()=>{if(navigator.share)try{await navigator.share({title:'Cassian & Elowen Wedding',text:summary(),url:location.href})}catch(e){}else navigator.clipboard.writeText(summary()+'\n'+location.href)};
+function spark(){const s=document.createElement('div');s.className='spark';s.style.left=Math.random()*innerWidth+'px';s.style.top=(innerHeight-10+Math.random()*70)+'px';document.body.appendChild(s);setTimeout(()=>s.remove(),4200)}function floaty(force=false){const f=document.createElement('div');f.className='floaty';f.textContent=['🎭','✦','❦','✨','♕'][Math.floor(Math.random()*5)];f.style.left=(force?innerWidth/2+Math.random()*180-90:Math.random()*innerWidth)+'px';f.style.top=(force?innerHeight/2+Math.random()*80-40:innerHeight-10+Math.random()*70)+'px';document.body.appendChild(f);setTimeout(()=>f.remove(),6200)}setInterval(spark,900);setInterval(()=>floaty(false),2400);
+const t={en:{introK:'One Night Only',introT:'Cassian<br>& Elowen',introP:'A royal theatre wedding invitation where every guest moves through the celebration like acts on a stage.',stub1:'Royal Theatre',stub2:'14 June 2028',stub3:'Act I',stub4:'8:00 PM',start:'Raise the Curtain 🎭',brand:'Cassian & Elowen',sub:'Royal Theatre Invitation',label1:'Act I · The Invitation',a1k:'The Curtain Rises',a1t:'A Royal Wedding Performance',a1p:'You are invited to a theatre-inspired royal celebration filled with velvet curtains, candlelight, dinner, music, and a grand final dance.',days:'Days',hours:'Hours',minutes:'Minutes',seconds:'Seconds',reserve:'Reserve Your Seat',map:'Open Location 📍',label2:'Act II · The Program',a2k:'Performance Program',a2t:'Choose an Act',a2p:'Tap each act to reveal the exact moment of the celebration.',r1:'Act I · Arrival',r1s:'7:30 PM',r2:'Act II · Vows',r2s:'8:00 PM',r3:'Act III · Banquet',r3s:'9:00 PM',r4:'Finale · Dance',r4s:'10:30 PM',label3:'Act III · Your Ticket',a3k:'Royal Seat Ticket',a3t:'Generate a Guest Ticket',a3p:'When guests enter their name in RSVP, the site creates a theatre-style wedding ticket.',makeTicket:'Make My Ticket',calendar:'Save to Calendar 🗓️',label4:'Act IV · The Mood',a4k:'Stage Moodboard',a4t:'Swipe the Scenery',a4p:'The gallery is presented like stage scenery, not as normal website photos.',label5:'Final Act · RSVP',a5k:'Final Curtain Reply',a5t:'Reserve Your Royal Seat',a5p:'Add your name, guest count, and choose which royal side you are attending from.',yes:'Yes, I Will Attend 🎭',no:'Can’t Make It',nav1:'Opening',nav2:'Program',nav3:'Ticket',nav4:'Gallery',nav5:'RSVP',modalT:'Choose Your Side',modalP:'Select which royal side should receive your reply.',bride:'Princess Side',groom:'Prince Side'},ar:{introK:'ليلة واحدة فقط',introT:'كاسيان<br>وإلوين',introP:'دعوة زفاف ملكية بأسلوب المسرح، ينتقل فيها الضيوف بين لحظات الاحتفال كأنها فصول على الخشبة.',stub1:'المسرح الملكي',stub2:'14 يونيو 2028',stub3:'الفصل الأول',stub4:'8:00 مساءً',start:'ارفعوا الستار 🎭',brand:'كاسيان وإلوين',sub:'دعوة المسرح الملكي',label1:'الفصل الأول · الدعوة',a1k:'يرتفع الستار',a1t:'عرض زفاف ملكي',a1p:'أنتم مدعوون إلى احتفال ملكي مستوحى من المسرح، مليء بالستائر المخملية والشموع والعشاء والموسيقى والرقصة الأخيرة.',days:'أيام',hours:'ساعات',minutes:'دقايق',seconds:'ثواني',reserve:'احجزوا مقعدكم',map:'افتح الموقع 📍',label2:'الفصل الثاني · البرنامج',a2k:'برنامج العرض',a2t:'اختاروا فصلًا',a2p:'اضغطوا على كل فصل لاكتشاف لحظة الاحتفال.',r1:'الفصل الأول · الوصول',r1s:'7:30 مساءً',r2:'الفصل الثاني · العهود',r2s:'8:00 مساءً',r3:'الفصل الثالث · العشاء',r3s:'9:00 مساءً',r4:'الختام · الرقص',r4s:'10:30 مساءً',label3:'الفصل الثالث · تذكرتكم',a3k:'تذكرة المقعد الملكي',a3t:'أنشئوا تذكرة الضيف',a3p:'عندما يكتب الضيف اسمه في RSVP، ينشئ الموقع تذكرة زفاف بأسلوب المسرح.',makeTicket:'أنشئ تذكرتي',calendar:'احفظ في التقويم 🗓️',label4:'الفصل الرابع · الأجواء',a4k:'لوحة المسرح',a4t:'اسحبوا المشهد',a4p:'المعرض يظهر كمشاهد مسرحية، وليس كصور موقع عادي.',label5:'الفصل الأخير · التأكيد',a5k:'رد الستار الأخير',a5t:'احجزوا مقعدكم الملكي',a5p:'أضيفوا الاسم وعدد الضيوف واختاروا الطرف الملكي الذي ستحضرون منه.',yes:'نعم، سأحضر 🎭',no:'ما فيني إحضر',nav1:'البداية',nav2:'البرنامج',nav3:'التذكرة',nav4:'المعرض',nav5:'تأكيد',modalT:'اختاروا الطرف',modalP:'اختاروا أي طرف ملكي سيستلم الرد.',bride:'طرف الأميرة',groom:'طرف الأمير'}};
+function setLang(l){lang=l;document.body.classList.toggle('ar',l==='ar');$$('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t[l][k])el.innerHTML=t[l][k]});guestName.placeholder=l==='ar'?guestName.dataset.placeholderAr:guestName.dataset.placeholderEn;langBtn.textContent=l==='en'?'عربي':'EN';setRoom(document.querySelector('.room.active')?.dataset.room||'arrival');updateTicket();$('#noBtn').href=l==='ar'?'https://wa.me/96100000000?text=%D8%A2%D8%B3%D9%81%D8%8C%20%D9%84%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9%20%D8%A7%D9%84%D8%AD%D8%B6%D9%88%D8%B1%20%E2%9D%8C':'https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C'}
+langBtn.onclick=()=>setLang(lang==='en'?'ar':'en');
 </script>
 </body>
 </html>
