@@ -1,445 +1,494 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Cassian & Elowen | Royal Theatre Wedding Invitation</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abed & Suraya | House of Ra Wedding Invitation</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:wght@600;700;900&family=Manrope:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Manrope:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --night:#07040c;
-  --plum:#170d24;
-  --velvet:#641638;
-  --gold:#d7a84f;
-  --gold2:#ffe2a0;
-  --cream:#fff6df;
-  --muted:#cbb891;
-  --line:rgba(255,226,160,.18);
-  --glass:rgba(255,255,255,.08);
-}
-html,body{width:100%;min-height:100%;overflow:hidden}
-body{
-  font-family:Manrope,sans-serif;
-  color:var(--cream);
-  background:
-    radial-gradient(circle at 50% 12%, rgba(255,226,160,.17), transparent 26%),
-    radial-gradient(circle at 16% 24%, rgba(233,167,197,.13), transparent 24%),
-    radial-gradient(circle at 84% 26%, rgba(142,184,255,.11), transparent 24%),
-    linear-gradient(155deg,#050309,#170c25 52%,#07040d);
-}
-body.ar{direction:rtl;font-family:Amiri,serif}
-button,a,input,select{font:inherit;-webkit-tap-highlight-color:transparent}
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#0c0908;--bg-2:#18110e;--panel:rgba(24,17,14,.76);--panel-2:rgba(34,24,20,.86);
+      --glass:rgba(255,244,222,.07);--line:rgba(255,230,181,.12);--text:#f8efe0;--muted:#bea991;
+      --accent:#d5a84d;--accent-2:#f0d28a;--accent-3:#8b5c2d;--shadow:rgba(0,0,0,.36);
+    }
+    body[data-palette="emerald"]{--accent:#79b48c;--accent-2:#b8e4c3;--accent-3:#355c43}
+    body[data-palette="ruby"]{--accent:#d06c58;--accent-2:#f0b3a7;--accent-3:#6c2f23}
+    html{scroll-behavior:smooth}
+    body{
+      min-height:100vh;overflow-x:hidden;font-family:Manrope,sans-serif;color:var(--text);
+      background:
+        radial-gradient(circle at 15% 12%, rgba(213,168,77,.10), transparent 24%),
+        radial-gradient(circle at 82% 18%, rgba(213,168,77,.07), transparent 30%),
+        radial-gradient(circle at 50% 92%, rgba(240,210,138,.05), transparent 22%),
+        linear-gradient(180deg,#090605,#15100d 36%,#0b0807 100%);
+    }
+    body::before{
+      content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.09;
+      background-image:linear-gradient(90deg, rgba(255,230,181,.12) 1px, transparent 1px),linear-gradient(rgba(255,230,181,.08) 1px, transparent 1px);
+      background-size:52px 52px;
+    }
+    body::after{
+      content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+      background:radial-gradient(circle at 50% -10%, rgba(255,230,181,.13), transparent 35%),linear-gradient(to bottom, rgba(255,255,255,.02), transparent 44%);
+    }
+    body.ar{direction:rtl}
+    a,button,input,select,textarea{font:inherit;-webkit-tap-highlight-color:transparent}
 
-.theatre-bg{
-  position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;
-  background:
-    linear-gradient(to bottom,rgba(0,0,0,.08),rgba(0,0,0,.78)),
-    url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1800&q=80') center/cover;
-  filter:saturate(.82);
-}
-.theatre-bg::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 14%,rgba(255,226,160,.23),transparent 28%),linear-gradient(90deg,rgba(9,4,12,.76),transparent 45%,rgba(9,4,12,.76))}
-.spotlight{position:fixed;top:-26vh;width:42vw;height:130vh;z-index:1;pointer-events:none;background:linear-gradient(to bottom,rgba(255,238,185,.22),transparent 70%);filter:blur(16px);mix-blend-mode:screen;opacity:.8}
-.spotlight.one{left:18%;transform:rotate(14deg);animation:sweep1 6s ease-in-out infinite alternate}
-.spotlight.two{right:18%;transform:rotate(-14deg);animation:sweep2 7s ease-in-out infinite alternate}
-@keyframes sweep1{to{transform:rotate(2deg);opacity:.55}}
-@keyframes sweep2{to{transform:rotate(-2deg);opacity:.7}}
-.stage-floor{position:fixed;left:-10%;right:-10%;bottom:-22%;height:42%;z-index:2;pointer-events:none;background:radial-gradient(ellipse at center,#6c4424 0%,#2c1713 58%,#0d0708 100%);border-radius:50% 50% 0 0;box-shadow:0 -30px 70px rgba(0,0,0,.36),inset 0 18px 60px rgba(255,226,160,.08)}
-.curtain{position:fixed;top:0;bottom:0;width:24vw;z-index:20;pointer-events:none;background:repeating-linear-gradient(90deg,#351126 0 18px,#641638 18px 36px,#45102d 36px 54px);box-shadow:inset 0 0 50px rgba(0,0,0,.55)}
-.curtain.left{left:0;border-radius:0 0 60px 0}
-.curtain.right{right:0;border-radius:0 0 0 60px}
-.curtain-top{position:fixed;left:0;right:0;top:0;height:92px;z-index:21;pointer-events:none;background:repeating-linear-gradient(90deg,#45102d 0 28px,#641638 28px 54px,#351126 54px 80px);box-shadow:0 18px 30px rgba(0,0,0,.32);border-radius:0 0 50% 50%}
-body.opened .curtain.left{animation:curtainLeft 1.3s cubic-bezier(.77,0,.18,1) forwards}
-body.opened .curtain.right{animation:curtainRight 1.3s cubic-bezier(.77,0,.18,1) forwards}
-body.opened .curtain-top{animation:curtainTop 1.3s cubic-bezier(.77,0,.18,1) forwards}
-@keyframes curtainLeft{to{transform:translateX(-92%)}}
-@keyframes curtainRight{to{transform:translateX(92%)}}
-@keyframes curtainTop{to{transform:translateY(-75%)}}
+    .intro{
+      position:fixed;inset:0;z-index:9999;overflow:hidden;display:grid;place-items:center;
+      background:linear-gradient(to bottom, rgba(7,5,4,.28), rgba(7,5,4,.90)),radial-gradient(circle at 50% 30%, rgba(240,210,138,.10), transparent 25%),linear-gradient(180deg,#0a0706,#16100d 58%,#0a0706);
+      transition:opacity 1s ease, transform 1s ease;
+    }
+    .intro.hide{opacity:0;transform:scale(1.03);pointer-events:none}
+    .intro-sky{position:absolute;inset:0;opacity:.75;background:radial-gradient(circle, rgba(255,255,255,.82) 1px, transparent 1.7px) 20px 20px/160px 160px,radial-gradient(circle, rgba(255,255,255,.60) 1px, transparent 1.7px) 70px 80px/210px 210px,radial-gradient(circle, rgba(255,255,255,.50) 1px, transparent 1.7px) 40px 50px/260px 260px;animation:twinkle 5s ease-in-out infinite alternate}
+    @keyframes twinkle{from{opacity:.45}to{opacity:.8}}
+    .sun-disk{
+      position:absolute;top:16%;left:50%;transform:translateX(-50%);width:180px;height:180px;border-radius:50%;
+      background:radial-gradient(circle,#fff7d0,var(--accent-2) 35%,var(--accent) 60%,rgba(255,255,255,.06) 74%);
+      box-shadow:0 0 70px rgba(240,210,138,.18),0 0 130px rgba(213,168,77,.12);animation:sunPulse 4s ease-in-out infinite;
+    }
+    @keyframes sunPulse{0%,100%{transform:translateX(-50%) scale(.96)}50%{transform:translateX(-50%) scale(1.05)}}
+    .dunes{position:absolute;left:0;right:0;bottom:0;height:42%;pointer-events:none}
+    .dune{position:absolute;left:-10%;right:-10%;bottom:0;border-radius:50%;filter:blur(.2px)}
+    .dune.back{height:250px;background:linear-gradient(180deg,#59402e,#2b1f19);bottom:120px;opacity:.8}
+    .dune.mid{height:300px;background:linear-gradient(180deg,#72513a,#3a291f);bottom:40px;opacity:.92}
+    .dune.front{height:360px;background:linear-gradient(180deg,#8a6242,#402d21);bottom:-120px}
+    .pyramids{position:absolute;left:50%;bottom:120px;transform:translateX(-50%);width:min(900px,95vw);height:280px;pointer-events:none}
+    .pyramid{position:absolute;bottom:0;width:0;height:0;border-left:120px solid transparent;border-right:120px solid transparent;border-bottom:210px solid #5c4330;filter:drop-shadow(0 22px 30px rgba(0,0,0,.35));opacity:.95}
+    .pyramid::after{content:"";position:absolute;left:-120px;top:0;width:0;height:0;border-left:120px solid transparent;border-right:0 solid transparent;border-bottom:210px solid rgba(255,230,181,.08);transform:translateX(118px);mix-blend-mode:screen}
+    .pyramid.one{left:10%}.pyramid.two{left:34%;transform:scale(1.22);transform-origin:bottom;border-bottom-color:#73523a}.pyramid.three{right:8%}
+    .intro-card-wrap{position:relative;z-index:4;width:min(92vw,460px);perspective:1400px}
+    .cartouche-card{
+      position:relative;min-height:590px;padding:24px;border-radius:34px;overflow:hidden;
+      background:radial-gradient(circle at 18% 12%, rgba(255,244,222,.12), transparent 24%),linear-gradient(145deg, rgba(28,20,16,.96), rgba(16,11,9,.97));
+      border:1px solid rgba(255,230,181,.22);box-shadow:0 30px 80px rgba(0,0,0,.42),inset 0 0 60px rgba(213,168,77,.05);
+      display:flex;flex-direction:column;justify-content:space-between;transform-style:preserve-3d;animation:cardFloat 4.4s ease-in-out infinite;transition:1s cubic-bezier(.77,0,.18,1);
+    }
+    @keyframes cardFloat{0%,100%{transform:translateY(0) rotateY(-4deg)}50%{transform:translateY(-10px) rotateY(4deg)}}
+    .intro.opening .cartouche-card{animation:none;transform:rotateY(72deg) scale(.92);opacity:0;filter:blur(5px)}
+    .cartouche-card::before{content:"";position:absolute;inset:12px;border-radius:26px;border:1px solid rgba(255,230,181,.18);pointer-events:none}
+    .cartouche-card::after{content:"";position:absolute;inset:-50%;background:linear-gradient(120deg, transparent 40%, rgba(255,255,255,.14) 48%, transparent 56%);transform:translateX(-140%) rotate(8deg);animation:shine 4.2s linear infinite}
+    @keyframes shine{to{transform:translateX(140%) rotate(8deg)}}
+    .glyph-band{position:relative;z-index:2;display:flex;justify-content:space-between;gap:8px;color:var(--accent);font-size:18px;opacity:.9;letter-spacing:2px}
+    .intro-copy{position:relative;z-index:2;text-align:center;margin-top:30px}
+    .intro-kicker{color:var(--accent);font-size:11px;letter-spacing:5px;text-transform:uppercase;font-weight:900}
+    .intro-title{margin-top:20px;font-family:Cinzel,serif;font-size:60px;line-height:.92;font-weight:700}
+    .intro-sub{margin-top:16px;color:var(--muted);line-height:1.8;font-size:15px;max-width:340px;margin-inline:auto}
+    .intro-pills{margin-top:18px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+    .pill{padding:10px 14px;border-radius:999px;background:rgba(255,244,222,.07);border:1px solid rgba(255,230,181,.12);font-size:12px;font-weight:800;color:var(--text)}
+    .open-btn{position:relative;z-index:2;margin-top:26px;width:100%;border:none;border-radius:999px;padding:16px 18px;cursor:pointer;background:linear-gradient(135deg,var(--accent-2),var(--accent),var(--accent-3));color:#1a100c;font-weight:900;box-shadow:0 16px 34px rgba(0,0,0,.28);transition:.25s ease}
+    .open-btn:hover{transform:translateY(-2px)}
+    .scan-glow{position:fixed;top:-20%;left:0;right:0;height:140px;z-index:9998;pointer-events:none;display:none;background:linear-gradient(to bottom, transparent, rgba(240,210,138,.22), transparent);filter:blur(4px)}
+    .scan-glow.play{display:block;animation:scanDown 1.4s ease forwards}
+    @keyframes scanDown{to{top:110%}}
 
-.intro{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:linear-gradient(180deg,rgba(5,3,9,.55),rgba(5,3,9,.96));transition:.9s ease;overflow:hidden}
-.intro.hide{opacity:0;transform:scale(1.04);pointer-events:none}
-.playbill{width:min(90vw,430px);min-height:610px;position:relative;padding:28px 24px;border-radius:34px;text-align:center;color:#2b1a13;background:linear-gradient(145deg,#fff3cf,#d5aa68);box-shadow:0 40px 95px rgba(0,0,0,.48);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;animation:billFloat 4s ease-in-out infinite}
-.playbill::before{content:"";position:absolute;inset:17px;border:2px solid rgba(43,26,19,.18);border-radius:24px}
-.playbill::after{content:"";position:absolute;inset:-60%;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.30) 48%,transparent 56%);animation:shine 4s linear infinite}
-.playbill>*{position:relative;z-index:2}
-@keyframes billFloat{50%{transform:translateY(-12px) rotateX(3deg)}}
-@keyframes shine{to{transform:translateX(54%)}}
-.ornate{font-size:34px;color:#7b1a42}
-.play-kicker{font-size:11px;letter-spacing:5px;text-transform:uppercase;font-weight:900;color:#7b1a42}
-.play-title{margin-top:14px;font-family:Cinzel,serif;font-size:40px;line-height:1.05}
-.play-sub{margin-top:14px;line-height:1.75;color:#6b4a31;font-size:14px}
-.ticket-stubs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:20px}
-.stub{padding:10px 8px;border-radius:16px;background:rgba(123,26,66,.1);border:1px dashed rgba(43,26,19,.22);font-weight:900;font-size:12px}
-.start-btn{border:none;border-radius:999px;padding:16px 18px;background:linear-gradient(135deg,#7b1a42,#d04972,#7b1a42);color:#fff6df;font-weight:900;cursor:pointer;box-shadow:0 16px 34px rgba(0,0,0,.26);transition:.25s}
-.start-btn:hover{transform:translateY(-2px)}
-.intro.opening .playbill{animation:billOpen 1.05s ease forwards}
-@keyframes billOpen{60%{transform:scale(1.06);filter:brightness(1.15)}100%{transform:translateY(60px) scale(.78);opacity:0;filter:blur(8px)}}
+    .site{display:none;position:relative;z-index:2;opacity:0;pointer-events:none;transition:opacity .8s ease}
+    .site.show{display:block;opacity:1;pointer-events:auto}
+    .topbar{position:fixed;top:12px;left:50%;transform:translateX(-50%);width:min(94vw,1020px);z-index:1200;padding:10px;border-radius:28px;background:rgba(16,11,9,.72);border:1px solid rgba(255,230,181,.12);backdrop-filter:blur(18px);box-shadow:0 18px 40px rgba(0,0,0,.30)}
+    .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:11px;min-width:0}.brand-mark{width:42px;height:42px;border-radius:15px;display:grid;place-items:center;background:rgba(255,244,222,.10);border:1px solid rgba(255,230,181,.14);color:var(--accent);font-size:20px;flex-shrink:0}
+    .brand-text strong{display:block;font-family:Cinzel,serif;font-size:24px;line-height:1;white-space:nowrap}.brand-text span{display:block;margin-top:4px;color:var(--muted);font-size:10px;letter-spacing:2px;text-transform:uppercase;white-space:nowrap}
+    .tools{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-end;flex-shrink:0}
+    .tool-btn{width:38px;height:38px;border:none;border-radius:14px;background:rgba(255,244,222,.08);border:1px solid rgba(255,230,181,.12);color:var(--text);cursor:pointer;transition:.25s ease}
+    .tool-btn:hover{transform:translateY(-2px);background:rgba(255,244,222,.14)}.tool-btn.muted{color:var(--accent);background:rgba(255,244,222,.16)}
+    .progress-wrap{margin-top:8px;height:5px;border-radius:999px;overflow:hidden;background:rgba(255,244,222,.08)}.progress-fill{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+    .side-nav{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:1100;display:grid;gap:10px}
+    .side-nav a{width:44px;height:44px;border-radius:16px;display:grid;place-items:center;text-decoration:none;color:var(--muted);background:rgba(16,11,9,.62);border:1px solid rgba(255,230,181,.12);backdrop-filter:blur(12px);font-size:11px;font-weight:900;transition:.25s ease}
+    .side-nav a.active,.side-nav a:hover{background:var(--accent);color:#19110c}
+    .page{max-width:1220px;margin:auto;padding:112px 14px 88px;position:relative;z-index:2}
+    .section{min-height:calc(100svh - 126px);display:flex;align-items:center;margin-bottom:20px}
+    .card{width:100%;border-radius:36px;overflow:hidden;background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--line);backdrop-filter:blur(18px);box-shadow:0 28px 70px rgba(0,0,0,.26);opacity:0;transform:translateY(40px) scale(.985);transition:opacity .9s ease, transform .9s ease}
+    .card.show{opacity:1;transform:translateY(0) scale(1)}
+    .kicker{color:var(--accent);font-size:11px;letter-spacing:4px;text-transform:uppercase;font-weight:900}
+    .title{margin-top:14px;font-family:Cinzel,serif;font-size:60px;line-height:.95;font-weight:700;color:var(--text)}
+    .text{margin-top:14px;color:var(--muted);line-height:1.85;font-size:15px}
+    .btn{width:100%;display:block;border:none;text-decoration:none;text-align:center;border-radius:999px;padding:15px 16px;font-weight:900;cursor:pointer;transition:.25s ease}
+    .btn:hover{transform:translateY(-2px)}.btn.gold{background:linear-gradient(135deg,var(--accent-2),var(--accent),var(--accent-3));color:#19110c;box-shadow:0 16px 28px rgba(0,0,0,.18)}.btn.glass{background:rgba(255,244,222,.08);color:var(--text);border:1px solid rgba(255,230,181,.12)}.btn.dark{background:rgba(0,0,0,.26);color:var(--text);border:1px solid rgba(255,230,181,.12)}
 
-.app{position:relative;z-index:5;width:100vw;height:100svh;display:none;opacity:0;transition:.7s ease;grid-template-rows:1fr}
-.app.show{display:grid;opacity:1}
-.topbar{height:70px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:linear-gradient(to bottom,rgba(5,3,9,.94),rgba(5,3,9,.72));backdrop-filter:blur(14px);border-bottom:1px solid var(--line);position:fixed;top:0;left:0;right:0;z-index:150}
-.brand{display:flex;align-items:center;gap:10px;min-width:0}
-.brand-mark{width:44px;height:44px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#2b1a13;font-size:23px;box-shadow:0 12px 24px rgba(0,0,0,.24);flex-shrink:0}
-.brand strong{display:block;font-family:Cinzel,serif;font-size:21px;white-space:nowrap}
-.brand span{display:block;color:var(--muted);font-size:10px;letter-spacing:1.8px;text-transform:uppercase;white-space:nowrap}
-.tools{display:flex;gap:7px;flex-shrink:0}
-.tool{width:38px;height:38px;border:none;border-radius:14px;background:var(--glass);border:1px solid var(--line);color:var(--cream);cursor:pointer}
-.tool:hover{background:rgba(255,255,255,.15)}
-.tool.muted{color:var(--gold2)}
-.stage{position:relative;display:grid;place-items:center;padding:82px 12px 88px;min-height:100svh}
-.turntable{position:relative;width:min(1120px,100%);height:min(680px,calc(100svh - 190px));min-height:520px;border-radius:48px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.035));border:1px solid rgba(255,226,160,.24);box-shadow:0 32px 85px rgba(0,0,0,.38),inset 0 0 80px rgba(215,168,79,.08);overflow:hidden}
-.turntable::before{content:"";position:absolute;inset:16px;border:1px solid rgba(255,226,160,.18);border-radius:36px;pointer-events:none}
-.act{position:absolute;inset:18px;border-radius:34px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;opacity:0;transform:translateX(40px) rotateY(18deg) scale(.95);pointer-events:none;transition:.55s cubic-bezier(.2,.8,.2,1)}
-.act.active{opacity:1;transform:translateX(0) rotateY(0) scale(1);pointer-events:auto}
-.visual{position:relative;background-size:cover;background-position:center}
-.visual::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.64),rgba(0,0,0,.04))}
-.visual-label{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;padding:14px;border-radius:22px;background:rgba(5,3,9,.62);border:1px solid rgba(255,226,160,.18);backdrop-filter:blur(10px);color:#f9e6bc;font-weight:900;text-align:center}
-.content{padding:34px;display:flex;flex-direction:column;justify-content:center;background:rgba(7,4,12,.78);backdrop-filter:blur(14px)}
-.kicker{color:var(--gold2);font-size:11px;letter-spacing:4px;text-transform:uppercase;font-weight:900}
-.title{margin-top:14px;font-family:Playfair Display,serif;font-size:58px;line-height:.96}
-.text{margin-top:16px;color:#d8c49f;line-height:1.85;font-size:15px}
-.actions{margin-top:22px;display:grid;gap:10px;width:min(430px,100%)}
-.btn{border:none;text-decoration:none;text-align:center;border-radius:999px;padding:15px 16px;font-weight:900;cursor:pointer;transition:.25s;display:block}
-.btn.gold{background:linear-gradient(135deg,var(--gold2),var(--gold),#966b2e);color:#24130d}
-.btn.glass{background:rgba(255,255,255,.09);border:1px solid var(--line);color:var(--cream)}
-.btn:hover{transform:translateY(-2px)}
-.countdown{margin-top:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.time{padding:12px 6px;border-radius:18px;background:rgba(255,255,255,.09);border:1px solid var(--line);text-align:center}
-.time span{display:block;font-weight:900;font-size:24px;color:var(--gold2)}
-.time small{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#d8c49f}
-.room-grid{margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.room{padding:14px;border-radius:20px;background:rgba(255,255,255,.08);border:1px solid var(--line);cursor:pointer;transition:.25s}
-.room:hover,.room.active{background:rgba(255,255,255,.16);transform:translateY(-3px)}
-.room strong{display:block;color:var(--gold2)}
-.room span{display:block;margin-top:5px;color:#d8c49f;font-size:13px}
-.note{margin-top:18px;padding:16px;border-radius:22px;background:rgba(255,255,255,.08);border:1px dashed rgba(255,226,160,.26);color:#f8e7c4;line-height:1.65}
-.gallery{margin-top:22px;display:grid;grid-auto-flow:column;grid-auto-columns:165px;gap:12px;overflow-x:auto;padding-bottom:8px}
-.gallery::-webkit-scrollbar{height:8px}
-.gallery::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:99px}
-.photo{height:240px;border-radius:22px;background-size:cover;background-position:center;border:1px solid var(--line);transition:.25s}
-.photo:hover{transform:translateY(-8px) scale(1.03)}
-.form{margin-top:20px;display:grid;gap:10px}
-.field{width:100%;padding:14px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.09);color:var(--cream);outline:none}
-.field::placeholder{color:#d8c49f}
-.field option{color:#111}
-.act-nav{padding:10px 12px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(5,3,9,.96),rgba(5,3,9,.72));backdrop-filter:blur(15px);position:fixed;bottom:0;left:0;right:0;z-index:150;border-top:1px solid var(--line)}
-.act-track{width:min(760px,94vw);margin:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:8px;border-radius:30px;background:rgba(5,3,9,.74);border:1px solid var(--line)}
-.act-btn{border:none;border-radius:22px;padding:12px 5px;background:transparent;color:#d8c49f;font-size:11px;text-transform:uppercase;font-weight:900;cursor:pointer}
-.act-btn.active,.act-btn:hover{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#24130d}
-.modal{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;background:rgba(5,3,8,.72);backdrop-filter:blur(12px);padding:20px}
-.modal-box{width:min(92%,430px);padding:24px;border-radius:30px;background:linear-gradient(145deg,#fff4d8,#d8b375);color:#2b1a13;text-align:center;box-shadow:0 34px 80px rgba(0,0,0,.45);position:relative}
-.modal-box h2{font-family:Cinzel,serif;font-size:31px}
-.modal-box p{margin-top:10px;color:#65462f;line-height:1.65}
-.close{position:absolute;top:10px;right:12px;width:34px;height:34px;border:none;border-radius:50%;background:#2b1a13;color:#fff4d8;font-size:22px;cursor:pointer}
-.modal-actions{display:grid;gap:9px;margin-top:18px}
-.spark,.floaty{position:fixed;pointer-events:none;z-index:30}
-.spark{width:7px;height:7px;border-radius:50%;background:var(--gold2);box-shadow:0 0 14px rgba(255,227,165,.8);animation:spark 4s linear forwards}
-.floaty{color:var(--gold2);font-size:22px;text-shadow:0 0 12px rgba(255,227,165,.55);animation:floaty 6s linear forwards}
-@keyframes spark{0%{opacity:0;transform:translateY(0) scale(.5)}15%{opacity:1}100%{opacity:0;transform:translateY(-180px) scale(1.2)}}
-@keyframes floaty{0%{opacity:0;transform:translateY(0) rotate(-8deg)}15%{opacity:1}100%{opacity:0;transform:translateY(-220px) rotate(12deg)}}
-body.ar .brand strong,body.ar .title,body.ar .play-title,body.ar .modal-box h2{font-family:Amiri,serif}
+    .hero-grid{display:grid;grid-template-columns:.95fr 1.05fr;min-height:76svh}.hero-copy{padding:36px 30px;display:flex;flex-direction:column;justify-content:center}
+    .hero-status{margin-top:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.status-card{padding:14px 10px;border-radius:22px;background:rgba(255,244,222,.07);border:1px solid rgba(255,230,181,.10);text-align:center}.status-card strong{display:block;color:var(--accent);font-size:18px;font-weight:900}.status-card span{display:block;margin-top:5px;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:1px}
+    .countdown{margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.time-box{padding:12px 6px;border-radius:20px;text-align:center;background:rgba(255,244,222,.07);border:1px solid rgba(255,230,181,.10)}.time-box span{display:block;font-size:25px;font-weight:900;color:var(--accent);line-height:1}.time-box small{display:block;margin-top:6px;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:1px}
+    .hero-actions{margin-top:22px;display:grid;gap:10px;width:min(430px,100%)}
+    .hero-visual{min-height:76svh;position:relative;overflow:hidden;background:linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.55)),url("https://images.unsplash.com/photo-1539650116574-75c0c6d73f11?auto=format&fit=crop&w=1600&q=80") center/cover}
+    .hero-visual::before{content:"";position:absolute;inset:22px;border-radius:30px;border:1px solid rgba(255,230,181,.22);pointer-events:none}
+    .sun-ring{position:absolute;top:34px;right:34px;width:120px;height:120px;border-radius:50%;border:1px solid rgba(255,230,181,.22);box-shadow:0 0 35px rgba(213,168,77,.15);animation:spin 18s linear infinite}.sun-ring::before{content:"";position:absolute;inset:18px;border-radius:50%;border:1px solid rgba(255,230,181,.16)}@keyframes spin{to{transform:rotate(360deg)}}
+    .royal-pass{position:absolute;left:28px;right:28px;bottom:28px;padding:20px;border-radius:28px;background:rgba(16,11,9,.64);border:1px solid rgba(255,230,181,.16);backdrop-filter:blur(14px)}.royal-top{display:flex;justify-content:space-between;gap:12px;align-items:center;color:var(--accent);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:900}.royal-names{margin-top:10px;font-family:Cinzel,serif;font-size:38px;line-height:1}.royal-info{margin-top:8px;color:#ead9c3;line-height:1.65;font-size:13px}
 
-@media(max-width:850px){
-  html,body{overflow:auto}
-  .app{height:auto;min-height:100svh}
-  .topbar{position:fixed;top:0;left:0;right:0;z-index:150}
-  .curtain,.curtain-top,.spotlight{display:none}
-  .stage{padding:82px 8px 92px;min-height:100svh}
-  .turntable{height:auto;min-height:0;border-radius:30px}
-  .act{position:relative;display:none;grid-template-columns:1fr;inset:auto;border-radius:26px}
-  .act.active{display:grid}
-  .visual{min-height:310px}
-  .content{padding:24px 18px}
-  .title{font-size:40px}
-  .countdown{grid-template-columns:repeat(2,1fr)}
-  .room-grid{grid-template-columns:1fr}
-  .act-nav{position:fixed;bottom:0;left:0;right:0;z-index:150}
-  .act-btn{font-size:9px;padding:10px 2px}
-  .gallery{grid-auto-columns:74%}
-  .photo{height:260px}
-  .brand span{display:none}
-  .brand strong{font-size:18px}
-  .tool{width:34px;height:34px}
-  .playbill{min-height:560px}
-}
-@media(max-width:430px){
-  .play-title{font-size:33px}
-  .title{font-size:34px}
-  .visual{min-height:280px}
-  .gallery{grid-auto-columns:86%}
-  .topbar{padding:8px}
-  .brand-mark{width:38px;height:38px}
-  .tools{gap:5px}
-  .ticket-stubs{grid-template-columns:1fr}
-}
-</style>
+    .oracle-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}.oracle-copy{padding:34px 30px;display:flex;flex-direction:column;justify-content:center}.oracle-side{padding:34px 30px;background:rgba(255,244,222,.03)}
+    .oracle-panel{min-height:430px;border-radius:32px;padding:24px;background:radial-gradient(circle at 50% 8%, rgba(255,230,181,.10), transparent 24%),linear-gradient(145deg,#19110d,#0f0a08);border:1px solid rgba(255,230,181,.14);box-shadow:inset 0 0 40px rgba(213,168,77,.04)}
+    .oracle-head{text-align:center;color:var(--accent);font-size:11px;letter-spacing:4px;text-transform:uppercase;font-weight:900}.oracle-buttons{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .oracle-btn{border:none;padding:15px 16px;border-radius:22px;background:rgba(255,244,222,.06);color:var(--text);border:1px solid rgba(255,230,181,.10);cursor:pointer;font-weight:800;transition:.25s ease}.oracle-btn:hover,.oracle-btn.selected{background:rgba(255,244,222,.14);color:var(--accent);transform:translateY(-2px)}
+    .oracle-result{margin-top:20px;padding:20px;border-radius:26px;background:rgba(255,244,222,.06);border:1px solid rgba(255,230,181,.10);min-height:190px;display:flex;flex-direction:column;justify-content:center}.oracle-result strong{display:block;color:var(--accent);letter-spacing:3px;text-transform:uppercase;font-size:11px;font-weight:900}.oracle-result h3{margin-top:12px;font-family:Cinzel,serif;font-size:34px;line-height:1}.oracle-result p{margin-top:12px;color:var(--muted);line-height:1.8;font-size:15px}
+
+    .experience-wrap,.timeline-wrap{padding:34px 30px}.experience-grid{margin-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.exp-card{min-height:230px;padding:22px;border-radius:28px;background:rgba(255,244,222,.07);border:1px solid rgba(255,230,181,.10);position:relative;overflow:hidden;transition:.25s ease}.exp-card:hover{transform:translateY(-8px);background:rgba(255,244,222,.12)}.exp-card::after{content:"";position:absolute;right:-28px;bottom:-28px;width:90px;height:90px;border-radius:50%;background:rgba(255,230,181,.08)}.exp-icon{width:54px;height:54px;border-radius:20px;display:grid;place-items:center;background:rgba(255,230,181,.12);color:var(--accent);font-size:24px}.exp-card h3{margin-top:18px;font-family:Cinzel,serif;font-size:26px;line-height:1}.exp-card p{margin-top:12px;color:var(--muted);line-height:1.7;font-size:14px}
+    .timeline-list{margin-top:24px;display:grid;gap:12px}.timeline-item{display:grid;grid-template-columns:110px 1fr 50px;gap:14px;align-items:center;padding:14px;border-radius:26px;background:rgba(255,244,222,.07);border:1px solid rgba(255,230,181,.10)}.timeline-time{padding:14px 10px;border-radius:20px;background:var(--accent);color:#19110c;text-align:center;font-weight:900;font-size:14px}.timeline-text strong{display:block;font-family:Cinzel,serif;font-size:26px;line-height:1}.timeline-text span{display:block;margin-top:5px;color:var(--muted);line-height:1.6;font-size:14px}.timeline-icon{width:50px;height:50px;border-radius:18px;display:grid;place-items:center;background:rgba(255,244,222,.08);font-size:22px}
+
+    .gallery-grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:0}.palette-side{padding:34px 30px;display:flex;flex-direction:column;justify-content:center}.gallery-side{padding:34px 22px 34px 0}.palette-picks{margin-top:22px;display:grid;gap:10px;width:min(360px,100%)}.palette-btn{width:100%;text-align:left;border:none;padding:15px 16px;border-radius:22px;background:rgba(255,244,222,.06);color:var(--text);border:1px solid rgba(255,230,181,.10);cursor:pointer;font-weight:800;transition:.25s ease}.palette-btn.active,.palette-btn:hover{background:rgba(255,244,222,.14);color:var(--accent);transform:translateX(4px)}.palette-note{margin-top:18px;padding:18px;border-radius:24px;background:rgba(255,244,222,.05);border:1px solid rgba(255,230,181,.08);color:var(--muted);line-height:1.8;min-height:110px}
+    .memory-row{display:grid;grid-auto-flow:column;grid-auto-columns:260px;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 6px 8px}.memory-row::-webkit-scrollbar{height:8px}.memory-row::-webkit-scrollbar-thumb{background:rgba(255,244,222,.14);border-radius:999px}.memory-card{scroll-snap-align:start;border-radius:28px;overflow:hidden;background:rgba(255,244,222,.06);border:1px solid rgba(255,230,181,.08);box-shadow:0 18px 28px rgba(0,0,0,.18);transition:.25s ease}.memory-card:hover{transform:translateY(-8px) rotate(-1deg)}.memory-image{height:320px;background-size:cover;background-position:center;position:relative}.memory-image::after{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,.05))}.memory-caption{padding:16px}.memory-caption strong{display:block;font-family:Cinzel,serif;font-size:26px;line-height:1}.memory-caption span{display:block;margin-top:8px;color:var(--muted);line-height:1.7;font-size:13px}
+
+    .rsvp-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}.faq-side,.rsvp-side{padding:34px 30px}.faq-side{background:rgba(255,244,222,.03)}.faq-list{margin-top:22px;display:grid;gap:12px}.faq-item{border-radius:24px;overflow:hidden;background:rgba(255,244,222,.07);border:1px solid rgba(255,230,181,.10)}.faq-q{width:100%;border:none;background:transparent;color:var(--text);padding:17px;display:flex;justify-content:space-between;gap:10px;text-align:left;font-weight:900;cursor:pointer}.faq-q span:last-child{color:var(--accent);font-size:22px;transition:.2s ease}.faq-item.open .faq-q span:last-child{transform:rotate(45deg)}.faq-a{max-height:0;overflow:hidden;padding:0 17px;color:var(--muted);line-height:1.75;font-size:14px;transition:max-height .32s ease}.faq-item.open .faq-a{max-height:170px;padding:0 17px 17px}.rsvp-mini{margin-top:18px;display:grid;gap:10px}.mini{padding:12px 14px;border-radius:18px;background:rgba(255,244,222,.07);color:var(--muted);border:1px solid rgba(255,230,181,.09);font-size:14px}.guest-form{margin-top:22px;display:grid;gap:12px}.field{width:100%;border:none;outline:none;border-radius:20px;padding:15px 14px;background:rgba(255,244,222,.08);border:1px solid rgba(255,230,181,.11);color:var(--text)}.field::placeholder{color:#d2bea3}.field option{color:#111}.rsvp-actions{margin-top:18px;display:grid;gap:10px}
+
+    .final-wrap{padding:30px;text-align:center}.final-wall{min-height:58svh;border-radius:30px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:30px 20px;position:relative;overflow:hidden;background:linear-gradient(to bottom, rgba(0,0,0,.16), rgba(0,0,0,.68)),url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1400&q=80") center/cover;border:1px solid rgba(255,230,181,.12)}.final-wall::before{content:"";position:absolute;inset:20px;border:1px solid rgba(255,230,181,.24);border-radius:26px}.final-wall>*{position:relative;z-index:2}.final-wall .text{max-width:680px;color:#f0dfc8}.final-actions{margin-top:24px;display:grid;gap:10px;width:min(430px,100%)}.footer{text-align:center;color:var(--muted);padding:0 12px 100px}.footer strong{display:block;font-family:Cinzel,serif;color:var(--text);font-size:28px}.footer span{display:block;margin-top:8px;font-size:12px}
+    .bottom-dock{display:none;position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:1200;width:min(94vw,560px);grid-template-columns:repeat(4,1fr);gap:7px;padding:8px;border-radius:26px;background:rgba(16,11,9,.80);border:1px solid rgba(255,230,181,.12);backdrop-filter:blur(16px);box-shadow:0 18px 40px rgba(0,0,0,.32)}.bottom-dock a{text-decoration:none;text-align:center;color:var(--muted);padding:11px 4px;border-radius:17px;font-size:10px;text-transform:uppercase;font-weight:900}.bottom-dock a.active,.bottom-dock a:hover{background:rgba(255,244,222,.12);color:var(--text)}
+    .modal{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.62);backdrop-filter:blur(10px)}.modal-box{width:min(92%,430px);border-radius:30px;padding:28px 20px 20px;position:relative;background:linear-gradient(180deg,rgba(36,27,23,.98),rgba(18,13,12,.98));border:1px solid rgba(255,230,181,.16);box-shadow:0 30px 70px rgba(0,0,0,.36);text-align:center}.modal-box h2{font-family:Cinzel,serif;font-size:40px;line-height:1}.modal-box p{margin-top:12px;color:var(--muted);line-height:1.8}.close-modal{position:absolute;top:10px;right:12px;width:34px;height:34px;border:none;border-radius:50%;background:rgba(255,244,222,.12);color:var(--text);font-size:22px;cursor:pointer}.modal-actions{margin-top:20px;display:grid;gap:10px}
+    .symbol{position:fixed;z-index:3;pointer-events:none;color:var(--accent);text-shadow:0 0 12px rgba(213,168,77,.45);animation:symbolFloat linear forwards;opacity:.88}@keyframes symbolFloat{0%{opacity:0;transform:translateY(0) rotate(-10deg) scale(.8)}15%{opacity:.85}100%{opacity:0;transform:translateY(-220px) rotate(12deg) scale(1.15)}}.spark{position:fixed;z-index:3;pointer-events:none;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px rgba(213,168,77,.8);animation:sparkUp linear forwards}@keyframes sparkUp{0%{opacity:0;transform:translateY(0) scale(.6)}15%{opacity:.9}100%{opacity:0;transform:translateY(-190px) scale(1.15)}}.trail{position:fixed;width:8px;height:8px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,#fff,var(--accent) 65%,transparent 70%);box-shadow:0 0 14px rgba(255,255,255,.7);z-index:4;animation:trailFade .7s linear forwards}@keyframes trailFade{to{opacity:0;transform:scale(.2)}}
+
+    body.ar,body.ar .intro-title,body.ar .intro-sub,body.ar .brand-text,body.ar .title,body.ar .text,body.ar .status-card,body.ar .time-box,body.ar .royal-pass,body.ar .oracle-panel,body.ar .exp-card,body.ar .timeline-item,body.ar .palette-btn,body.ar .palette-note,body.ar .memory-caption,body.ar .faq-item,body.ar .rsvp-side,body.ar .modal-box,body.ar .footer,body.ar .btn{font-family:Amiri,serif}
+    body.ar .faq-q,body.ar .palette-btn{text-align:right}body.ar .timeline-item{grid-template-columns:50px 1fr 110px}body.ar .timeline-icon{grid-column:1;grid-row:1}body.ar .timeline-text{grid-column:2;grid-row:1}body.ar .timeline-time{grid-column:3;grid-row:1}
+
+    @media(max-width:1080px){.hero-grid,.oracle-grid,.gallery-grid,.rsvp-grid{grid-template-columns:1fr}.experience-grid{grid-template-columns:repeat(2,1fr)}.hero-visual{min-height:60svh}.gallery-side{padding:0 22px 30px}.side-nav{display:none}.bottom-dock{display:grid}.section{min-height:auto}}
+    @media(max-width:720px){.topbar{top:8px;width:calc(100% - 18px);padding:8px;border-radius:22px}.brand-mark{width:36px;height:36px;border-radius:13px;font-size:18px}.brand-text strong{font-size:20px}.brand-text span{display:none}.tool-btn{width:34px;height:34px;border-radius:12px;font-size:12px}.page{padding:92px 8px 88px}.card{border-radius:26px}.hero-copy,.oracle-copy,.oracle-side,.experience-wrap,.timeline-wrap,.palette-side,.faq-side,.rsvp-side,.final-wrap{padding:24px 16px}.gallery-side{padding:0 10px 22px}.title{font-size:42px}.text{font-size:14px;line-height:1.75}.hero-status{grid-template-columns:1fr}.countdown{grid-template-columns:repeat(2,1fr)}.hero-visual{min-height:52svh}.hero-visual::before{inset:14px;border-radius:22px}.sun-ring{width:90px;height:90px;top:18px;right:18px}.royal-pass{left:16px;right:16px;bottom:16px;padding:16px;border-radius:22px}.royal-names{font-size:30px}.oracle-buttons{grid-template-columns:1fr}.oracle-result h3{font-size:30px}.experience-grid{grid-template-columns:1fr}.exp-card{min-height:auto}.timeline-item{grid-template-columns:1fr;gap:10px}.timeline-icon{display:none}.timeline-time{text-align:left}body.ar .timeline-item{grid-template-columns:1fr}body.ar .timeline-time,body.ar .timeline-text{grid-column:auto;grid-row:auto}.memory-row{grid-auto-columns:82%}.memory-image{height:280px}.final-wall{min-height:52svh;border-radius:24px}.bottom-dock{width:94vw;padding:7px;gap:6px}.bottom-dock a{font-size:9px;padding:10px 3px}.cartouche-card{min-height:560px;padding:18px;border-radius:28px}.intro-title{font-size:48px}.sun-disk{width:130px;height:130px;top:19%}.pyramids{bottom:108px;height:220px}.pyramid{border-left-width:86px;border-right-width:86px;border-bottom-width:150px}.pyramid::after{left:-86px;border-left-width:86px;border-bottom-width:150px;transform:translateX(84px)}}
+    @media(max-width:420px){.title{font-size:38px}.intro-title{font-size:42px}.memory-row{grid-auto-columns:88%}.modal-box{border-radius:24px}}
+  </style>
 </head>
-<body>
-<div class="theatre-bg"></div>
-<div class="spotlight one"></div>
-<div class="spotlight two"></div>
-<div class="stage-floor"></div>
-<div class="curtain left"></div>
-<div class="curtain right"></div>
-<div class="curtain-top"></div>
-<audio id="music" loop preload="auto"></audio>
+<body data-palette="gold">
 
-<div class="intro" id="intro">
-  <div class="playbill">
-    <div class="ornate">♕</div>
-    <div>
-      <div class="play-kicker" data-i18n="introK">One Night Only</div>
-      <h1 class="play-title" data-i18n="introT">Cassian<br>& Elowen</h1>
-      <p class="play-sub" data-i18n="introP">A royal theatre wedding invitation where every guest moves through the celebration like acts on a stage.</p>
-      <div class="ticket-stubs">
-        <div class="stub" data-i18n="stub1">Royal Theatre</div>
-        <div class="stub" data-i18n="stub2">14 June 2028</div>
-        <div class="stub" data-i18n="stub3">Act I</div>
-        <div class="stub" data-i18n="stub4">8:00 PM</div>
+  <audio id="bgMusic" loop preload="auto"></audio>
+
+  <div class="intro" id="intro">
+    <div class="intro-sky"></div>
+    <div class="sun-disk"></div>
+    <div class="pyramids"><div class="pyramid one"></div><div class="pyramid two"></div><div class="pyramid three"></div></div>
+    <div class="dunes"><div class="dune back"></div><div class="dune mid"></div><div class="dune front"></div></div>
+
+    <div class="intro-card-wrap">
+      <div class="cartouche-card">
+        <div class="glyph-band"><span>𓂀</span><span>𓆣</span><span>☥</span><span>𓋹</span><span>𓂀</span></div>
+        <div class="intro-copy">
+          <div class="intro-kicker" data-i18n="introKicker">House of Ra Invitation</div>
+          <div class="intro-title" data-i18n="introNames">Abed & Suraya</div>
+          <div class="intro-sub" data-i18n="introSub">Enter a sleek neo-Egyptian wedding invitation filled with golden light, animated details, and an unforgettable celebration.</div>
+          <div class="intro-pills">
+            <div class="pill" data-i18n="introMeta1">14 November 2028</div>
+            <div class="pill" data-i18n="introMeta2">Sands of Ra Pavilion</div>
+            <div class="pill" data-i18n="introMeta3">Giza</div>
+          </div>
+        </div>
+        <button class="open-btn" id="openBtn" type="button" data-i18n="openBtn">Unseal the Cartouche ✦</button>
       </div>
     </div>
-    <button class="start-btn" id="startBtn" type="button" data-i18n="start">Raise the Curtain 🎭</button>
   </div>
-</div>
 
-<div class="app" id="app">
-  <header class="topbar">
-    <div class="brand"><div class="brand-mark">🎭</div><div><strong data-i18n="brand">Cassian & Elowen</strong><span data-i18n="sub">Royal Theatre Invitation</span></div></div>
-    <div class="tools"><button class="tool" id="langBtn" type="button">عربي</button><button class="tool" id="musicBtn" type="button">🔊</button><button class="tool" id="copyBtn" type="button">⧉</button><button class="tool" id="shareBtn" type="button">↗</button></div>
-  </header>
+  <div class="scan-glow" id="scanGlow"></div>
 
-  <main class="stage">
-    <section class="turntable">
-      <article class="act active" data-act="opening">
-        <div class="visual" style="background-image:url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80')"><div class="visual-label" data-i18n="label1">Act I · The Invitation</div></div>
-        <div class="content">
-          <div class="kicker" data-i18n="a1k">The Curtain Rises</div>
-          <h1 class="title" data-i18n="a1t">A Royal Wedding Performance</h1>
-          <p class="text" data-i18n="a1p">You are invited to a theatre-inspired royal celebration filled with velvet curtains, candlelight, dinner, music, and a grand final dance.</p>
-          <div class="countdown"><div class="time"><span id="days">00</span><small data-i18n="days">Days</small></div><div class="time"><span id="hours">00</span><small data-i18n="hours">Hours</small></div><div class="time"><span id="minutes">00</span><small data-i18n="minutes">Minutes</small></div><div class="time"><span id="seconds">00</span><small data-i18n="seconds">Seconds</small></div></div>
-          <div class="actions"><button class="btn gold" type="button" data-jump="rsvp" data-i18n="reserve">Reserve Your Seat</button><a class="btn glass" href="https://www.google.com/maps/search/royal+theatre+wedding+venue" target="_blank" data-i18n="map">Open Location 📍</a></div>
-        </div>
-      </article>
-
-      <article class="act" data-act="program">
-        <div class="visual" style="background-image:url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1200&q=80')"><div class="visual-label" data-i18n="label2">Act II · The Program</div></div>
-        <div class="content">
-          <div class="kicker" data-i18n="a2k">Performance Program</div>
-          <h2 class="title" data-i18n="a2t">Choose an Act</h2>
-          <p class="text" data-i18n="a2p">Tap each act to reveal the exact moment of the celebration.</p>
-          <div class="room-grid">
-            <div class="room active" data-room="arrival"><strong data-i18n="r1">Act I · Arrival</strong><span data-i18n="r1s">7:30 PM</span></div>
-            <div class="room" data-room="vows"><strong data-i18n="r2">Act II · Vows</strong><span data-i18n="r2s">8:00 PM</span></div>
-            <div class="room" data-room="dinner"><strong data-i18n="r3">Act III · Banquet</strong><span data-i18n="r3s">9:00 PM</span></div>
-            <div class="room" data-room="dance"><strong data-i18n="r4">Finale · Dance</strong><span data-i18n="r4s">10:30 PM</span></div>
+  <div class="site" id="site">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="brand-mark">𓂀</div>
+          <div class="brand-text">
+            <strong data-i18n="brandNames">Abed & Suraya</strong>
+            <span data-i18n="brandSub">Neo-Egyptian Wedding Invitation</span>
           </div>
-          <div class="note" id="roomNote"></div>
         </div>
-      </article>
-
-      <article class="act" data-act="ticket">
-        <div class="visual" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')"><div class="visual-label" data-i18n="label3">Act III · Your Ticket</div></div>
-        <div class="content">
-          <div class="kicker" data-i18n="a3k">Royal Seat Ticket</div>
-          <h2 class="title" data-i18n="a3t">Generate a Guest Ticket</h2>
-          <p class="text" data-i18n="a3p">When guests enter their name in RSVP, the site creates a theatre-style wedding ticket.</p>
-          <div class="note" id="liveTicket">ROYAL THEATRE TICKET · Guest · 14 June 2028 · 8:00 PM</div>
-          <div class="actions"><button class="btn gold" type="button" data-jump="rsvp" data-i18n="makeTicket">Make My Ticket</button><a class="btn glass" id="calendarBtn" href="#" target="_blank" data-i18n="calendar">Save to Calendar 🗓️</a></div>
+        <div class="tools">
+          <button class="tool-btn" id="langToggle" type="button">عربي</button>
+          <button class="tool-btn" id="musicToggle" type="button">🔊</button>
+          <button class="tool-btn" id="copyBtn" type="button">⧉</button>
+          <button class="tool-btn" id="shareBtn" type="button">↗</button>
         </div>
-      </article>
+      </div>
+      <div class="progress-wrap"><div class="progress-fill" id="progressFill"></div></div>
+    </header>
 
-      <article class="act" data-act="gallery">
-        <div class="visual" style="background-image:url('https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=1200&q=80')"><div class="visual-label" data-i18n="label4">Act IV · The Mood</div></div>
-        <div class="content">
-          <div class="kicker" data-i18n="a4k">Stage Moodboard</div>
-          <h2 class="title" data-i18n="a4t">Swipe the Scenery</h2>
-          <p class="text" data-i18n="a4p">The gallery is presented like stage scenery, not as normal website photos.</p>
-          <div class="gallery"><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=700&q=80')"></div><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=700&q=80')"></div><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=700&q=80')"></div><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=700&q=80')"></div></div>
+    <nav class="side-nav">
+      <a href="#home" data-nav="home" class="active">01</a>
+      <a href="#oracle" data-nav="oracle">02</a>
+      <a href="#gallery" data-nav="gallery">03</a>
+      <a href="#rsvp" data-nav="rsvp">04</a>
+    </nav>
+
+    <main class="page">
+      <section class="section" id="home">
+        <div class="card reveal">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <div class="kicker" data-i18n="heroKicker">Temple Welcome</div>
+              <h1 class="title" data-i18n="heroTitle">A Golden Evening Beneath the Desert Sky</h1>
+              <p class="text" data-i18n="heroText">You are invited to a radiant wedding celebration inspired by timeless Egyptian elegance, modern luxury, and unforgettable atmosphere.</p>
+              <div class="hero-status">
+                <div class="status-card"><strong data-i18n="status1Strong">VIP</strong><span data-i18n="status1Label">Guest Pass</span></div>
+                <div class="status-card"><strong data-i18n="status2Strong">Formal</strong><span data-i18n="status2Label">Attire</span></div>
+                <div class="status-card"><strong data-i18n="status3Strong">Giza</strong><span data-i18n="status3Label">Destination</span></div>
+              </div>
+              <div class="countdown">
+                <div class="time-box"><span id="days">00</span><small data-i18n="days">Days</small></div>
+                <div class="time-box"><span id="hours">00</span><small data-i18n="hours">Hours</small></div>
+                <div class="time-box"><span id="minutes">00</span><small data-i18n="minutes">Minutes</small></div>
+                <div class="time-box"><span id="seconds">00</span><small data-i18n="seconds">Seconds</small></div>
+              </div>
+              <div class="hero-actions">
+                <a class="btn gold" href="#rsvp" data-i18n="heroBtn1">Reserve Your Place</a>
+                <a class="btn glass" href="https://www.google.com/maps/search/Giza+Pyramids" target="_blank" data-i18n="heroBtn2">Open Location 📍</a>
+              </div>
+            </div>
+            <div class="hero-visual">
+              <div class="sun-ring"></div>
+              <div class="royal-pass">
+                <div class="royal-top"><span data-i18n="passType">Royal Guest Pass</span><span>HR-1408</span></div>
+                <div class="royal-names" data-i18n="passNames">Abed & Suraya</div>
+                <div class="royal-info" data-i18n="passInfo">14 November 2028 · Sands of Ra Pavilion, Giza · Ceremony 7:00 PM</div>
+              </div>
+            </div>
+          </div>
         </div>
-      </article>
+      </section>
 
-      <article class="act" data-act="rsvp">
-        <div class="visual" style="background-image:url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=80')"><div class="visual-label" data-i18n="label5">Final Act · RSVP</div></div>
-        <div class="content">
-          <div class="kicker" data-i18n="a5k">Final Curtain Reply</div>
-          <h2 class="title" data-i18n="a5t">Reserve Your Royal Seat</h2>
-          <p class="text" data-i18n="a5p">Add your name, guest count, and choose which royal side you are attending from.</p>
-          <div class="form"><input class="field" id="guestName" type="text" placeholder="Your name" data-placeholder-en="Your name" data-placeholder-ar="اسمك"><select class="field" id="guestCount"><option value="1">1 Guest</option><option value="2">2 Guests</option><option value="3">3 Guests</option><option value="4">4 Guests</option></select><button class="btn gold" id="yesBtn" type="button" data-i18n="yes">Yes, I Will Attend 🎭</button><a class="btn glass" id="noBtn" href="https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C" target="_blank" data-i18n="no">Can’t Make It</a></div>
+      <section class="section" id="oracle">
+        <div class="card reveal">
+          <div class="oracle-grid">
+            <div class="oracle-copy">
+              <div class="kicker" data-i18n="oracleKicker">Oracle Console</div>
+              <h2 class="title" data-i18n="oracleTitle">Tap the Symbols to Reveal the Night</h2>
+              <p class="text" data-i18n="oracleText">Select a glowing symbol to preview the ceremony, reception, afterparty, and guest details.</p>
+            </div>
+            <div class="oracle-side">
+              <div class="oracle-panel">
+                <div class="oracle-head" data-i18n="oracleHead">Temple Access</div>
+                <div class="oracle-buttons">
+                  <button class="oracle-btn selected" data-oracle="ceremony" data-i18n="oracleBtn1">Ceremony</button>
+                  <button class="oracle-btn" data-oracle="reception" data-i18n="oracleBtn2">Reception</button>
+                  <button class="oracle-btn" data-oracle="afterparty" data-i18n="oracleBtn3">Afterparty</button>
+                  <button class="oracle-btn" data-oracle="guest" data-i18n="oracleBtn4">Guest Notes</button>
+                </div>
+                <div class="oracle-result" id="oracleResult">
+                  <strong data-i18n="oracleLabel">Selected Revelation</strong>
+                  <h3 id="oracleTitleText">Sacred Ceremony</h3>
+                  <p id="oracleTextBody">The couple enters beneath golden light for vows surrounded by candle glow, sculptural florals, and timeless elegance.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </article>
-    </section>
-  </main>
+      </section>
 
-  <nav class="act-nav"><div class="act-track"><button class="act-btn active" type="button" data-actbtn="opening" data-i18n="nav1">Opening</button><button class="act-btn" type="button" data-actbtn="program" data-i18n="nav2">Program</button><button class="act-btn" type="button" data-actbtn="ticket" data-i18n="nav3">Ticket</button><button class="act-btn" type="button" data-actbtn="gallery" data-i18n="nav4">Gallery</button><button class="act-btn" type="button" data-actbtn="rsvp" data-i18n="nav5">RSVP</button></div></nav>
-</div>
+      <section class="section" id="experience">
+        <div class="card reveal">
+          <div class="experience-wrap">
+            <div class="kicker" data-i18n="expKicker">Wedding Experience</div>
+            <h2 class="title" data-i18n="expTitle">An Immersive Celebration</h2>
+            <p class="text" data-i18n="expText">Every part of the evening is designed to feel elevated, cinematic, and richly atmospheric.</p>
+            <div class="experience-grid">
+              <div class="exp-card"><div class="exp-icon">𓋹</div><h3 data-i18n="exp1Title">Arrival</h3><p data-i18n="exp1Text">A dramatic entrance lined with lantern glow, desert tones, and rich golden details.</p></div>
+              <div class="exp-card"><div class="exp-icon">✦</div><h3 data-i18n="exp2Title">Ceremony</h3><p data-i18n="exp2Text">An elegant ceremony setting inspired by temple symmetry and warm ambient light.</p></div>
+              <div class="exp-card"><div class="exp-icon">☥</div><h3 data-i18n="exp3Title">Dinner</h3><p data-i18n="exp3Text">A refined feast with layered textures, candlelit tables, and a regal atmosphere.</p></div>
+              <div class="exp-card"><div class="exp-icon">𓂀</div><h3 data-i18n="exp4Title">Afterglow</h3><p data-i18n="exp4Text">Music, dancing, and a glowing late-night energy that keeps the celebration alive.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<div class="modal" id="sideModal"><div class="modal-box"><button class="close" id="closeModal" type="button">×</button><h2 data-i18n="modalT">Choose Your Side</h2><p data-i18n="modalP">Select which royal side should receive your reply.</p><div class="modal-actions"><button class="btn gold" id="brideBtn" type="button" data-i18n="bride">Princess Side</button><button class="btn glass" id="groomBtn" type="button" data-i18n="groom">Prince Side</button></div></div></div>
+      <section class="section" id="timeline">
+        <div class="card reveal">
+          <div class="timeline-wrap">
+            <div class="kicker" data-i18n="timeKicker">Evening Route</div>
+            <h2 class="title" data-i18n="timeTitle">Your Royal Itinerary</h2>
+            <p class="text" data-i18n="timeText">A seamless progression from arrival to the final celebration.</p>
+            <div class="timeline-list">
+              <div class="timeline-item"><div class="timeline-time" data-i18n="timeline1Time">6:30 PM</div><div class="timeline-text"><strong data-i18n="timeline1Title">Guest Arrival</strong><span data-i18n="timeline1Text">Welcome drinks, golden lanterns, and a first look at the desert-inspired venue.</span></div><div class="timeline-icon">✦</div></div>
+              <div class="timeline-item"><div class="timeline-time" data-i18n="timeline2Time">7:00 PM</div><div class="timeline-text"><strong data-i18n="timeline2Title">Ceremony</strong><span data-i18n="timeline2Text">The couple exchanges vows beneath glowing architectural details and warm candlelight.</span></div><div class="timeline-icon">☥</div></div>
+              <div class="timeline-item"><div class="timeline-time" data-i18n="timeline3Time">8:00 PM</div><div class="timeline-text"><strong data-i18n="timeline3Title">Dinner & Toasts</strong><span data-i18n="timeline3Text">A seated dinner begins, surrounded by music, elegant décor, and celebration.</span></div><div class="timeline-icon">𓋹</div></div>
+              <div class="timeline-item"><div class="timeline-time" data-i18n="timeline4Time">10:00 PM</div><div class="timeline-text"><strong data-i18n="timeline4Title">Afterparty</strong><span data-i18n="timeline4Text">The atmosphere shifts into a glowing night of dancing, rhythm, and movement.</span></div><div class="timeline-icon">𓂀</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  const $ = function(s){ return document.querySelector(s); };
-  const $$ = function(s){ return Array.from(document.querySelectorAll(s)); };
-  let lang = 'en';
+      <section class="section" id="gallery">
+        <div class="card reveal">
+          <div class="gallery-grid">
+            <div class="palette-side">
+              <div class="kicker" data-i18n="paletteKicker">Color Ritual</div>
+              <h2 class="title" data-i18n="paletteTitle">Choose the Mood</h2>
+              <p class="text" data-i18n="paletteText">Switch the visual palette to preview different luxury directions for the invitation.</p>
+              <div class="palette-picks">
+                <button class="palette-btn active" data-palette-choice="gold" data-i18n="paletteBtn1">Sun Gold</button>
+                <button class="palette-btn" data-palette-choice="emerald" data-i18n="paletteBtn2">Nile Emerald</button>
+                <button class="palette-btn" data-palette-choice="ruby" data-i18n="paletteBtn3">Ruby Sunset</button>
+              </div>
+              <div class="palette-note" id="paletteNote" data-i18n="paletteNoteGold">A luminous golden palette inspired by temple metals, sand light, and regal warmth.</div>
+            </div>
+            <div class="gallery-side">
+              <div class="memory-row">
+                <div class="memory-card"><div class="memory-image" style="background-image:url('https://images.unsplash.com/photo-1539650116574-75c0c6d73f11?auto=format&fit=crop&w=900&q=80')"></div><div class="memory-caption"><strong data-i18n="memory1Title">The Setting</strong><span data-i18n="memory1Text">An iconic location, dramatic atmosphere, and unforgettable architectural presence.</span></div></div>
+                <div class="memory-card"><div class="memory-image" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80')"></div><div class="memory-caption"><strong data-i18n="memory2Title">The Couple</strong><span data-i18n="memory2Text">A love story framed in golden light and timeless elegance.</span></div></div>
+                <div class="memory-card"><div class="memory-image" style="background-image:url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80')"></div><div class="memory-caption"><strong data-i18n="memory3Title">The Celebration</strong><span data-i18n="memory3Text">Refined table styling, floral details, and a warm ceremonial atmosphere.</span></div></div>
+                <div class="memory-card"><div class="memory-image" style="background-image:url('https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=900&q=80')"></div><div class="memory-caption"><strong data-i18n="memory4Title">The Finale</strong><span data-i18n="memory4Text">A glowing finish full of music, energy, and beautiful motion.</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  const intro = $('#intro');
-  const app = $('#app');
-  const start = $('#startBtn');
-  const music = $('#music');
-  const musicBtn = $('#musicBtn');
-  const langBtn = $('#langBtn');
-  const guestName = $('#guestName');
-  const guestCount = $('#guestCount');
-  const liveTicket = $('#liveTicket');
-  const sideModal = $('#sideModal');
+      <section class="section" id="rsvp">
+        <div class="card reveal">
+          <div class="rsvp-grid">
+            <div class="faq-side">
+              <div class="kicker" data-i18n="faqKicker">Guest Questions</div>
+              <h2 class="title" data-i18n="faqTitle">Before the Celebration</h2>
+              <p class="text" data-i18n="faqText">Helpful notes for the evening.</p>
+              <div class="faq-list">
+                <div class="faq-item"><button class="faq-q" type="button"><span data-i18n="faq1Q">Is there a dress code?</span><span>+</span></button><div class="faq-a" data-i18n="faq1A">Yes — elegant formal attire is recommended. Gold, black, ivory, and jewel tones are perfect.</div></div>
+                <div class="faq-item"><button class="faq-q" type="button"><span data-i18n="faq2Q">Is it adults only?</span><span>+</span></button><div class="faq-a" data-i18n="faq2A">Yes, this event is planned as an adults-only evening.</div></div>
+                <div class="faq-item"><button class="faq-q" type="button"><span data-i18n="faq3Q">When should I arrive?</span><span>+</span></button><div class="faq-a" data-i18n="faq3A">We recommend arriving 20–30 minutes early to enjoy the welcome experience.</div></div>
+              </div>
+            </div>
+            <div class="rsvp-side">
+              <div class="kicker" data-i18n="rsvpKicker">RSVP</div>
+              <h2 class="title" data-i18n="rsvpTitle">Confirm Your Presence</h2>
+              <p class="text" data-i18n="rsvpText">Add your name, select your guest count, and confirm through WhatsApp.</p>
+              <div class="rsvp-mini">
+                <div class="mini" data-i18n="mini1">Sands of Ra Pavilion, Giza</div>
+                <div class="mini" data-i18n="mini2">14 November 2028</div>
+                <div class="mini" data-i18n="mini3">Ceremony 7:00 PM</div>
+              </div>
+              <div class="guest-form">
+                <input class="field" id="guestName" type="text" placeholder="Your name" data-placeholder-en="Your name" data-placeholder-ar="اسمك">
+                <select class="field" id="guestCount"><option value="1">1 Guest</option><option value="2">2 Guests</option><option value="3">3 Guests</option><option value="4">4 Guests</option></select>
+              </div>
+              <div class="rsvp-actions">
+                <button class="btn gold" id="yesBtn" type="button" data-i18n="yesBtn">Yes, I’ll Attend ✦</button>
+                <a class="btn glass" id="noBtn" href="https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C" target="_blank" data-i18n="noBtn">Can’t Make It</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  const tracks = [
-    'https://cdn.pixabay.com/download/audio/2022/03/15/audio_2c6f7b6f64.mp3?filename=piano-moment-9835.mp3',
-    'https://cdn.pixabay.com/download/audio/2021/11/25/audio_cb407cc8e9.mp3?filename=romantic-piano-11000.mp3'
-  ];
-  if(music){ music.src = tracks[Math.floor(Math.random() * tracks.length)]; music.volume = 0.13; }
+      <section class="section" id="final">
+        <div class="card reveal">
+          <div class="final-wrap">
+            <div class="final-wall">
+              <div class="kicker" data-i18n="finalKicker">Final Seal</div>
+              <h2 class="title" data-i18n="finalTitle">We Can’t Wait to Celebrate With You</h2>
+              <p class="text" data-i18n="finalText">Save the date, open the location, and join us for a luminous evening in Giza.</p>
+              <div class="final-actions">
+                <a class="btn gold" href="https://www.google.com/maps/search/Giza+Pyramids" target="_blank" data-i18n="locationBtn">Open Location 📍</a>
+                <a class="btn dark" id="calendarBtn" href="#" target="_blank" data-i18n="calendarBtn">Save to Calendar 🗓️</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  function spark(){
-    const s = document.createElement('div');
-    s.className = 'spark';
-    s.style.left = Math.random() * window.innerWidth + 'px';
-    s.style.top = (window.innerHeight - 10 + Math.random() * 70) + 'px';
-    document.body.appendChild(s);
-    setTimeout(function(){ s.remove(); }, 4200);
-  }
+      <footer class="footer">
+        <strong data-i18n="footerNames">Abed & Suraya · 14 November 2028</strong>
+        <span data-i18n="footerSub">A portfolio demo by Amour De Minuit ✨</span>
+      </footer>
+    </main>
 
-  function floaty(force){
-    const f = document.createElement('div');
-    f.className = 'floaty';
-    const icons = ['🎭','✦','❦','✨','♕'];
-    f.textContent = icons[Math.floor(Math.random() * icons.length)];
-    f.style.left = (force ? window.innerWidth / 2 + Math.random() * 180 - 90 : Math.random() * window.innerWidth) + 'px';
-    f.style.top = (force ? window.innerHeight / 2 + Math.random() * 80 - 40 : window.innerHeight - 10 + Math.random() * 70) + 'px';
-    document.body.appendChild(f);
-    setTimeout(function(){ f.remove(); }, 6200);
-  }
+    <nav class="bottom-dock">
+      <a href="#home" data-nav="home" class="active" data-i18n="navHome">Home</a>
+      <a href="#oracle" data-nav="oracle" data-i18n="navOracle">Oracle</a>
+      <a href="#gallery" data-nav="gallery" data-i18n="navGallery">Gallery</a>
+      <a href="#rsvp" data-nav="rsvp" data-i18n="navRsvp">RSVP</a>
+    </nav>
+  </div>
 
-  function openAct(name){
-    $$('.act').forEach(function(a){ a.classList.toggle('active', a.dataset.act === name); });
-    $$('.act-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.actbtn === name); });
-    spark();
-  }
+  <div class="modal" id="sideModal">
+    <div class="modal-box">
+      <button class="close-modal" id="sideClose" type="button">×</button>
+      <h2 data-i18n="modalTitle">Which side are you from?</h2>
+      <p data-i18n="modalText">Please choose before confirming your RSVP.</p>
+      <div class="modal-actions">
+        <button class="btn gold" id="brideSideBtn" type="button" data-i18n="brideSide">Bride’s Side</button>
+        <button class="btn dark" id="groomSideBtn" type="button" data-i18n="groomSide">Groom’s Side</button>
+      </div>
+    </div>
+  </div>
 
-  function openExperience(){
-    if(!intro || !app) return;
-    intro.classList.add('opening');
-    document.body.classList.add('opened');
-    for(let i = 0; i < 18; i++) floaty(true);
+  <script>
+    const intro=document.getElementById("intro"),openBtn=document.getElementById("openBtn"),scanGlow=document.getElementById("scanGlow"),site=document.getElementById("site"),music=document.getElementById("bgMusic"),musicToggle=document.getElementById("musicToggle"),langToggle=document.getElementById("langToggle"),copyBtn=document.getElementById("copyBtn"),shareBtn=document.getElementById("shareBtn"),progressFill=document.getElementById("progressFill"),yesBtn=document.getElementById("yesBtn"),noBtn=document.getElementById("noBtn"),sideModal=document.getElementById("sideModal"),sideClose=document.getElementById("sideClose"),brideSideBtn=document.getElementById("brideSideBtn"),groomSideBtn=document.getElementById("groomSideBtn"),guestName=document.getElementById("guestName"),guestCount=document.getElementById("guestCount"),calendarBtn=document.getElementById("calendarBtn"),paletteNote=document.getElementById("paletteNote"),oracleTitleText=document.getElementById("oracleTitleText"),oracleTextBody=document.getElementById("oracleTextBody");
+    let currentLang="en";
 
-    if(music && musicBtn){
-      music.play().then(function(){
-        musicBtn.textContent = '🔊';
-        musicBtn.classList.remove('muted');
-      }).catch(function(){
-        musicBtn.textContent = '🔇';
-        musicBtn.classList.add('muted');
-      });
-    }
+    const tracks=["https://cdn.pixabay.com/download/audio/2022/03/15/audio_2c6f7b6f64.mp3?filename=piano-moment-9835.mp3","https://cdn.pixabay.com/download/audio/2021/11/25/audio_cb407cc8e9.mp3?filename=romantic-piano-11000.mp3"];
+    music.src=tracks[Math.floor(Math.random()*tracks.length)]; music.volume=.13;
 
-    app.style.display = 'grid';
-    app.style.opacity = '0';
-    setTimeout(function(){ app.classList.add('show'); app.style.opacity = '1'; openAct('opening'); tick(); }, 120);
-    setTimeout(function(){ intro.classList.add('hide'); }, 450);
-    setTimeout(function(){ intro.style.display = 'none'; }, 1150);
-  }
+    openBtn.addEventListener("click",()=>{intro.classList.add("opening");scanGlow.classList.add("play");for(let i=0;i<16;i++)spawnSymbol(true);music.play().then(()=>{musicToggle.textContent="🔊";musicToggle.classList.remove("muted")}).catch(()=>{musicToggle.textContent="🔇";musicToggle.classList.add("muted")});setTimeout(()=>{intro.classList.add("hide");site.classList.add("show");window.scrollTo(0,0)},900);setTimeout(()=>{intro.style.display="none";scanGlow.style.display="none"},1650)});
+    musicToggle.addEventListener("click",()=>{if(music.paused){music.play();musicToggle.textContent="🔊";musicToggle.classList.remove("muted")}else{music.pause();musicToggle.textContent="🔇";musicToggle.classList.add("muted")}});
 
-  if(start){ start.addEventListener('click', openExperience); }
-  if(musicBtn){
-    musicBtn.addEventListener('click', function(){
-      if(!music) return;
-      if(music.paused){ music.play(); musicBtn.textContent = '🔊'; musicBtn.classList.remove('muted'); }
-      else{ music.pause(); musicBtn.textContent = '🔇'; musicBtn.classList.add('muted'); }
-    });
-  }
+    const weddingDate=new Date("2028-11-14T19:00:00").getTime();
+    function updateCountdown(){const diff=weddingDate-Date.now();if(diff<=0){["days","hours","minutes","seconds"].forEach(id=>document.getElementById(id).textContent="00");return}document.getElementById("days").textContent=Math.floor(diff/(1000*60*60*24));document.getElementById("hours").textContent=Math.floor((diff/(1000*60*60))%24);document.getElementById("minutes").textContent=Math.floor((diff/(1000*60))%60);document.getElementById("seconds").textContent=Math.floor((diff/1000)%60)}
+    setInterval(updateCountdown,1000);updateCountdown();
 
-  $$('[data-actbtn]').forEach(function(b){ b.addEventListener('click', function(){ openAct(b.dataset.actbtn); }); });
-  $$('[data-jump]').forEach(function(b){ b.addEventListener('click', function(){ openAct(b.dataset.jump); }); });
+    function setupCalendar(){const title=encodeURIComponent("Abed & Suraya Wedding");const details=encodeURIComponent("Join Abed & Suraya at Sands of Ra Pavilion, Giza for a neo-Egyptian wedding celebration.");const location=encodeURIComponent("Sands of Ra Pavilion, Giza");const dates="20281114T190000/20281115T010000";calendarBtn.href=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`}
+    setupCalendar();
 
-  const weddingDate = new Date('2028-06-14T20:00:00').getTime();
-  function tick(){
-    const d = weddingDate - Date.now();
-    if(d <= 0) return;
-    const days = $('#days'), hours = $('#hours'), minutes = $('#minutes'), seconds = $('#seconds');
-    if(days) days.textContent = Math.floor(d / 86400000);
-    if(hours) hours.textContent = Math.floor((d / 3600000) % 24);
-    if(minutes) minutes.textContent = Math.floor((d / 60000) % 60);
-    if(seconds) seconds.textContent = Math.floor((d / 1000) % 60);
-  }
-  setInterval(tick, 1000); tick();
+    const revealObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add("show")})},{threshold:.12,rootMargin:"80px"});
+    document.querySelectorAll(".reveal").forEach(el=>revealObserver.observe(el));
 
-  const calendarBtn = $('#calendarBtn');
-  if(calendarBtn){
-    calendarBtn.href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent('Cassian & Elowen Wedding') + '&dates=20280614T200000/20280615T013000&details=' + encodeURIComponent('Royal theatre wedding celebration.') + '&location=' + encodeURIComponent('Royal Theatre Wedding Venue');
-  }
+    const sectionIds=["home","oracle","gallery","rsvp"],navLinks=document.querySelectorAll("[data-nav]");
+    function updateScrollUI(){const scrollTop=document.documentElement.scrollTop||document.body.scrollTop;const height=document.documentElement.scrollHeight-document.documentElement.clientHeight;progressFill.style.width=(height?scrollTop/height*100:0)+"%";let active="home";sectionIds.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<window.innerHeight*.45)active=id});navLinks.forEach(link=>link.classList.toggle("active",link.dataset.nav===active))}
+    window.addEventListener("scroll",updateScrollUI);updateScrollUI();
 
-  const roomData = {
-    en:{arrival:'Act I · Guests arrive at 7:30 PM through the velvet foyer for welcome drinks and candlelit portraits.',vows:'Act II · The ceremony begins at 8:00 PM beneath chandeliers and a royal floral arch.',dinner:'Act III · Dinner and toasts begin at 9:00 PM with palace-inspired table styling.',dance:'Finale · At 10:30 PM, the floor opens for music, dancing, and the final curtain celebration.'},
-    ar:{arrival:'الفصل الأول · يصل الضيوف الساعة ٧:٣٠ مساءً عبر المدخل المخملي لمشروبات الترحيب والصور.',vows:'الفصل الثاني · تبدأ المراسم الساعة ٨:٠٠ مساءً تحت الثريات وقوس الزهور الملكي.',dinner:'الفصل الثالث · يبدأ العشاء والنخب الساعة ٩:٠٠ مساءً مع تنسيق طاولات مستوحى من القصور.',dance:'الختام · الساعة ١٠:٣٠ مساءً تُفتح ساحة الرقص للموسيقى والاحتفال الأخير.'}
-  };
-  function setRoom(key){
-    const roomNote = $('#roomNote');
-    if(roomNote) roomNote.textContent = roomData[lang][key];
-    $$('.room').forEach(function(r){ r.classList.toggle('active', r.dataset.room === key); });
-  }
-  $$('.room').forEach(function(r){ r.addEventListener('click', function(){ setRoom(r.dataset.room); }); });
-  setRoom('arrival');
+    document.querySelectorAll(".faq-item").forEach(item=>item.querySelector(".faq-q").addEventListener("click",()=>item.classList.toggle("open")));
 
-  function updateTicket(){
-    if(!guestName || !guestCount || !liveTicket) return;
-    const n = guestName.value.trim() || (lang === 'ar' ? 'ضيف' : 'Guest');
-    liveTicket.textContent = lang === 'ar' ? 'تذكرة المسرح الملكي · ' + n + ' · ' + guestCount.value + ' ضيف · 14 يونيو 2028' : 'ROYAL THEATRE TICKET · ' + n + ' · ' + guestCount.value + ' guest(s) · 14 June 2028';
-  }
-  if(guestName) guestName.addEventListener('input', updateTicket);
-  if(guestCount) guestCount.addEventListener('change', updateTicket);
-  updateTicket();
+    const oracleContent={
+      en:{ceremony:{title:"Sacred Ceremony",text:"The couple enters beneath golden light for vows surrounded by candle glow, sculptural florals, and timeless elegance."},reception:{title:"Golden Reception",text:"Guests move into a luminous reception with rich décor, cocktails, warm music, and cinematic atmosphere."},afterparty:{title:"Desert Afterglow",text:"The night shifts into motion with dancing, rhythm, energy, and glowing late-night celebration."},guest:{title:"Guest Guidance",text:"Arrive early, dress elegantly, and use the RSVP section below to confirm your attendance and guest count."}},
+      ar:{ceremony:{title:"المراسم المقدسة",text:"يدخل العروسان تحت ضوء ذهبي للعهود وسط الشموع والتفاصيل الأنيقة والأجواء الراقية."},reception:{title:"الاستقبال الذهبي",text:"ينتقل الضيوف إلى استقبال مضيء بديكور غني ومشروبات وموسيقى دافئة وأجواء سينمائية."},afterparty:{title:"وهج الصحراء",text:"تتحول الليلة إلى حركة وطاقة مع الرقص والإيقاع واحتفال ليلي متوهج."},guest:{title:"إرشادات الضيوف",text:"يرجى الوصول مبكرًا وارتداء لباس أنيق واستخدام قسم RSVP أدناه لتأكيد الحضور وعدد الضيوف."}}
+    };
+    function updateOracle(key){oracleTitleText.textContent=oracleContent[currentLang][key].title;oracleTextBody.textContent=oracleContent[currentLang][key].text}
+    document.querySelectorAll(".oracle-btn").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll(".oracle-btn").forEach(b=>b.classList.remove("selected"));btn.classList.add("selected");updateOracle(btn.dataset.oracle);spawnSpark()}));updateOracle("ceremony");
 
-  const yesBtn = $('#yesBtn');
-  const closeModal = $('#closeModal');
-  if(yesBtn){ yesBtn.addEventListener('click', function(){ if(sideModal) sideModal.style.display = 'flex'; floaty(false); }); }
-  if(closeModal){ closeModal.addEventListener('click', function(){ if(sideModal) sideModal.style.display = 'none'; }); }
-  if(sideModal){ sideModal.addEventListener('click', function(e){ if(e.target === sideModal) sideModal.style.display = 'none'; }); }
+    const paletteNotes={en:{gold:"A luminous golden palette inspired by temple metals, sand light, and regal warmth.",emerald:"A cooler, richer direction inspired by the Nile, deep stone, and precious green accents.",ruby:"A dramatic sunset palette with warm ruby glow, darker contrast, and bold evening energy."},ar:{gold:"لوحة ذهبية مضيئة مستوحاة من المعادن الملكية وضوء الرمال والدفء الفخم.",emerald:"اتجاه أغنى وأكثر برودة مستوحى من النيل والحجر الداكن ولمسات الزمرد.",ruby:"لوحة درامية بلون الغروب الياقوتي مع توهج دافئ وتباين أعمق وطاقة مسائية قوية."}};
+    document.querySelectorAll(".palette-btn").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll(".palette-btn").forEach(b=>b.classList.remove("active"));btn.classList.add("active");const palette=btn.dataset.paletteChoice;document.body.setAttribute("data-palette",palette);paletteNote.textContent=paletteNotes[currentLang][palette];spawnSymbol()}));
 
-  function rsvpText(){
-    const n = guestName && guestName.value.trim() ? guestName.value.trim() : (lang === 'ar' ? 'ضيف' : 'Guest');
-    const c = guestCount ? guestCount.value : '1';
-    return lang === 'ar' ? encodeURIComponent('نعم، سأحضر زفاف كاسيان وإلوين ✅\nالاسم: ' + n + '\nعدد الأشخاص: ' + c) : encodeURIComponent('Yes, I will attend Cassian & Elowen\'s wedding ✅\nName: ' + n + '\nNumber of Guests: ' + c);
-  }
-  const brideBtn = $('#brideBtn');
-  const groomBtn = $('#groomBtn');
-  if(brideBtn){ brideBtn.addEventListener('click', function(){ window.open('https://wa.me/96100000000?text=' + rsvpText(), '_blank'); if(sideModal) sideModal.style.display = 'none'; }); }
-  if(groomBtn){ groomBtn.addEventListener('click', function(){ window.open('https://wa.me/96111111111?text=' + rsvpText(), '_blank'); if(sideModal) sideModal.style.display = 'none'; }); }
+    yesBtn.addEventListener("click",()=>{sideModal.style.display="flex";for(let i=0;i<10;i++)spawnSymbol()});
+    sideClose.addEventListener("click",()=>sideModal.style.display="none");
+    sideModal.addEventListener("click",e=>{if(e.target===sideModal)sideModal.style.display="none"});
 
-  function summary(){
-    return lang === 'ar' ? 'دعوة زفاف كاسيان وإلوين\nالمكان: Royal Theatre Wedding Venue\nالتاريخ: 14 يونيو 2028\nالوقت: 8:00 مساءً' : 'Cassian & Elowen Wedding Invitation\nVenue: Royal Theatre Wedding Venue\nDate: 14 June 2028\nTime: 8:00 PM';
-  }
-  const copyBtn = $('#copyBtn');
-  const shareBtn = $('#shareBtn');
-  if(copyBtn){ copyBtn.addEventListener('click', async function(){ try{ await navigator.clipboard.writeText(summary()); copyBtn.textContent = '✓'; setTimeout(function(){ copyBtn.textContent = '⧉'; }, 1200); }catch(e){ copyBtn.textContent = '!'; setTimeout(function(){ copyBtn.textContent = '⧉'; }, 1200); } }); }
-  if(shareBtn){ shareBtn.addEventListener('click', async function(){ const data = {title:'Cassian & Elowen Wedding', text:summary(), url:location.href}; if(navigator.share){ try{ await navigator.share(data); }catch(e){} } else { try{ await navigator.clipboard.writeText(summary() + '\n' + location.href); }catch(e){} } }); }
+    function rsvpText(){const name=guestName.value.trim()||(currentLang==="ar"?"ضيف":"Guest");const guests=guestCount.value;if(currentLang==="ar")return encodeURIComponent(`نعم، سأحضر زفاف عبد وسورايا ✅\nالاسم: ${name}\nعدد الأشخاص: ${guests}`);return encodeURIComponent(`Yes, I will attend Abed & Suraya's wedding ✅\nName: ${name}\nNumber of Guests: ${guests}`)}
+    brideSideBtn.addEventListener("click",()=>{window.open("https://wa.me/96100000000?text="+rsvpText(),"_blank");sideModal.style.display="none";for(let i=0;i<10;i++)spawnSpark()});
+    groomSideBtn.addEventListener("click",()=>{window.open("https://wa.me/96111111111?text="+rsvpText(),"_blank");sideModal.style.display="none";for(let i=0;i<10;i++)spawnSpark()});
 
-  const t = {
-    en:{introK:'One Night Only',introT:'Cassian<br>& Elowen',introP:'A royal theatre wedding invitation where every guest moves through the celebration like acts on a stage.',stub1:'Royal Theatre',stub2:'14 June 2028',stub3:'Act I',stub4:'8:00 PM',start:'Raise the Curtain 🎭',brand:'Cassian & Elowen',sub:'Royal Theatre Invitation',label1:'Act I · The Invitation',a1k:'The Curtain Rises',a1t:'A Royal Wedding Performance',a1p:'You are invited to a theatre-inspired royal celebration filled with velvet curtains, candlelight, dinner, music, and a grand final dance.',days:'Days',hours:'Hours',minutes:'Minutes',seconds:'Seconds',reserve:'Reserve Your Seat',map:'Open Location 📍',label2:'Act II · The Program',a2k:'Performance Program',a2t:'Choose an Act',a2p:'Tap each act to reveal the exact moment of the celebration.',r1:'Act I · Arrival',r1s:'7:30 PM',r2:'Act II · Vows',r2s:'8:00 PM',r3:'Act III · Banquet',r3s:'9:00 PM',r4:'Finale · Dance',r4s:'10:30 PM',label3:'Act III · Your Ticket',a3k:'Royal Seat Ticket',a3t:'Generate a Guest Ticket',a3p:'When guests enter their name in RSVP, the site creates a theatre-style wedding ticket.',makeTicket:'Make My Ticket',calendar:'Save to Calendar 🗓️',label4:'Act IV · The Mood',a4k:'Stage Moodboard',a4t:'Swipe the Scenery',a4p:'The gallery is presented like stage scenery, not as normal website photos.',label5:'Final Act · RSVP',a5k:'Final Curtain Reply',a5t:'Reserve Your Royal Seat',a5p:'Add your name, guest count, and choose which royal side you are attending from.',yes:'Yes, I Will Attend 🎭',no:'Can’t Make It',nav1:'Opening',nav2:'Program',nav3:'Ticket',nav4:'Gallery',nav5:'RSVP',modalT:'Choose Your Side',modalP:'Select which royal side should receive your reply.',bride:'Princess Side',groom:'Prince Side'},
-    ar:{introK:'ليلة واحدة فقط',introT:'كاسيان<br>وإلوين',introP:'دعوة زفاف ملكية بأسلوب المسرح، ينتقل فيها الضيوف بين لحظات الاحتفال كأنها فصول على الخشبة.',stub1:'المسرح الملكي',stub2:'14 يونيو 2028',stub3:'الفصل الأول',stub4:'8:00 مساءً',start:'ارفعوا الستار 🎭',brand:'كاسيان وإلوين',sub:'دعوة المسرح الملكي',label1:'الفصل الأول · الدعوة',a1k:'يرتفع الستار',a1t:'عرض زفاف ملكي',a1p:'أنتم مدعوون إلى احتفال ملكي مستوحى من المسرح، مليء بالستائر المخملية والشموع والعشاء والموسيقى والرقصة الأخيرة.',days:'أيام',hours:'ساعات',minutes:'دقايق',seconds:'ثواني',reserve:'احجزوا مقعدكم',map:'افتح الموقع 📍',label2:'الفصل الثاني · البرنامج',a2k:'برنامج العرض',a2t:'اختاروا فصلًا',a2p:'اضغطوا على كل فصل لاكتشاف لحظة الاحتفال.',r1:'الفصل الأول · الوصول',r1s:'7:30 مساءً',r2:'الفصل الثاني · العهود',r2s:'8:00 مساءً',r3:'الفصل الثالث · العشاء',r3s:'9:00 مساءً',r4:'الختام · الرقص',r4s:'10:30 مساءً',label3:'الفصل الثالث · تذكرتكم',a3k:'تذكرة المقعد الملكي',a3t:'أنشئوا تذكرة الضيف',a3p:'عندما يكتب الضيف اسمه في RSVP، ينشئ الموقع تذكرة زفاف بأسلوب المسرح.',makeTicket:'أنشئ تذكرتي',calendar:'احفظ في التقويم 🗓️',label4:'الفصل الرابع · الأجواء',a4k:'لوحة المسرح',a4t:'اسحبوا المشهد',a4p:'المعرض يظهر كمشاهد مسرحية، وليس كصور موقع عادي.',label5:'الفصل الأخير · التأكيد',a5k:'رد الستار الأخير',a5t:'احجزوا مقعدكم الملكي',a5p:'أضيفوا الاسم وعدد الضيوف واختاروا الطرف الملكي الذي ستحضرون منه.',yes:'نعم، سأحضر 🎭',no:'ما فيني إحضر',nav1:'البداية',nav2:'البرنامج',nav3:'التذكرة',nav4:'المعرض',nav5:'تأكيد',modalT:'اختاروا الطرف',modalP:'اختاروا أي طرف ملكي سيستلم الرد.',bride:'طرف الأميرة',groom:'طرف الأمير'}
-  };
-  function setLang(l){
-    lang = l;
-    document.body.classList.toggle('ar', l === 'ar');
-    $$('[data-i18n]').forEach(function(el){ const k = el.dataset.i18n; if(t[l][k]) el.innerHTML = t[l][k]; });
-    if(guestName) guestName.placeholder = l === 'ar' ? guestName.dataset.placeholderAr : guestName.dataset.placeholderEn;
-    if(langBtn) langBtn.textContent = l === 'en' ? 'عربي' : 'EN';
-    setRoom(document.querySelector('.room.active')?.dataset.room || 'arrival');
-    updateTicket();
-    const noBtn = $('#noBtn');
-    if(noBtn){ noBtn.href = l === 'ar' ? 'https://wa.me/96100000000?text=%D8%A2%D8%B3%D9%81%D8%8C%20%D9%84%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9%20%D8%A7%D9%84%D8%AD%D8%B6%D9%88%D8%B1%20%E2%9D%8C' : 'https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C'; }
-  }
-  if(langBtn){ langBtn.addEventListener('click', function(){ setLang(lang === 'en' ? 'ar' : 'en'); }); }
-});
-</script>
+    function inviteSummary(){if(currentLang==="ar")return "دعوة زفاف عبد وسورايا\nالمكان: Sands of Ra Pavilion, Giza\nالتاريخ: 14 تشرين الثاني 2028\nالوقت: 7:00 مساءً";return "Abed & Suraya Wedding Invitation\nVenue: Sands of Ra Pavilion, Giza\nDate: 14 November 2028\nTime: 7:00 PM"}
+    copyBtn.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(inviteSummary());copyBtn.textContent="✓";setTimeout(()=>copyBtn.textContent="⧉",1200)}catch(e){copyBtn.textContent="!";setTimeout(()=>copyBtn.textContent="⧉",1200)}});
+    shareBtn.addEventListener("click",async()=>{const data={title:"Abed & Suraya Wedding",text:inviteSummary(),url:window.location.href};if(navigator.share){try{await navigator.share(data)}catch(e){}}else{try{await navigator.clipboard.writeText(inviteSummary()+"\n"+window.location.href);shareBtn.textContent="✓";setTimeout(()=>shareBtn.textContent="↗",1200)}catch(e){}}});
+
+    const symbolSet=["𓂀","☥","𓋹","✦","◇"];
+    function spawnSymbol(force=false){if(!site.classList.contains("show")&&!force)return;const s=document.createElement("div");s.className="symbol";s.textContent=symbolSet[Math.floor(Math.random()*symbolSet.length)];s.style.left=(force?(window.innerWidth/2+(Math.random()*180-90)):Math.random()*window.innerWidth)+"px";s.style.top=(force?(window.innerHeight/2+(Math.random()*80-40)):(window.innerHeight-20+Math.random()*70))+"px";s.style.fontSize=(18+Math.random()*18)+"px";s.style.animationDuration=(4+Math.random()*3)+"s";document.body.appendChild(s);setTimeout(()=>s.remove(),8000)}
+    function spawnSpark(){if(!site.classList.contains("show"))return;const s=document.createElement("div");s.className="spark";const size=3+Math.random()*6;s.style.width=size+"px";s.style.height=size+"px";s.style.left=Math.random()*innerWidth+"px";s.style.top=(innerHeight-20+Math.random()*70)+"px";s.style.animationDuration=(3.5+Math.random()*3)+"s";document.body.appendChild(s);setTimeout(()=>s.remove(),7500)}
+    setInterval(()=>spawnSpark(),700);setInterval(()=>spawnSymbol(false),2200);
+
+    let trailCooldown=false;
+    window.addEventListener("mousemove",e=>{if(trailCooldown)return;trailCooldown=true;const t=document.createElement("div");t.className="trail";t.style.left=e.clientX+"px";t.style.top=e.clientY+"px";document.body.appendChild(t);setTimeout(()=>t.remove(),800);setTimeout(()=>trailCooldown=false,36)});
+    window.addEventListener("touchmove",e=>{const touch=e.touches[0];if(!touch)return;const t=document.createElement("div");t.className="trail";t.style.left=touch.clientX+"px";t.style.top=touch.clientY+"px";document.body.appendChild(t);setTimeout(()=>t.remove(),700)},{passive:true});
+
+    const translations={
+      en:{
+        introKicker:"House of Ra Invitation",introNames:"Abed & Suraya",introSub:"Enter a sleek neo-Egyptian wedding invitation filled with golden light, animated details, and an unforgettable celebration.",introMeta1:"14 November 2028",introMeta2:"Sands of Ra Pavilion",introMeta3:"Giza",openBtn:"Unseal the Cartouche ✦",
+        brandNames:"Abed & Suraya",brandSub:"Neo-Egyptian Wedding Invitation",navHome:"Home",navOracle:"Oracle",navGallery:"Gallery",navRsvp:"RSVP",
+        heroKicker:"Temple Welcome",heroTitle:"A Golden Evening Beneath the Desert Sky",heroText:"You are invited to a radiant wedding celebration inspired by timeless Egyptian elegance, modern luxury, and unforgettable atmosphere.",status1Strong:"VIP",status1Label:"Guest Pass",status2Strong:"Formal",status2Label:"Attire",status3Strong:"Giza",status3Label:"Destination",days:"Days",hours:"Hours",minutes:"Minutes",seconds:"Seconds",heroBtn1:"Reserve Your Place",heroBtn2:"Open Location 📍",passType:"Royal Guest Pass",passNames:"Abed & Suraya",passInfo:"14 November 2028 · Sands of Ra Pavilion, Giza · Ceremony 7:00 PM",
+        oracleKicker:"Oracle Console",oracleTitle:"Tap the Symbols to Reveal the Night",oracleText:"Select a glowing symbol to preview the ceremony, reception, afterparty, and guest details.",oracleHead:"Temple Access",oracleBtn1:"Ceremony",oracleBtn2:"Reception",oracleBtn3:"Afterparty",oracleBtn4:"Guest Notes",oracleLabel:"Selected Revelation",
+        expKicker:"Wedding Experience",expTitle:"An Immersive Celebration",expText:"Every part of the evening is designed to feel elevated, cinematic, and richly atmospheric.",exp1Title:"Arrival",exp1Text:"A dramatic entrance lined with lantern glow, desert tones, and rich golden details.",exp2Title:"Ceremony",exp2Text:"An elegant ceremony setting inspired by temple symmetry and warm ambient light.",exp3Title:"Dinner",exp3Text:"A refined feast with layered textures, candlelit tables, and a regal atmosphere.",exp4Title:"Afterglow",exp4Text:"Music, dancing, and a glowing late-night energy that keeps the celebration alive.",
+        timeKicker:"Evening Route",timeTitle:"Your Royal Itinerary",timeText:"A seamless progression from arrival to the final celebration.",timeline1Time:"6:30 PM",timeline1Title:"Guest Arrival",timeline1Text:"Welcome drinks, golden lanterns, and a first look at the desert-inspired venue.",timeline2Time:"7:00 PM",timeline2Title:"Ceremony",timeline2Text:"The couple exchanges vows beneath glowing architectural details and warm candlelight.",timeline3Time:"8:00 PM",timeline3Title:"Dinner & Toasts",timeline3Text:"A seated dinner begins, surrounded by music, elegant décor, and celebration.",timeline4Time:"10:00 PM",timeline4Title:"Afterparty",timeline4Text:"The atmosphere shifts into a glowing night of dancing, rhythm, and movement.",
+        paletteKicker:"Color Ritual",paletteTitle:"Choose the Mood",paletteText:"Switch the visual palette to preview different luxury directions for the invitation.",paletteBtn1:"Sun Gold",paletteBtn2:"Nile Emerald",paletteBtn3:"Ruby Sunset",paletteNoteGold:"A luminous golden palette inspired by temple metals, sand light, and regal warmth.",paletteNoteEmerald:"A cooler, richer direction inspired by the Nile, deep stone, and precious green accents.",paletteNoteRuby:"A dramatic sunset palette with warm ruby glow, darker contrast, and bold evening energy.",
+        memory1Title:"The Setting",memory1Text:"An iconic location, dramatic atmosphere, and unforgettable architectural presence.",memory2Title:"The Couple",memory2Text:"A love story framed in golden light and timeless elegance.",memory3Title:"The Celebration",memory3Text:"Refined table styling, floral details, and a warm ceremonial atmosphere.",memory4Title:"The Finale",memory4Text:"A glowing finish full of music, energy, and beautiful motion.",
+        faqKicker:"Guest Questions",faqTitle:"Before the Celebration",faqText:"Helpful notes for the evening.",faq1Q:"Is there a dress code?",faq1A:"Yes — elegant formal attire is recommended. Gold, black, ivory, and jewel tones are perfect.",faq2Q:"Is it adults only?",faq2A:"Yes, this event is planned as an adults-only evening.",faq3Q:"When should I arrive?",faq3A:"We recommend arriving 20–30 minutes early to enjoy the welcome experience.",
+        rsvpKicker:"RSVP",rsvpTitle:"Confirm Your Presence",rsvpText:"Add your name, select your guest count, and confirm through WhatsApp.",mini1:"Sands of Ra Pavilion, Giza",mini2:"14 November 2028",mini3:"Ceremony 7:00 PM",yesBtn:"Yes, I’ll Attend ✦",noBtn:"Can’t Make It",
+        finalKicker:"Final Seal",finalTitle:"We Can’t Wait to Celebrate With You",finalText:"Save the date, open the location, and join us for a luminous evening in Giza.",locationBtn:"Open Location 📍",calendarBtn:"Save to Calendar 🗓️",modalTitle:"Which side are you from?",modalText:"Please choose before confirming your RSVP.",brideSide:"Bride’s Side",groomSide:"Groom’s Side",footerNames:"Abed & Suraya · 14 November 2028",footerSub:"A portfolio demo by Amour De Minuit ✨"
+      },
+      ar:{
+        introKicker:"دعوة بيت رع",introNames:"عبد وسورايا",introSub:"ادخلوا إلى دعوة زفاف مصرية عصرية مليئة بالضوء الذهبي والتفاصيل المتحركة والأجواء المبهرة.",introMeta1:"١٤ تشرين الثاني ٢٠٢٨",introMeta2:"Sands of Ra Pavilion",introMeta3:"الجيزة",openBtn:"افتحوا الخرطوش ✦",
+        brandNames:"عبد وسورايا",brandSub:"دعوة زفاف بطابع مصري عصري",navHome:"الرئيسية",navOracle:"الأوراكل",navGallery:"المعرض",navRsvp:"تأكيد",
+        heroKicker:"ترحيب المعبد",heroTitle:"أمسية ذهبية تحت سماء الصحراء",heroText:"أنتم مدعوون إلى احتفال زفاف مضيء مستوحى من الأناقة المصرية الخالدة والرفاهية الحديثة والأجواء التي لا تُنسى.",status1Strong:"VIP",status1Label:"بطاقة ضيف",status2Strong:"رسمي",status2Label:"اللباس",status3Strong:"الجيزة",status3Label:"الوجهة",days:"أيام",hours:"ساعات",minutes:"دقايق",seconds:"ثواني",heroBtn1:"احجزوا مكانكم",heroBtn2:"افتح الموقع 📍",passType:"بطاقة ضيف ملكية",passNames:"عبد وسورايا",passInfo:"١٤ تشرين الثاني ٢٠٢٨ · Sands of Ra Pavilion, Giza · المراسم ٧:٠٠ مساءً",
+        oracleKicker:"لوحة الأوراكل",oracleTitle:"اضغطوا على الرموز لاكتشاف الليلة",oracleText:"اختاروا رمزًا مضيئًا لمعاينة المراسم والاستقبال والاحتفال وملاحظات الضيوف.",oracleHead:"دخول المعبد",oracleBtn1:"المراسم",oracleBtn2:"الاستقبال",oracleBtn3:"الاحتفال",oracleBtn4:"ملاحظات الضيوف",oracleLabel:"الكشف المختار",
+        expKicker:"تجربة الزفاف",expTitle:"احتفال غامر",expText:"كل جزء من الأمسية مصمم ليشعر بالفخامة والدراما والأجواء الغنية.",exp1Title:"الوصول",exp1Text:"دخول درامي تحيط به الفوانيس والدرجات الصحراوية والتفاصيل الذهبية.",exp2Title:"المراسم",exp2Text:"مراسم أنيقة مستوحاة من تناظر المعابد والضوء الدافئ.",exp3Title:"العشاء",exp3Text:"مأدبة راقية بطبقات فاخرة وطاولات مضاءة بالشموع وأجواء ملكية.",exp4Title:"الاحتفال الليلي",exp4Text:"موسيقى ورقص وطاقة ليلية متوهجة تُبقي الاحتفال حيًا.",
+        timeKicker:"مسار الأمسية",timeTitle:"برنامجكم الملكي",timeText:"تسلسل أنيق من الوصول حتى نهاية الاحتفال.",timeline1Time:"٦:٣٠ مساءً",timeline1Title:"وصول الضيوف",timeline1Text:"مشروبات ترحيبية وفوانيس ذهبية ونظرة أولى على المكان المستوحى من الصحراء.",timeline2Time:"٧:٠٠ مساءً",timeline2Title:"المراسم",timeline2Text:"يتبادل العروسان العهود تحت تفاصيل معمارية مضيئة وضوء شموع دافئ.",timeline3Time:"٨:٠٠ مساءً",timeline3Title:"العشاء والنخب",timeline3Text:"يبدأ عشاء الجلوس وسط الموسيقى والديكور الأنيق وأجواء الاحتفال.",timeline4Time:"١٠:٠٠ مساءً",timeline4Title:"الاحتفال",timeline4Text:"تتحول الأجواء إلى ليلة متوهجة مليئة بالرقص والإيقاع والحركة.",
+        paletteKicker:"طقس الألوان",paletteTitle:"اختاروا الأجواء",paletteText:"بدّلوا لوحة الألوان لمعاينة اتجاهات فاخرة مختلفة للدعوة.",paletteBtn1:"ذهبي شمسي",paletteBtn2:"زمرد النيل",paletteBtn3:"غروب ياقوتي",paletteNoteGold:"لوحة ذهبية مضيئة مستوحاة من المعادن الملكية وضوء الرمال والدفء الفخم.",paletteNoteEmerald:"اتجاه أغنى وأكثر برودة مستوحى من النيل والحجر الداكن ولمسات الزمرد.",paletteNoteRuby:"لوحة درامية بلون الغروب الياقوتي مع توهج دافئ وتباين أعمق وطاقة مسائية قوية.",
+        memory1Title:"المكان",memory1Text:"موقع أيقوني وأجواء درامية وحضور معماري لا يُنسى.",memory2Title:"العروسان",memory2Text:"قصة حب مؤطرة بضوء ذهبي وأناقة خالدة.",memory3Title:"الاحتفال",memory3Text:"تنسيق طاولات راقٍ وتفاصيل زهرية وأجواء احتفالية دافئة.",memory4Title:"الختام",memory4Text:"نهاية متوهجة مليئة بالموسيقى والطاقة والحركة الجميلة.",
+        faqKicker:"أسئلة الضيوف",faqTitle:"قبل الاحتفال",faqText:"ملاحظات مفيدة للأمسية.",faq1Q:"هل يوجد لباس محدد؟",faq1A:"نعم — يوصى بلباس رسمي أنيق. الدرجات الذهبية والسوداء والعاجية وألوان الأحجار الكريمة مناسبة جدًا.",faq2Q:"هل الأمسية للكبار فقط؟",faq2A:"نعم، هذا الحدث مخطط للكبار فقط.",faq3Q:"متى يجب أن أصل؟",faq3A:"ننصح بالوصول قبل 20 إلى 30 دقيقة للاستمتاع بتجربة الترحيب.",
+        rsvpKicker:"تأكيد الحضور",rsvpTitle:"أكدوا حضوركم",rsvpText:"أضيفوا اسمكم واختاروا عدد الضيوف وأكدوا عبر واتساب.",mini1:"Sands of Ra Pavilion, Giza",mini2:"١٤ تشرين الثاني ٢٠٢٨",mini3:"المراسم ٧:٠٠ مساءً",yesBtn:"نعم، سأحضر ✦",noBtn:"ما فيني إحضر",
+        finalKicker:"الختم الأخير",finalTitle:"لا يمكننا الانتظار للاحتفال معكم",finalText:"احفظوا التاريخ وافتحوا الموقع وانضموا إلينا لأمسية مضيئة في الجيزة.",locationBtn:"افتح الموقع 📍",calendarBtn:"احفظ في التقويم 🗓️",modalTitle:"من أي طرف أنتم؟",modalText:"يرجى الاختيار قبل تأكيد الحضور.",brideSide:"طرف العروس",groomSide:"طرف العريس",footerNames:"عبد وسورايا · ١٤ تشرين الثاني ٢٠٢٨",footerSub:"نموذج أعمال من Amour De Minuit ✨"
+      }
+    };
+
+    function applyPaletteNote(){const palette=document.body.getAttribute("data-palette")||"gold";if(palette==="gold")paletteNote.textContent=translations[currentLang].paletteNoteGold;if(palette==="emerald")paletteNote.textContent=translations[currentLang].paletteNoteEmerald;if(palette==="ruby")paletteNote.textContent=translations[currentLang].paletteNoteRuby}
+    function applyLanguage(lang){currentLang=lang;document.body.classList.toggle("ar",lang==="ar");document.querySelectorAll("[data-i18n]").forEach(el=>{const key=el.getAttribute("data-i18n");if(translations[lang][key])el.innerHTML=translations[lang][key]});guestName.placeholder=lang==="ar"?guestName.dataset.placeholderAr:guestName.dataset.placeholderEn;langToggle.textContent=lang==="en"?"عربي":"EN";const selectedOracle=document.querySelector(".oracle-btn.selected")?.dataset.oracle||"ceremony";updateOracle(selectedOracle);applyPaletteNote();noBtn.href=lang==="ar"?"https://wa.me/96100000000?text=%D8%A2%D8%B3%D9%81%D8%8C%20%D9%84%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9%20%D8%A7%D9%84%D8%AD%D8%B6%D9%88%D8%B1%20%E2%9D%8C":"https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C"}
+    langToggle.addEventListener("click",()=>applyLanguage(currentLang==="en"?"ar":"en"));
+  </script>
 </body>
 </html>
