@@ -12,18 +12,13 @@
 :root{
   --night:#07040c;
   --plum:#170d24;
-  --plum2:#2a143a;
-  --velvet:#621638;
-  --velvet2:#8f2550;
+  --velvet:#641638;
   --gold:#d7a84f;
   --gold2:#ffe2a0;
   --cream:#fff6df;
   --muted:#cbb891;
-  --rose:#e9a7c5;
-  --blue:#8eb8ff;
-  --glass:rgba(255,255,255,.08);
   --line:rgba(255,226,160,.18);
-  --darkLine:rgba(0,0,0,.22);
+  --glass:rgba(255,255,255,.08);
 }
 html,body{width:100%;min-height:100%;overflow:hidden}
 body{
@@ -38,42 +33,157 @@ body{
 body.ar{direction:rtl;font-family:Amiri,serif}
 button,a,input,select{font:inherit;-webkit-tap-highlight-color:transparent}
 
-/* THEATRE BACKDROP */
-.theatre-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:
-  linear-gradient(to bottom,rgba(0,0,0,.08),rgba(0,0,0,.78)),
-  url('https://images.unsplash.com/photo-1519167758481-83f29b2a2e9f?auto=format&fit=crop&w=1800&q=80') center/cover;filter:saturate(.82)}
+.theatre-bg{
+  position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;
+  background:
+    linear-gradient(to bottom,rgba(0,0,0,.08),rgba(0,0,0,.78)),
+    url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1800&q=80') center/cover;
+  filter:saturate(.82);
+}
 .theatre-bg::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 14%,rgba(255,226,160,.23),transparent 28%),linear-gradient(90deg,rgba(9,4,12,.76),transparent 45%,rgba(9,4,12,.76))}
-.spotlight{position:fixed;top:-26vh;width:42vw;height:130vh;z-index:1;pointer-events:none;background:linear-gradient(to bottom,rgba(255,238,185,.22),transparent 70%);filter:blur(16px);mix-blend-mode:screen;opacity:.8}.spotlight.one{left:18%;transform:rotate(14deg);animation:sweep1 6s ease-in-out infinite alternate}.spotlight.two{right:18%;transform:rotate(-14deg);animation:sweep2 7s ease-in-out infinite alternate}@keyframes sweep1{to{transform:rotate(2deg);opacity:.55}}@keyframes sweep2{to{transform:rotate(-2deg);opacity:.7}}
+.spotlight{position:fixed;top:-26vh;width:42vw;height:130vh;z-index:1;pointer-events:none;background:linear-gradient(to bottom,rgba(255,238,185,.22),transparent 70%);filter:blur(16px);mix-blend-mode:screen;opacity:.8}
+.spotlight.one{left:18%;transform:rotate(14deg);animation:sweep1 6s ease-in-out infinite alternate}
+.spotlight.two{right:18%;transform:rotate(-14deg);animation:sweep2 7s ease-in-out infinite alternate}
+@keyframes sweep1{to{transform:rotate(2deg);opacity:.55}}
+@keyframes sweep2{to{transform:rotate(-2deg);opacity:.7}}
 .stage-floor{position:fixed;left:-10%;right:-10%;bottom:-22%;height:42%;z-index:2;pointer-events:none;background:radial-gradient(ellipse at center,#6c4424 0%,#2c1713 58%,#0d0708 100%);border-radius:50% 50% 0 0;box-shadow:0 -30px 70px rgba(0,0,0,.36),inset 0 18px 60px rgba(255,226,160,.08)}
-.curtain{position:fixed;top:0;bottom:0;width:24vw;z-index:20;pointer-events:none;background:repeating-linear-gradient(90deg,#351126 0 18px,#641638 18px 36px,#45102d 36px 54px);box-shadow:inset 0 0 50px rgba(0,0,0,.55)}.curtain.left{left:0;border-radius:0 0 60px 0}.curtain.right{right:0;border-radius:0 0 0 60px}.curtain-top{position:fixed;left:0;right:0;top:0;height:92px;z-index:21;pointer-events:none;background:repeating-linear-gradient(90deg,#45102d 0 28px,#641638 28px 54px,#351126 54px 80px);box-shadow:0 18px 30px rgba(0,0,0,.32);border-radius:0 0 50% 50%}.opened .curtain.left{animation:curtainLeft 1.3s cubic-bezier(.77,0,.18,1) forwards}.opened .curtain.right{animation:curtainRight 1.3s cubic-bezier(.77,0,.18,1) forwards}.opened .curtain-top{animation:curtainTop 1.3s cubic-bezier(.77,0,.18,1) forwards}@keyframes curtainLeft{to{transform:translateX(-92%)}}@keyframes curtainRight{to{transform:translateX(92%)}}@keyframes curtainTop{to{transform:translateY(-75%)}}
+.curtain{position:fixed;top:0;bottom:0;width:24vw;z-index:20;pointer-events:none;background:repeating-linear-gradient(90deg,#351126 0 18px,#641638 18px 36px,#45102d 36px 54px);box-shadow:inset 0 0 50px rgba(0,0,0,.55)}
+.curtain.left{left:0;border-radius:0 0 60px 0}
+.curtain.right{right:0;border-radius:0 0 0 60px}
+.curtain-top{position:fixed;left:0;right:0;top:0;height:92px;z-index:21;pointer-events:none;background:repeating-linear-gradient(90deg,#45102d 0 28px,#641638 28px 54px,#351126 54px 80px);box-shadow:0 18px 30px rgba(0,0,0,.32);border-radius:0 0 50% 50%}
+body.opened .curtain.left{animation:curtainLeft 1.3s cubic-bezier(.77,0,.18,1) forwards}
+body.opened .curtain.right{animation:curtainRight 1.3s cubic-bezier(.77,0,.18,1) forwards}
+body.opened .curtain-top{animation:curtainTop 1.3s cubic-bezier(.77,0,.18,1) forwards}
+@keyframes curtainLeft{to{transform:translateX(-92%)}}
+@keyframes curtainRight{to{transform:translateX(92%)}}
+@keyframes curtainTop{to{transform:translateY(-75%)}}
 
-/* INTRO PLAYBILL */
-.intro{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:linear-gradient(180deg,rgba(5,3,9,.55),rgba(5,3,9,.96));transition:.9s ease;overflow:hidden}.intro.hide{opacity:0;transform:scale(1.04);pointer-events:none}
-.playbill{width:min(90vw,430px);min-height:610px;position:relative;padding:28px 24px;border-radius:34px;text-align:center;color:#2b1a13;background:linear-gradient(145deg,#fff3cf,#d5aa68);box-shadow:0 40px 95px rgba(0,0,0,.48);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;animation:billFloat 4s ease-in-out infinite}.playbill::before{content:"";position:absolute;inset:17px;border:2px solid rgba(43,26,19,.18);border-radius:24px}.playbill::after{content:"";position:absolute;inset:-60%;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.30) 48%,transparent 56%);animation:shine 4s linear infinite}@keyframes billFloat{50%{transform:translateY(-12px) rotateX(3deg)}}@keyframes shine{to{transform:translateX(54%)}}
-.playbill>*{position:relative;z-index:2}.ornate{font-size:34px;color:#7b1a42}.play-kicker{font-size:11px;letter-spacing:5px;text-transform:uppercase;font-weight:900;color:#7b1a42}.play-title{margin-top:14px;font-family:Cinzel,serif;font-size:40px;line-height:1.05}.play-sub{margin-top:14px;line-height:1.75;color:#6b4a31;font-size:14px}.ticket-stubs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:20px}.stub{padding:10px 8px;border-radius:16px;background:rgba(123,26,66,.1);border:1px dashed rgba(43,26,19,.22);font-weight:900;font-size:12px}.start-btn{border:none;border-radius:999px;padding:16px 18px;background:linear-gradient(135deg,#7b1a42,#d04972,#7b1a42);color:#fff6df;font-weight:900;cursor:pointer;box-shadow:0 16px 34px rgba(0,0,0,.26);transition:.25s}.start-btn:hover{transform:translateY(-2px)}.intro.opening .playbill{animation:billOpen 1.05s ease forwards}@keyframes billOpen{60%{transform:scale(1.06);filter:brightness(1.15)}100%{transform:translateY(60px) scale(.78);opacity:0;filter:blur(8px)}}
+.intro{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:linear-gradient(180deg,rgba(5,3,9,.55),rgba(5,3,9,.96));transition:.9s ease;overflow:hidden}
+.intro.hide{opacity:0;transform:scale(1.04);pointer-events:none}
+.playbill{width:min(90vw,430px);min-height:610px;position:relative;padding:28px 24px;border-radius:34px;text-align:center;color:#2b1a13;background:linear-gradient(145deg,#fff3cf,#d5aa68);box-shadow:0 40px 95px rgba(0,0,0,.48);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;animation:billFloat 4s ease-in-out infinite}
+.playbill::before{content:"";position:absolute;inset:17px;border:2px solid rgba(43,26,19,.18);border-radius:24px}
+.playbill::after{content:"";position:absolute;inset:-60%;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.30) 48%,transparent 56%);animation:shine 4s linear infinite}
+.playbill>*{position:relative;z-index:2}
+@keyframes billFloat{50%{transform:translateY(-12px) rotateX(3deg)}}
+@keyframes shine{to{transform:translateX(54%)}}
+.ornate{font-size:34px;color:#7b1a42}
+.play-kicker{font-size:11px;letter-spacing:5px;text-transform:uppercase;font-weight:900;color:#7b1a42}
+.play-title{margin-top:14px;font-family:Cinzel,serif;font-size:40px;line-height:1.05}
+.play-sub{margin-top:14px;line-height:1.75;color:#6b4a31;font-size:14px}
+.ticket-stubs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:20px}
+.stub{padding:10px 8px;border-radius:16px;background:rgba(123,26,66,.1);border:1px dashed rgba(43,26,19,.22);font-weight:900;font-size:12px}
+.start-btn{border:none;border-radius:999px;padding:16px 18px;background:linear-gradient(135deg,#7b1a42,#d04972,#7b1a42);color:#fff6df;font-weight:900;cursor:pointer;box-shadow:0 16px 34px rgba(0,0,0,.26);transition:.25s}
+.start-btn:hover{transform:translateY(-2px)}
+.intro.opening .playbill{animation:billOpen 1.05s ease forwards}
+@keyframes billOpen{60%{transform:scale(1.06);filter:brightness(1.15)}100%{transform:translateY(60px) scale(.78);opacity:0;filter:blur(8px)}}
 
-/* MAIN */
-.app{position:relative;z-index:5;width:100vw;height:100svh;display:none;opacity:0;transition:.7s ease;grid-template-rows:auto 1fr auto}.app.show{display:grid;opacity:1}.topbar{height:70px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:linear-gradient(to bottom,rgba(5,3,9,.86),rgba(5,3,9,.42));backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;min-width:0}.brand-mark{width:44px;height:44px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#2b1a13;font-size:23px;box-shadow:0 12px 24px rgba(0,0,0,.24)}.brand strong{display:block;font-family:Cinzel,serif;font-size:21px;white-space:nowrap}.brand span{display:block;color:var(--muted);font-size:10px;letter-spacing:1.8px;text-transform:uppercase;white-space:nowrap}.tools{display:flex;gap:7px}.tool{width:38px;height:38px;border:none;border-radius:14px;background:var(--glass);border:1px solid var(--line);color:var(--cream);cursor:pointer}.tool:hover{background:rgba(255,255,255,.15)}.tool.muted{color:var(--gold2)}
-
-.stage{position:relative;display:grid;place-items:center;padding:0 12px}.turntable{position:relative;width:min(1120px,100%);height:min(680px,calc(100svh - 154px));min-height:520px;border-radius:48px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.035));border:1px solid rgba(255,226,160,.24);box-shadow:0 32px 85px rgba(0,0,0,.38),inset 0 0 80px rgba(215,168,79,.08);overflow:hidden}.turntable::before{content:"";position:absolute;inset:16px;border:1px solid rgba(255,226,160,.18);border-radius:36px;pointer-events:none}.act{position:absolute;inset:18px;border-radius:34px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;opacity:0;transform:translateX(40px) rotateY(18deg) scale(.95);pointer-events:none;transition:.55s cubic-bezier(.2,.8,.2,1)}.act.active{opacity:1;transform:translateX(0) rotateY(0) scale(1);pointer-events:auto}.act.leaving{transform:translateX(-40px) rotateY(-18deg) scale(.95)}
-.visual{position:relative;background-size:cover;background-position:center}.visual::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.64),rgba(0,0,0,.04))}.visual-label{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;padding:14px;border-radius:22px;background:rgba(5,3,9,.62);border:1px solid rgba(255,226,160,.18);backdrop-filter:blur(10px);color:#f9e6bc;font-weight:900;text-align:center}.content{padding:34px;display:flex;flex-direction:column;justify-content:center;background:rgba(7,4,12,.78);backdrop-filter:blur(14px)}.kicker{color:var(--gold2);font-size:11px;letter-spacing:4px;text-transform:uppercase;font-weight:900}.title{margin-top:14px;font-family:Playfair Display,serif;font-size:58px;line-height:.96}.text{margin-top:16px;color:#d8c49f;line-height:1.85;font-size:15px}.actions{margin-top:22px;display:grid;gap:10px;width:min(430px,100%)}.btn{border:none;text-decoration:none;text-align:center;border-radius:999px;padding:15px 16px;font-weight:900;cursor:pointer;transition:.25s;display:block}.btn.gold{background:linear-gradient(135deg,var(--gold2),var(--gold),#966b2e);color:#24130d}.btn.glass{background:rgba(255,255,255,.09);border:1px solid var(--line);color:var(--cream)}.btn:hover{transform:translateY(-2px)}
-.countdown{margin-top:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.time{padding:12px 6px;border-radius:18px;background:rgba(255,255,255,.09);border:1px solid var(--line);text-align:center}.time span{display:block;font-weight:900;font-size:24px;color:var(--gold2)}.time small{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#d8c49f}
-.room-grid{margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.room{padding:14px;border-radius:20px;background:rgba(255,255,255,.08);border:1px solid var(--line);cursor:pointer;transition:.25s}.room:hover,.room.active{background:rgba(255,255,255,.16);transform:translateY(-3px)}.room strong{display:block;color:var(--gold2)}.room span{display:block;margin-top:5px;color:#d8c49f;font-size:13px}.note{margin-top:18px;padding:16px;border-radius:22px;background:rgba(255,255,255,.08);border:1px dashed rgba(255,226,160,.26);color:#f8e7c4;line-height:1.65}
-.gallery{margin-top:22px;display:grid;grid-auto-flow:column;grid-auto-columns:165px;gap:12px;overflow-x:auto;padding-bottom:8px}.gallery::-webkit-scrollbar{height:8px}.gallery::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:99px}.photo{height:240px;border-radius:22px;background-size:cover;background-position:center;border:1px solid var(--line);transition:.25s}.photo:hover{transform:translateY(-8px) scale(1.03)}.form{margin-top:20px;display:grid;gap:10px}.field{width:100%;padding:14px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.09);color:var(--cream);outline:none}.field::placeholder{color:#d8c49f}.field option{color:#111}
-
-/* ACT SELECTOR */
-.act-nav{padding:10px 12px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(5,3,9,.9),rgba(5,3,9,.45));backdrop-filter:blur(15px)}.act-track{width:min(760px,94vw);margin:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:8px;border-radius:30px;background:rgba(5,3,9,.74);border:1px solid var(--line)}.act-btn{border:none;border-radius:22px;padding:12px 5px;background:transparent;color:#d8c49f;font-size:11px;text-transform:uppercase;font-weight:900;cursor:pointer}.act-btn.active,.act-btn:hover{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#24130d}
-
-/* MODAL */
-.modal{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;background:rgba(5,3,8,.72);backdrop-filter:blur(12px);padding:20px}.modal-box{width:min(92%,430px);padding:24px;border-radius:30px;background:linear-gradient(145deg,#fff4d8,#d8b375);color:#2b1a13;text-align:center;box-shadow:0 34px 80px rgba(0,0,0,.45);position:relative}.modal-box h2{font-family:Cinzel,serif;font-size:31px}.modal-box p{margin-top:10px;color:#65462f;line-height:1.65}.close{position:absolute;top:10px;right:12px;width:34px;height:34px;border:none;border-radius:50%;background:#2b1a13;color:#fff4d8;font-size:22px;cursor:pointer}.modal-actions{display:grid;gap:9px;margin-top:18px}
-.spark,.floaty{position:fixed;pointer-events:none;z-index:30}.spark{width:7px;height:7px;border-radius:50%;background:var(--gold2);box-shadow:0 0 14px rgba(255,227,165,.8);animation:spark 4s linear forwards}.floaty{color:var(--gold2);font-size:22px;text-shadow:0 0 12px rgba(255,227,165,.55);animation:floaty 6s linear forwards}@keyframes spark{0%{opacity:0;transform:translateY(0) scale(.5)}15%{opacity:1}100%{opacity:0;transform:translateY(-180px) scale(1.2)}}@keyframes floaty{0%{opacity:0;transform:translateY(0) rotate(-8deg)}15%{opacity:1}100%{opacity:0;transform:translateY(-220px) rotate(12deg)}}
+.app{position:relative;z-index:5;width:100vw;height:100svh;display:none;opacity:0;transition:.7s ease;grid-template-rows:1fr}
+.app.show{display:grid;opacity:1}
+.topbar{height:70px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:linear-gradient(to bottom,rgba(5,3,9,.94),rgba(5,3,9,.72));backdrop-filter:blur(14px);border-bottom:1px solid var(--line);position:fixed;top:0;left:0;right:0;z-index:150}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand-mark{width:44px;height:44px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#2b1a13;font-size:23px;box-shadow:0 12px 24px rgba(0,0,0,.24);flex-shrink:0}
+.brand strong{display:block;font-family:Cinzel,serif;font-size:21px;white-space:nowrap}
+.brand span{display:block;color:var(--muted);font-size:10px;letter-spacing:1.8px;text-transform:uppercase;white-space:nowrap}
+.tools{display:flex;gap:7px;flex-shrink:0}
+.tool{width:38px;height:38px;border:none;border-radius:14px;background:var(--glass);border:1px solid var(--line);color:var(--cream);cursor:pointer}
+.tool:hover{background:rgba(255,255,255,.15)}
+.tool.muted{color:var(--gold2)}
+.stage{position:relative;display:grid;place-items:center;padding:82px 12px 88px;min-height:100svh}
+.turntable{position:relative;width:min(1120px,100%);height:min(680px,calc(100svh - 190px));min-height:520px;border-radius:48px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.035));border:1px solid rgba(255,226,160,.24);box-shadow:0 32px 85px rgba(0,0,0,.38),inset 0 0 80px rgba(215,168,79,.08);overflow:hidden}
+.turntable::before{content:"";position:absolute;inset:16px;border:1px solid rgba(255,226,160,.18);border-radius:36px;pointer-events:none}
+.act{position:absolute;inset:18px;border-radius:34px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;opacity:0;transform:translateX(40px) rotateY(18deg) scale(.95);pointer-events:none;transition:.55s cubic-bezier(.2,.8,.2,1)}
+.act.active{opacity:1;transform:translateX(0) rotateY(0) scale(1);pointer-events:auto}
+.visual{position:relative;background-size:cover;background-position:center}
+.visual::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.64),rgba(0,0,0,.04))}
+.visual-label{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;padding:14px;border-radius:22px;background:rgba(5,3,9,.62);border:1px solid rgba(255,226,160,.18);backdrop-filter:blur(10px);color:#f9e6bc;font-weight:900;text-align:center}
+.content{padding:34px;display:flex;flex-direction:column;justify-content:center;background:rgba(7,4,12,.78);backdrop-filter:blur(14px)}
+.kicker{color:var(--gold2);font-size:11px;letter-spacing:4px;text-transform:uppercase;font-weight:900}
+.title{margin-top:14px;font-family:Playfair Display,serif;font-size:58px;line-height:.96}
+.text{margin-top:16px;color:#d8c49f;line-height:1.85;font-size:15px}
+.actions{margin-top:22px;display:grid;gap:10px;width:min(430px,100%)}
+.btn{border:none;text-decoration:none;text-align:center;border-radius:999px;padding:15px 16px;font-weight:900;cursor:pointer;transition:.25s;display:block}
+.btn.gold{background:linear-gradient(135deg,var(--gold2),var(--gold),#966b2e);color:#24130d}
+.btn.glass{background:rgba(255,255,255,.09);border:1px solid var(--line);color:var(--cream)}
+.btn:hover{transform:translateY(-2px)}
+.countdown{margin-top:20px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.time{padding:12px 6px;border-radius:18px;background:rgba(255,255,255,.09);border:1px solid var(--line);text-align:center}
+.time span{display:block;font-weight:900;font-size:24px;color:var(--gold2)}
+.time small{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#d8c49f}
+.room-grid{margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.room{padding:14px;border-radius:20px;background:rgba(255,255,255,.08);border:1px solid var(--line);cursor:pointer;transition:.25s}
+.room:hover,.room.active{background:rgba(255,255,255,.16);transform:translateY(-3px)}
+.room strong{display:block;color:var(--gold2)}
+.room span{display:block;margin-top:5px;color:#d8c49f;font-size:13px}
+.note{margin-top:18px;padding:16px;border-radius:22px;background:rgba(255,255,255,.08);border:1px dashed rgba(255,226,160,.26);color:#f8e7c4;line-height:1.65}
+.gallery{margin-top:22px;display:grid;grid-auto-flow:column;grid-auto-columns:165px;gap:12px;overflow-x:auto;padding-bottom:8px}
+.gallery::-webkit-scrollbar{height:8px}
+.gallery::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:99px}
+.photo{height:240px;border-radius:22px;background-size:cover;background-position:center;border:1px solid var(--line);transition:.25s}
+.photo:hover{transform:translateY(-8px) scale(1.03)}
+.form{margin-top:20px;display:grid;gap:10px}
+.field{width:100%;padding:14px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.09);color:var(--cream);outline:none}
+.field::placeholder{color:#d8c49f}
+.field option{color:#111}
+.act-nav{padding:10px 12px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(5,3,9,.96),rgba(5,3,9,.72));backdrop-filter:blur(15px);position:fixed;bottom:0;left:0;right:0;z-index:150;border-top:1px solid var(--line)}
+.act-track{width:min(760px,94vw);margin:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:8px;border-radius:30px;background:rgba(5,3,9,.74);border:1px solid var(--line)}
+.act-btn{border:none;border-radius:22px;padding:12px 5px;background:transparent;color:#d8c49f;font-size:11px;text-transform:uppercase;font-weight:900;cursor:pointer}
+.act-btn.active,.act-btn:hover{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#24130d}
+.modal{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;background:rgba(5,3,8,.72);backdrop-filter:blur(12px);padding:20px}
+.modal-box{width:min(92%,430px);padding:24px;border-radius:30px;background:linear-gradient(145deg,#fff4d8,#d8b375);color:#2b1a13;text-align:center;box-shadow:0 34px 80px rgba(0,0,0,.45);position:relative}
+.modal-box h2{font-family:Cinzel,serif;font-size:31px}
+.modal-box p{margin-top:10px;color:#65462f;line-height:1.65}
+.close{position:absolute;top:10px;right:12px;width:34px;height:34px;border:none;border-radius:50%;background:#2b1a13;color:#fff4d8;font-size:22px;cursor:pointer}
+.modal-actions{display:grid;gap:9px;margin-top:18px}
+.spark,.floaty{position:fixed;pointer-events:none;z-index:30}
+.spark{width:7px;height:7px;border-radius:50%;background:var(--gold2);box-shadow:0 0 14px rgba(255,227,165,.8);animation:spark 4s linear forwards}
+.floaty{color:var(--gold2);font-size:22px;text-shadow:0 0 12px rgba(255,227,165,.55);animation:floaty 6s linear forwards}
+@keyframes spark{0%{opacity:0;transform:translateY(0) scale(.5)}15%{opacity:1}100%{opacity:0;transform:translateY(-180px) scale(1.2)}}
+@keyframes floaty{0%{opacity:0;transform:translateY(0) rotate(-8deg)}15%{opacity:1}100%{opacity:0;transform:translateY(-220px) rotate(12deg)}}
 body.ar .brand strong,body.ar .title,body.ar .play-title,body.ar .modal-box h2{font-family:Amiri,serif}
-@media(max-width:850px){html,body{overflow:auto}.app{height:auto;min-height:100svh}.topbar{position:sticky;top:0;z-index:100}.curtain,.curtain-top,.spotlight{display:none}.stage{padding:6px 8px}.turntable{height:auto;min-height:0;border-radius:30px}.act{position:relative;display:none;grid-template-columns:1fr;inset:auto;border-radius:26px}.act.active{display:grid}.visual{min-height:310px}.content{padding:24px 18px}.title{font-size:40px}.countdown{grid-template-columns:repeat(2,1fr)}.room-grid{grid-template-columns:1fr}.act-nav{position:sticky;bottom:0;z-index:100}.act-btn{font-size:9px;padding:10px 2px}.gallery{grid-auto-columns:74%}.photo{height:260px}.brand span{display:none}.brand strong{font-size:18px}.tool{width:34px;height:34px}.playbill{min-height:560px}}
-@media(max-width:430px){.play-title{font-size:33px}.title{font-size:34px}.visual{min-height:280px}.gallery{grid-auto-columns:86%}.topbar{padding:8px}.brand-mark{width:38px;height:38px}.tools{gap:5px}.ticket-stubs{grid-template-columns:1fr}}
+
+@media(max-width:850px){
+  html,body{overflow:auto}
+  .app{height:auto;min-height:100svh}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:150}
+  .curtain,.curtain-top,.spotlight{display:none}
+  .stage{padding:82px 8px 92px;min-height:100svh}
+  .turntable{height:auto;min-height:0;border-radius:30px}
+  .act{position:relative;display:none;grid-template-columns:1fr;inset:auto;border-radius:26px}
+  .act.active{display:grid}
+  .visual{min-height:310px}
+  .content{padding:24px 18px}
+  .title{font-size:40px}
+  .countdown{grid-template-columns:repeat(2,1fr)}
+  .room-grid{grid-template-columns:1fr}
+  .act-nav{position:fixed;bottom:0;left:0;right:0;z-index:150}
+  .act-btn{font-size:9px;padding:10px 2px}
+  .gallery{grid-auto-columns:74%}
+  .photo{height:260px}
+  .brand span{display:none}
+  .brand strong{font-size:18px}
+  .tool{width:34px;height:34px}
+  .playbill{min-height:560px}
+}
+@media(max-width:430px){
+  .play-title{font-size:33px}
+  .title{font-size:34px}
+  .visual{min-height:280px}
+  .gallery{grid-auto-columns:86%}
+  .topbar{padding:8px}
+  .brand-mark{width:38px;height:38px}
+  .tools{gap:5px}
+  .ticket-stubs{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
-<div class="theatre-bg"></div><div class="spotlight one"></div><div class="spotlight two"></div><div class="stage-floor"></div><div class="curtain left"></div><div class="curtain right"></div><div class="curtain-top"></div>
+<div class="theatre-bg"></div>
+<div class="spotlight one"></div>
+<div class="spotlight two"></div>
+<div class="stage-floor"></div>
+<div class="curtain left"></div>
+<div class="curtain right"></div>
+<div class="curtain-top"></div>
 <audio id="music" loop preload="auto"></audio>
 
 <div class="intro" id="intro">
@@ -83,28 +193,33 @@ body.ar .brand strong,body.ar .title,body.ar .play-title,body.ar .modal-box h2{f
       <div class="play-kicker" data-i18n="introK">One Night Only</div>
       <h1 class="play-title" data-i18n="introT">Cassian<br>& Elowen</h1>
       <p class="play-sub" data-i18n="introP">A royal theatre wedding invitation where every guest moves through the celebration like acts on a stage.</p>
-      <div class="ticket-stubs"><div class="stub" data-i18n="stub1">Royal Theatre</div><div class="stub" data-i18n="stub2">14 June 2028</div><div class="stub" data-i18n="stub3">Act I</div><div class="stub" data-i18n="stub4">8:00 PM</div></div>
+      <div class="ticket-stubs">
+        <div class="stub" data-i18n="stub1">Royal Theatre</div>
+        <div class="stub" data-i18n="stub2">14 June 2028</div>
+        <div class="stub" data-i18n="stub3">Act I</div>
+        <div class="stub" data-i18n="stub4">8:00 PM</div>
+      </div>
     </div>
-    <button class="start-btn" id="startBtn" data-i18n="start">Raise the Curtain 🎭</button>
+    <button class="start-btn" id="startBtn" type="button" data-i18n="start">Raise the Curtain 🎭</button>
   </div>
 </div>
 
 <div class="app" id="app">
   <header class="topbar">
     <div class="brand"><div class="brand-mark">🎭</div><div><strong data-i18n="brand">Cassian & Elowen</strong><span data-i18n="sub">Royal Theatre Invitation</span></div></div>
-    <div class="tools"><button class="tool" id="langBtn">عربي</button><button class="tool" id="musicBtn">🔊</button><button class="tool" id="copyBtn">⧉</button><button class="tool" id="shareBtn">↗</button></div>
+    <div class="tools"><button class="tool" id="langBtn" type="button">عربي</button><button class="tool" id="musicBtn" type="button">🔊</button><button class="tool" id="copyBtn" type="button">⧉</button><button class="tool" id="shareBtn" type="button">↗</button></div>
   </header>
 
   <main class="stage">
     <section class="turntable">
       <article class="act active" data-act="opening">
-        <div class="visual" style="background-image:url('https://images.unsplash.com/photo-1519167758481-83f29b2a2e9f?auto=format&fit=crop&w=1200&q=80')"><div class="visual-label" data-i18n="label1">Act I · The Invitation</div></div>
+        <div class="visual" style="background-image:url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80')"><div class="visual-label" data-i18n="label1">Act I · The Invitation</div></div>
         <div class="content">
           <div class="kicker" data-i18n="a1k">The Curtain Rises</div>
           <h1 class="title" data-i18n="a1t">A Royal Wedding Performance</h1>
           <p class="text" data-i18n="a1p">You are invited to a theatre-inspired royal celebration filled with velvet curtains, candlelight, dinner, music, and a grand final dance.</p>
           <div class="countdown"><div class="time"><span id="days">00</span><small data-i18n="days">Days</small></div><div class="time"><span id="hours">00</span><small data-i18n="hours">Hours</small></div><div class="time"><span id="minutes">00</span><small data-i18n="minutes">Minutes</small></div><div class="time"><span id="seconds">00</span><small data-i18n="seconds">Seconds</small></div></div>
-          <div class="actions"><button class="btn gold" data-jump="rsvp" data-i18n="reserve">Reserve Your Seat</button><a class="btn glass" href="https://www.google.com/maps/search/royal+theatre+wedding+venue" target="_blank" data-i18n="map">Open Location 📍</a></div>
+          <div class="actions"><button class="btn gold" type="button" data-jump="rsvp" data-i18n="reserve">Reserve Your Seat</button><a class="btn glass" href="https://www.google.com/maps/search/royal+theatre+wedding+venue" target="_blank" data-i18n="map">Open Location 📍</a></div>
         </div>
       </article>
 
@@ -131,7 +246,7 @@ body.ar .brand strong,body.ar .title,body.ar .play-title,body.ar .modal-box h2{f
           <h2 class="title" data-i18n="a3t">Generate a Guest Ticket</h2>
           <p class="text" data-i18n="a3p">When guests enter their name in RSVP, the site creates a theatre-style wedding ticket.</p>
           <div class="note" id="liveTicket">ROYAL THEATRE TICKET · Guest · 14 June 2028 · 8:00 PM</div>
-          <div class="actions"><button class="btn gold" data-jump="rsvp" data-i18n="makeTicket">Make My Ticket</button><a class="btn glass" id="calendarBtn" target="_blank" data-i18n="calendar">Save to Calendar 🗓️</a></div>
+          <div class="actions"><button class="btn gold" type="button" data-jump="rsvp" data-i18n="makeTicket">Make My Ticket</button><a class="btn glass" id="calendarBtn" href="#" target="_blank" data-i18n="calendar">Save to Calendar 🗓️</a></div>
         </div>
       </article>
 
@@ -141,7 +256,7 @@ body.ar .brand strong,body.ar .title,body.ar .play-title,body.ar .modal-box h2{f
           <div class="kicker" data-i18n="a4k">Stage Moodboard</div>
           <h2 class="title" data-i18n="a4t">Swipe the Scenery</h2>
           <p class="text" data-i18n="a4p">The gallery is presented like stage scenery, not as normal website photos.</p>
-          <div class="gallery"><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1519167758481-83f29b2a2e9f?auto=format&fit=crop&w=700&q=80')"></div><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=700&q=80')"></div><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=700&q=80')"></div><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=700&q=80')"></div></div>
+          <div class="gallery"><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=700&q=80')"></div><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=700&q=80')"></div><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=700&q=80')"></div><div class="photo" style="background-image:url('https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=700&q=80')"></div></div>
         </div>
       </article>
 
@@ -151,39 +266,180 @@ body.ar .brand strong,body.ar .title,body.ar .play-title,body.ar .modal-box h2{f
           <div class="kicker" data-i18n="a5k">Final Curtain Reply</div>
           <h2 class="title" data-i18n="a5t">Reserve Your Royal Seat</h2>
           <p class="text" data-i18n="a5p">Add your name, guest count, and choose which royal side you are attending from.</p>
-          <div class="form"><input class="field" id="guestName" placeholder="Your name" data-placeholder-en="Your name" data-placeholder-ar="اسمك"><select class="field" id="guestCount"><option value="1">1 Guest</option><option value="2">2 Guests</option><option value="3">3 Guests</option><option value="4">4 Guests</option></select><button class="btn gold" id="yesBtn" data-i18n="yes">Yes, I Will Attend 🎭</button><a class="btn glass" id="noBtn" href="https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C" target="_blank" data-i18n="no">Can’t Make It</a></div>
+          <div class="form"><input class="field" id="guestName" type="text" placeholder="Your name" data-placeholder-en="Your name" data-placeholder-ar="اسمك"><select class="field" id="guestCount"><option value="1">1 Guest</option><option value="2">2 Guests</option><option value="3">3 Guests</option><option value="4">4 Guests</option></select><button class="btn gold" id="yesBtn" type="button" data-i18n="yes">Yes, I Will Attend 🎭</button><a class="btn glass" id="noBtn" href="https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C" target="_blank" data-i18n="no">Can’t Make It</a></div>
         </div>
       </article>
     </section>
   </main>
 
-  <nav class="act-nav"><div class="act-track"><button class="act-btn active" data-actbtn="opening" data-i18n="nav1">Opening</button><button class="act-btn" data-actbtn="program" data-i18n="nav2">Program</button><button class="act-btn" data-actbtn="ticket" data-i18n="nav3">Ticket</button><button class="act-btn" data-actbtn="gallery" data-i18n="nav4">Gallery</button><button class="act-btn" data-actbtn="rsvp" data-i18n="nav5">RSVP</button></div></nav>
+  <nav class="act-nav"><div class="act-track"><button class="act-btn active" type="button" data-actbtn="opening" data-i18n="nav1">Opening</button><button class="act-btn" type="button" data-actbtn="program" data-i18n="nav2">Program</button><button class="act-btn" type="button" data-actbtn="ticket" data-i18n="nav3">Ticket</button><button class="act-btn" type="button" data-actbtn="gallery" data-i18n="nav4">Gallery</button><button class="act-btn" type="button" data-actbtn="rsvp" data-i18n="nav5">RSVP</button></div></nav>
 </div>
 
-<div class="modal" id="sideModal"><div class="modal-box"><button class="close" id="closeModal">×</button><h2 data-i18n="modalT">Choose Your Side</h2><p data-i18n="modalP">Select which royal side should receive your reply.</p><div class="modal-actions"><button class="btn gold" id="brideBtn" data-i18n="bride">Princess Side</button><button class="btn glass" id="groomBtn" data-i18n="groom">Prince Side</button></div></div></div>
+<div class="modal" id="sideModal"><div class="modal-box"><button class="close" id="closeModal" type="button">×</button><h2 data-i18n="modalT">Choose Your Side</h2><p data-i18n="modalP">Select which royal side should receive your reply.</p><div class="modal-actions"><button class="btn gold" id="brideBtn" type="button" data-i18n="bride">Princess Side</button><button class="btn glass" id="groomBtn" type="button" data-i18n="groom">Prince Side</button></div></div></div>
 
 <script>
-const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);let lang='en';
-const intro=$('#intro'),app=$('#app'),start=$('#startBtn'),music=$('#music'),musicBtn=$('#musicBtn'),langBtn=$('#langBtn'),guestName=$('#guestName'),guestCount=$('#guestCount'),liveTicket=$('#liveTicket'),sideModal=$('#sideModal');
-music.src=['https://cdn.pixabay.com/download/audio/2022/03/15/audio_2c6f7b6f64.mp3?filename=piano-moment-9835.mp3','https://cdn.pixabay.com/download/audio/2021/11/25/audio_cb407cc8e9.mp3?filename=romantic-piano-11000.mp3'][Math.floor(Math.random()*2)];music.volume=.13;
-start.onclick=()=>{intro.classList.add('opening');document.body.classList.add('opened');for(let i=0;i<18;i++)floaty(true);music.play().catch(()=>{musicBtn.textContent='🔇';musicBtn.classList.add('muted')});setTimeout(()=>{intro.classList.add('hide');app.classList.add('show')},900);setTimeout(()=>intro.style.display='none',1600)};
-musicBtn.onclick=()=>{if(music.paused){music.play();musicBtn.textContent='🔊';musicBtn.classList.remove('muted')}else{music.pause();musicBtn.textContent='🔇';musicBtn.classList.add('muted')}};
-function openAct(name){$$('.act').forEach(a=>a.classList.toggle('active',a.dataset.act===name));$$('.act-btn').forEach(b=>b.classList.toggle('active',b.dataset.actbtn===name));spark()}
-$$('[data-actbtn]').forEach(b=>b.onclick=()=>openAct(b.dataset.actbtn));$$('[data-jump]').forEach(b=>b.onclick=()=>openAct(b.dataset.jump));
-const weddingDate=new Date('2028-06-14T20:00:00').getTime();function tick(){const d=weddingDate-Date.now();if(d<=0)return;$('#days').textContent=Math.floor(d/86400000);$('#hours').textContent=Math.floor(d/3600000%24);$('#minutes').textContent=Math.floor(d/60000%60);$('#seconds').textContent=Math.floor(d/1000%60)}setInterval(tick,1000);tick();
-$('#calendarBtn').href=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Cassian & Elowen Wedding')}&dates=20280614T200000/20280615T013000&details=${encodeURIComponent('Royal theatre wedding celebration.')}&location=${encodeURIComponent('Royal Theatre Wedding Venue')}`;
-const roomData={en:{arrival:'Act I · Guests arrive at 7:30 PM through the velvet foyer for welcome drinks and candlelit portraits.',vows:'Act II · The ceremony begins at 8:00 PM beneath chandeliers and a royal floral arch.',dinner:'Act III · Dinner and toasts begin at 9:00 PM with palace-inspired table styling.',dance:'Finale · At 10:30 PM, the floor opens for music, dancing, and the final curtain celebration.'},ar:{arrival:'الفصل الأول · يصل الضيوف الساعة ٧:٣٠ مساءً عبر المدخل المخملي لمشروبات الترحيب والصور.',vows:'الفصل الثاني · تبدأ المراسم الساعة ٨:٠٠ مساءً تحت الثريات وقوس الزهور الملكي.',dinner:'الفصل الثالث · يبدأ العشاء والنخب الساعة ٩:٠٠ مساءً مع تنسيق طاولات مستوحى من القصور.',dance:'الختام · الساعة ١٠:٣٠ مساءً تُفتح ساحة الرقص للموسيقى والاحتفال الأخير.'}};
-function setRoom(key){$('#roomNote').textContent=roomData[lang][key];$$('.room').forEach(r=>r.classList.toggle('active',r.dataset.room===key));}$$('.room').forEach(r=>r.onclick=()=>setRoom(r.dataset.room));setRoom('arrival');
-function updateTicket(){const n=guestName.value.trim()||(lang==='ar'?'ضيف':'Guest');liveTicket.textContent=lang==='ar'?`تذكرة المسرح الملكي · ${n} · ${guestCount.value} ضيف · 14 يونيو 2028`:`ROYAL THEATRE TICKET · ${n} · ${guestCount.value} guest(s) · 14 June 2028`}guestName.oninput=updateTicket;guestCount.onchange=updateTicket;
-$('#yesBtn').onclick=()=>{sideModal.style.display='flex';floaty()};$('#closeModal').onclick=()=>sideModal.style.display='none';sideModal.onclick=e=>{if(e.target===sideModal)sideModal.style.display='none'};
-function rsvpText(){const n=guestName.value.trim()||(lang==='ar'?'ضيف':'Guest'),c=guestCount.value;return lang==='ar'?encodeURIComponent(`نعم، سأحضر زفاف كاسيان وإلوين ✅\nالاسم: ${n}\nعدد الأشخاص: ${c}`):encodeURIComponent(`Yes, I will attend Cassian & Elowen's wedding ✅\nName: ${n}\nNumber of Guests: ${c}`)}
-$('#brideBtn').onclick=()=>{open('https://wa.me/96100000000?text='+rsvpText(),'_blank');sideModal.style.display='none'};$('#groomBtn').onclick=()=>{open('https://wa.me/96111111111?text='+rsvpText(),'_blank');sideModal.style.display='none'};
-function summary(){return lang==='ar'?'دعوة زفاف كاسيان وإلوين\nالمكان: Royal Theatre Wedding Venue\nالتاريخ: 14 يونيو 2028\nالوقت: 8:00 مساءً':'Cassian & Elowen Wedding Invitation\nVenue: Royal Theatre Wedding Venue\nDate: 14 June 2028\nTime: 8:00 PM'}
-$('#copyBtn').onclick=async()=>{await navigator.clipboard.writeText(summary());$('#copyBtn').textContent='✓';setTimeout(()=>$('#copyBtn').textContent='⧉',1200)};$('#shareBtn').onclick=async()=>{if(navigator.share)try{await navigator.share({title:'Cassian & Elowen Wedding',text:summary(),url:location.href})}catch(e){}else navigator.clipboard.writeText(summary()+'\n'+location.href)};
-function spark(){const s=document.createElement('div');s.className='spark';s.style.left=Math.random()*innerWidth+'px';s.style.top=(innerHeight-10+Math.random()*70)+'px';document.body.appendChild(s);setTimeout(()=>s.remove(),4200)}function floaty(force=false){const f=document.createElement('div');f.className='floaty';f.textContent=['🎭','✦','❦','✨','♕'][Math.floor(Math.random()*5)];f.style.left=(force?innerWidth/2+Math.random()*180-90:Math.random()*innerWidth)+'px';f.style.top=(force?innerHeight/2+Math.random()*80-40:innerHeight-10+Math.random()*70)+'px';document.body.appendChild(f);setTimeout(()=>f.remove(),6200)}setInterval(spark,900);setInterval(()=>floaty(false),2400);
-const t={en:{introK:'One Night Only',introT:'Cassian<br>& Elowen',introP:'A royal theatre wedding invitation where every guest moves through the celebration like acts on a stage.',stub1:'Royal Theatre',stub2:'14 June 2028',stub3:'Act I',stub4:'8:00 PM',start:'Raise the Curtain 🎭',brand:'Cassian & Elowen',sub:'Royal Theatre Invitation',label1:'Act I · The Invitation',a1k:'The Curtain Rises',a1t:'A Royal Wedding Performance',a1p:'You are invited to a theatre-inspired royal celebration filled with velvet curtains, candlelight, dinner, music, and a grand final dance.',days:'Days',hours:'Hours',minutes:'Minutes',seconds:'Seconds',reserve:'Reserve Your Seat',map:'Open Location 📍',label2:'Act II · The Program',a2k:'Performance Program',a2t:'Choose an Act',a2p:'Tap each act to reveal the exact moment of the celebration.',r1:'Act I · Arrival',r1s:'7:30 PM',r2:'Act II · Vows',r2s:'8:00 PM',r3:'Act III · Banquet',r3s:'9:00 PM',r4:'Finale · Dance',r4s:'10:30 PM',label3:'Act III · Your Ticket',a3k:'Royal Seat Ticket',a3t:'Generate a Guest Ticket',a3p:'When guests enter their name in RSVP, the site creates a theatre-style wedding ticket.',makeTicket:'Make My Ticket',calendar:'Save to Calendar 🗓️',label4:'Act IV · The Mood',a4k:'Stage Moodboard',a4t:'Swipe the Scenery',a4p:'The gallery is presented like stage scenery, not as normal website photos.',label5:'Final Act · RSVP',a5k:'Final Curtain Reply',a5t:'Reserve Your Royal Seat',a5p:'Add your name, guest count, and choose which royal side you are attending from.',yes:'Yes, I Will Attend 🎭',no:'Can’t Make It',nav1:'Opening',nav2:'Program',nav3:'Ticket',nav4:'Gallery',nav5:'RSVP',modalT:'Choose Your Side',modalP:'Select which royal side should receive your reply.',bride:'Princess Side',groom:'Prince Side'},ar:{introK:'ليلة واحدة فقط',introT:'كاسيان<br>وإلوين',introP:'دعوة زفاف ملكية بأسلوب المسرح، ينتقل فيها الضيوف بين لحظات الاحتفال كأنها فصول على الخشبة.',stub1:'المسرح الملكي',stub2:'14 يونيو 2028',stub3:'الفصل الأول',stub4:'8:00 مساءً',start:'ارفعوا الستار 🎭',brand:'كاسيان وإلوين',sub:'دعوة المسرح الملكي',label1:'الفصل الأول · الدعوة',a1k:'يرتفع الستار',a1t:'عرض زفاف ملكي',a1p:'أنتم مدعوون إلى احتفال ملكي مستوحى من المسرح، مليء بالستائر المخملية والشموع والعشاء والموسيقى والرقصة الأخيرة.',days:'أيام',hours:'ساعات',minutes:'دقايق',seconds:'ثواني',reserve:'احجزوا مقعدكم',map:'افتح الموقع 📍',label2:'الفصل الثاني · البرنامج',a2k:'برنامج العرض',a2t:'اختاروا فصلًا',a2p:'اضغطوا على كل فصل لاكتشاف لحظة الاحتفال.',r1:'الفصل الأول · الوصول',r1s:'7:30 مساءً',r2:'الفصل الثاني · العهود',r2s:'8:00 مساءً',r3:'الفصل الثالث · العشاء',r3s:'9:00 مساءً',r4:'الختام · الرقص',r4s:'10:30 مساءً',label3:'الفصل الثالث · تذكرتكم',a3k:'تذكرة المقعد الملكي',a3t:'أنشئوا تذكرة الضيف',a3p:'عندما يكتب الضيف اسمه في RSVP، ينشئ الموقع تذكرة زفاف بأسلوب المسرح.',makeTicket:'أنشئ تذكرتي',calendar:'احفظ في التقويم 🗓️',label4:'الفصل الرابع · الأجواء',a4k:'لوحة المسرح',a4t:'اسحبوا المشهد',a4p:'المعرض يظهر كمشاهد مسرحية، وليس كصور موقع عادي.',label5:'الفصل الأخير · التأكيد',a5k:'رد الستار الأخير',a5t:'احجزوا مقعدكم الملكي',a5p:'أضيفوا الاسم وعدد الضيوف واختاروا الطرف الملكي الذي ستحضرون منه.',yes:'نعم، سأحضر 🎭',no:'ما فيني إحضر',nav1:'البداية',nav2:'البرنامج',nav3:'التذكرة',nav4:'المعرض',nav5:'تأكيد',modalT:'اختاروا الطرف',modalP:'اختاروا أي طرف ملكي سيستلم الرد.',bride:'طرف الأميرة',groom:'طرف الأمير'}};
-function setLang(l){lang=l;document.body.classList.toggle('ar',l==='ar');$$('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t[l][k])el.innerHTML=t[l][k]});guestName.placeholder=l==='ar'?guestName.dataset.placeholderAr:guestName.dataset.placeholderEn;langBtn.textContent=l==='en'?'عربي':'EN';setRoom(document.querySelector('.room.active')?.dataset.room||'arrival');updateTicket();$('#noBtn').href=l==='ar'?'https://wa.me/96100000000?text=%D8%A2%D8%B3%D9%81%D8%8C%20%D9%84%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9%20%D8%A7%D9%84%D8%AD%D8%B6%D9%88%D8%B1%20%E2%9D%8C':'https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C'}
-langBtn.onclick=()=>setLang(lang==='en'?'ar':'en');
+document.addEventListener('DOMContentLoaded', function(){
+  const $ = function(s){ return document.querySelector(s); };
+  const $$ = function(s){ return Array.from(document.querySelectorAll(s)); };
+  let lang = 'en';
+
+  const intro = $('#intro');
+  const app = $('#app');
+  const start = $('#startBtn');
+  const music = $('#music');
+  const musicBtn = $('#musicBtn');
+  const langBtn = $('#langBtn');
+  const guestName = $('#guestName');
+  const guestCount = $('#guestCount');
+  const liveTicket = $('#liveTicket');
+  const sideModal = $('#sideModal');
+
+  const tracks = [
+    'https://cdn.pixabay.com/download/audio/2022/03/15/audio_2c6f7b6f64.mp3?filename=piano-moment-9835.mp3',
+    'https://cdn.pixabay.com/download/audio/2021/11/25/audio_cb407cc8e9.mp3?filename=romantic-piano-11000.mp3'
+  ];
+  if(music){ music.src = tracks[Math.floor(Math.random() * tracks.length)]; music.volume = 0.13; }
+
+  function spark(){
+    const s = document.createElement('div');
+    s.className = 'spark';
+    s.style.left = Math.random() * window.innerWidth + 'px';
+    s.style.top = (window.innerHeight - 10 + Math.random() * 70) + 'px';
+    document.body.appendChild(s);
+    setTimeout(function(){ s.remove(); }, 4200);
+  }
+
+  function floaty(force){
+    const f = document.createElement('div');
+    f.className = 'floaty';
+    const icons = ['🎭','✦','❦','✨','♕'];
+    f.textContent = icons[Math.floor(Math.random() * icons.length)];
+    f.style.left = (force ? window.innerWidth / 2 + Math.random() * 180 - 90 : Math.random() * window.innerWidth) + 'px';
+    f.style.top = (force ? window.innerHeight / 2 + Math.random() * 80 - 40 : window.innerHeight - 10 + Math.random() * 70) + 'px';
+    document.body.appendChild(f);
+    setTimeout(function(){ f.remove(); }, 6200);
+  }
+
+  function openAct(name){
+    $$('.act').forEach(function(a){ a.classList.toggle('active', a.dataset.act === name); });
+    $$('.act-btn').forEach(function(b){ b.classList.toggle('active', b.dataset.actbtn === name); });
+    spark();
+  }
+
+  function openExperience(){
+    if(!intro || !app) return;
+    intro.classList.add('opening');
+    document.body.classList.add('opened');
+    for(let i = 0; i < 18; i++) floaty(true);
+
+    if(music && musicBtn){
+      music.play().then(function(){
+        musicBtn.textContent = '🔊';
+        musicBtn.classList.remove('muted');
+      }).catch(function(){
+        musicBtn.textContent = '🔇';
+        musicBtn.classList.add('muted');
+      });
+    }
+
+    app.style.display = 'grid';
+    app.style.opacity = '0';
+    setTimeout(function(){ app.classList.add('show'); app.style.opacity = '1'; openAct('opening'); tick(); }, 120);
+    setTimeout(function(){ intro.classList.add('hide'); }, 450);
+    setTimeout(function(){ intro.style.display = 'none'; }, 1150);
+  }
+
+  if(start){ start.addEventListener('click', openExperience); }
+  if(musicBtn){
+    musicBtn.addEventListener('click', function(){
+      if(!music) return;
+      if(music.paused){ music.play(); musicBtn.textContent = '🔊'; musicBtn.classList.remove('muted'); }
+      else{ music.pause(); musicBtn.textContent = '🔇'; musicBtn.classList.add('muted'); }
+    });
+  }
+
+  $$('[data-actbtn]').forEach(function(b){ b.addEventListener('click', function(){ openAct(b.dataset.actbtn); }); });
+  $$('[data-jump]').forEach(function(b){ b.addEventListener('click', function(){ openAct(b.dataset.jump); }); });
+
+  const weddingDate = new Date('2028-06-14T20:00:00').getTime();
+  function tick(){
+    const d = weddingDate - Date.now();
+    if(d <= 0) return;
+    const days = $('#days'), hours = $('#hours'), minutes = $('#minutes'), seconds = $('#seconds');
+    if(days) days.textContent = Math.floor(d / 86400000);
+    if(hours) hours.textContent = Math.floor((d / 3600000) % 24);
+    if(minutes) minutes.textContent = Math.floor((d / 60000) % 60);
+    if(seconds) seconds.textContent = Math.floor((d / 1000) % 60);
+  }
+  setInterval(tick, 1000); tick();
+
+  const calendarBtn = $('#calendarBtn');
+  if(calendarBtn){
+    calendarBtn.href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent('Cassian & Elowen Wedding') + '&dates=20280614T200000/20280615T013000&details=' + encodeURIComponent('Royal theatre wedding celebration.') + '&location=' + encodeURIComponent('Royal Theatre Wedding Venue');
+  }
+
+  const roomData = {
+    en:{arrival:'Act I · Guests arrive at 7:30 PM through the velvet foyer for welcome drinks and candlelit portraits.',vows:'Act II · The ceremony begins at 8:00 PM beneath chandeliers and a royal floral arch.',dinner:'Act III · Dinner and toasts begin at 9:00 PM with palace-inspired table styling.',dance:'Finale · At 10:30 PM, the floor opens for music, dancing, and the final curtain celebration.'},
+    ar:{arrival:'الفصل الأول · يصل الضيوف الساعة ٧:٣٠ مساءً عبر المدخل المخملي لمشروبات الترحيب والصور.',vows:'الفصل الثاني · تبدأ المراسم الساعة ٨:٠٠ مساءً تحت الثريات وقوس الزهور الملكي.',dinner:'الفصل الثالث · يبدأ العشاء والنخب الساعة ٩:٠٠ مساءً مع تنسيق طاولات مستوحى من القصور.',dance:'الختام · الساعة ١٠:٣٠ مساءً تُفتح ساحة الرقص للموسيقى والاحتفال الأخير.'}
+  };
+  function setRoom(key){
+    const roomNote = $('#roomNote');
+    if(roomNote) roomNote.textContent = roomData[lang][key];
+    $$('.room').forEach(function(r){ r.classList.toggle('active', r.dataset.room === key); });
+  }
+  $$('.room').forEach(function(r){ r.addEventListener('click', function(){ setRoom(r.dataset.room); }); });
+  setRoom('arrival');
+
+  function updateTicket(){
+    if(!guestName || !guestCount || !liveTicket) return;
+    const n = guestName.value.trim() || (lang === 'ar' ? 'ضيف' : 'Guest');
+    liveTicket.textContent = lang === 'ar' ? 'تذكرة المسرح الملكي · ' + n + ' · ' + guestCount.value + ' ضيف · 14 يونيو 2028' : 'ROYAL THEATRE TICKET · ' + n + ' · ' + guestCount.value + ' guest(s) · 14 June 2028';
+  }
+  if(guestName) guestName.addEventListener('input', updateTicket);
+  if(guestCount) guestCount.addEventListener('change', updateTicket);
+  updateTicket();
+
+  const yesBtn = $('#yesBtn');
+  const closeModal = $('#closeModal');
+  if(yesBtn){ yesBtn.addEventListener('click', function(){ if(sideModal) sideModal.style.display = 'flex'; floaty(false); }); }
+  if(closeModal){ closeModal.addEventListener('click', function(){ if(sideModal) sideModal.style.display = 'none'; }); }
+  if(sideModal){ sideModal.addEventListener('click', function(e){ if(e.target === sideModal) sideModal.style.display = 'none'; }); }
+
+  function rsvpText(){
+    const n = guestName && guestName.value.trim() ? guestName.value.trim() : (lang === 'ar' ? 'ضيف' : 'Guest');
+    const c = guestCount ? guestCount.value : '1';
+    return lang === 'ar' ? encodeURIComponent('نعم، سأحضر زفاف كاسيان وإلوين ✅\nالاسم: ' + n + '\nعدد الأشخاص: ' + c) : encodeURIComponent('Yes, I will attend Cassian & Elowen\'s wedding ✅\nName: ' + n + '\nNumber of Guests: ' + c);
+  }
+  const brideBtn = $('#brideBtn');
+  const groomBtn = $('#groomBtn');
+  if(brideBtn){ brideBtn.addEventListener('click', function(){ window.open('https://wa.me/96100000000?text=' + rsvpText(), '_blank'); if(sideModal) sideModal.style.display = 'none'; }); }
+  if(groomBtn){ groomBtn.addEventListener('click', function(){ window.open('https://wa.me/96111111111?text=' + rsvpText(), '_blank'); if(sideModal) sideModal.style.display = 'none'; }); }
+
+  function summary(){
+    return lang === 'ar' ? 'دعوة زفاف كاسيان وإلوين\nالمكان: Royal Theatre Wedding Venue\nالتاريخ: 14 يونيو 2028\nالوقت: 8:00 مساءً' : 'Cassian & Elowen Wedding Invitation\nVenue: Royal Theatre Wedding Venue\nDate: 14 June 2028\nTime: 8:00 PM';
+  }
+  const copyBtn = $('#copyBtn');
+  const shareBtn = $('#shareBtn');
+  if(copyBtn){ copyBtn.addEventListener('click', async function(){ try{ await navigator.clipboard.writeText(summary()); copyBtn.textContent = '✓'; setTimeout(function(){ copyBtn.textContent = '⧉'; }, 1200); }catch(e){ copyBtn.textContent = '!'; setTimeout(function(){ copyBtn.textContent = '⧉'; }, 1200); } }); }
+  if(shareBtn){ shareBtn.addEventListener('click', async function(){ const data = {title:'Cassian & Elowen Wedding', text:summary(), url:location.href}; if(navigator.share){ try{ await navigator.share(data); }catch(e){} } else { try{ await navigator.clipboard.writeText(summary() + '\n' + location.href); }catch(e){} } }); }
+
+  const t = {
+    en:{introK:'One Night Only',introT:'Cassian<br>& Elowen',introP:'A royal theatre wedding invitation where every guest moves through the celebration like acts on a stage.',stub1:'Royal Theatre',stub2:'14 June 2028',stub3:'Act I',stub4:'8:00 PM',start:'Raise the Curtain 🎭',brand:'Cassian & Elowen',sub:'Royal Theatre Invitation',label1:'Act I · The Invitation',a1k:'The Curtain Rises',a1t:'A Royal Wedding Performance',a1p:'You are invited to a theatre-inspired royal celebration filled with velvet curtains, candlelight, dinner, music, and a grand final dance.',days:'Days',hours:'Hours',minutes:'Minutes',seconds:'Seconds',reserve:'Reserve Your Seat',map:'Open Location 📍',label2:'Act II · The Program',a2k:'Performance Program',a2t:'Choose an Act',a2p:'Tap each act to reveal the exact moment of the celebration.',r1:'Act I · Arrival',r1s:'7:30 PM',r2:'Act II · Vows',r2s:'8:00 PM',r3:'Act III · Banquet',r3s:'9:00 PM',r4:'Finale · Dance',r4s:'10:30 PM',label3:'Act III · Your Ticket',a3k:'Royal Seat Ticket',a3t:'Generate a Guest Ticket',a3p:'When guests enter their name in RSVP, the site creates a theatre-style wedding ticket.',makeTicket:'Make My Ticket',calendar:'Save to Calendar 🗓️',label4:'Act IV · The Mood',a4k:'Stage Moodboard',a4t:'Swipe the Scenery',a4p:'The gallery is presented like stage scenery, not as normal website photos.',label5:'Final Act · RSVP',a5k:'Final Curtain Reply',a5t:'Reserve Your Royal Seat',a5p:'Add your name, guest count, and choose which royal side you are attending from.',yes:'Yes, I Will Attend 🎭',no:'Can’t Make It',nav1:'Opening',nav2:'Program',nav3:'Ticket',nav4:'Gallery',nav5:'RSVP',modalT:'Choose Your Side',modalP:'Select which royal side should receive your reply.',bride:'Princess Side',groom:'Prince Side'},
+    ar:{introK:'ليلة واحدة فقط',introT:'كاسيان<br>وإلوين',introP:'دعوة زفاف ملكية بأسلوب المسرح، ينتقل فيها الضيوف بين لحظات الاحتفال كأنها فصول على الخشبة.',stub1:'المسرح الملكي',stub2:'14 يونيو 2028',stub3:'الفصل الأول',stub4:'8:00 مساءً',start:'ارفعوا الستار 🎭',brand:'كاسيان وإلوين',sub:'دعوة المسرح الملكي',label1:'الفصل الأول · الدعوة',a1k:'يرتفع الستار',a1t:'عرض زفاف ملكي',a1p:'أنتم مدعوون إلى احتفال ملكي مستوحى من المسرح، مليء بالستائر المخملية والشموع والعشاء والموسيقى والرقصة الأخيرة.',days:'أيام',hours:'ساعات',minutes:'دقايق',seconds:'ثواني',reserve:'احجزوا مقعدكم',map:'افتح الموقع 📍',label2:'الفصل الثاني · البرنامج',a2k:'برنامج العرض',a2t:'اختاروا فصلًا',a2p:'اضغطوا على كل فصل لاكتشاف لحظة الاحتفال.',r1:'الفصل الأول · الوصول',r1s:'7:30 مساءً',r2:'الفصل الثاني · العهود',r2s:'8:00 مساءً',r3:'الفصل الثالث · العشاء',r3s:'9:00 مساءً',r4:'الختام · الرقص',r4s:'10:30 مساءً',label3:'الفصل الثالث · تذكرتكم',a3k:'تذكرة المقعد الملكي',a3t:'أنشئوا تذكرة الضيف',a3p:'عندما يكتب الضيف اسمه في RSVP، ينشئ الموقع تذكرة زفاف بأسلوب المسرح.',makeTicket:'أنشئ تذكرتي',calendar:'احفظ في التقويم 🗓️',label4:'الفصل الرابع · الأجواء',a4k:'لوحة المسرح',a4t:'اسحبوا المشهد',a4p:'المعرض يظهر كمشاهد مسرحية، وليس كصور موقع عادي.',label5:'الفصل الأخير · التأكيد',a5k:'رد الستار الأخير',a5t:'احجزوا مقعدكم الملكي',a5p:'أضيفوا الاسم وعدد الضيوف واختاروا الطرف الملكي الذي ستحضرون منه.',yes:'نعم، سأحضر 🎭',no:'ما فيني إحضر',nav1:'البداية',nav2:'البرنامج',nav3:'التذكرة',nav4:'المعرض',nav5:'تأكيد',modalT:'اختاروا الطرف',modalP:'اختاروا أي طرف ملكي سيستلم الرد.',bride:'طرف الأميرة',groom:'طرف الأمير'}
+  };
+  function setLang(l){
+    lang = l;
+    document.body.classList.toggle('ar', l === 'ar');
+    $$('[data-i18n]').forEach(function(el){ const k = el.dataset.i18n; if(t[l][k]) el.innerHTML = t[l][k]; });
+    if(guestName) guestName.placeholder = l === 'ar' ? guestName.dataset.placeholderAr : guestName.dataset.placeholderEn;
+    if(langBtn) langBtn.textContent = l === 'en' ? 'عربي' : 'EN';
+    setRoom(document.querySelector('.room.active')?.dataset.room || 'arrival');
+    updateTicket();
+    const noBtn = $('#noBtn');
+    if(noBtn){ noBtn.href = l === 'ar' ? 'https://wa.me/96100000000?text=%D8%A2%D8%B3%D9%81%D8%8C%20%D9%84%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%B7%D9%8A%D8%B9%20%D8%A7%D9%84%D8%AD%D8%B6%D9%88%D8%B1%20%E2%9D%8C' : 'https://wa.me/96100000000?text=Sorry%2C%20I%20can%E2%80%99t%20make%20it%20%E2%9D%8C'; }
+  }
+  if(langBtn){ langBtn.addEventListener('click', function(){ setLang(lang === 'en' ? 'ar' : 'en'); }); }
+});
 </script>
 </body>
 </html>
